@@ -8,7 +8,8 @@ In this section we will review :
 
 ## Particle Electron Asset Tracker v2
 ![Electron Asset Tracker](https://docs.particle.io/assets/images/shields/asset-tracker-shield-v2/asset.png "Particle Electron picture")
-The [Particle Electron Asset Trackerv2](https://store.particle.io/products/asset-tracker) board allows you to connect a Particle Electron with its uBlox M8 GNSS GPS receiver and LIS3DH accelerometer. You can connect Grove Sensors to it as well.
+
+The [Particle Electron Asset Tracker v2](https://store.particle.io/products/asset-tracker) board allows you to connect a Particle Electron with its uBlox M8 GNSS GPS receiver and LIS3DH accelerometer. You can connect Grove Sensors to it as well.
 
 ## Particle Electron software toolchain
 1. Set up your Particle.io Account at  http://login.particle.io/
@@ -21,12 +22,13 @@ The [Particle Electron Asset Trackerv2](https://store.particle.io/products/asset
   * Web Connected LED sample app
   * I modified the Cloud2LED.bin to send LED on/off from Particle cloud down to Electron. I modified it to support case insensitive "on/off" and "ON/OFF" - baby steps!
 7. It's worth reading about [Particle Functions](https://docs.particle.io/reference/firmware/core/#particle-function-) so that you can publish and subscribe to events.
-8. Since I like a command line interface over a Web IDE, I installed the [Particle CLI]( https://docs.particle.io/guide/tools-and-features/cli/electron/) by following the guide.
+8. Since I prefer a command line interface over a Web IDE, I installed the [Particle CLI]( https://docs.particle.io/guide/tools-and-features/cli/electron/) by following the guide.
 ```
     $ particle login
     $ particle upgrade
 ```
  The [firmware upgrade](https://docs.particle.io/guide/tools-and-features/firmware-manager/electron/) was important to get the Google Maps geolocation device locator working.  My Particle Electron was factory installed with v0.4.9, once I upgraded to v0.6.4, the Google Maps function finally worked.
+
 9. The next step was to learn about the [$particle compile]( https://docs.particle.io/reference/cli/#particle-compile) command
 ```
     $ particle compile
