@@ -72,3 +72,18 @@ The following instructions replace the default perishable-network model and chai
 9. Visit [chaincode](IoT-Perishable-Network/logic.js) and copy that file to your clipboard.
 10. Paste in my modified chaincode from github into the Script file.
 11. Press the Update button
+
+## Expose the Perishable Business Network as a REST API
+
+To manipulate the blockchain from Node-RED, we will expose the perishable-network business network using the Hyperledger Composer REST API.  
+1. Return to the [Hyperledger tutorial](https://ibm-blockchain.github.io/interacting/) and complete the instructions in Step 4.  Essentially you will want to run
+```
+$ cd cs-offerings/scripts/
+$ ./create/create_composer-rest-server.sh --business-network-card admin@perishable-network
+```
+2. Visit
+```
+http://YOUR_PUBLIC_IP_HERE:31090/explorer
+```
+
+![Perishable Network REST API swagger screenshot](screenshots/Perishable-Network-REST-API-swagger.png "Hyperledger Composer REST API")
