@@ -9,7 +9,7 @@ In this section we will review :
 ## Particle Electron Asset Tracker v2
 ![Electron Asset Tracker](https://docs.particle.io/assets/images/shields/asset-tracker-shield-v2/asset.png "Particle Electron picture")
 
-The [Particle Electron Asset Tracker v2](https://store.particle.io/products/asset-tracker) board allows you to connect a Particle Electron with its uBlox M8 GNSS GPS receiver and LIS3DH accelerometer. You can connect Grove Sensors to it as well.
+The [Particle Electron Asset Tracker v2](https://store.particle.io/products/asset-tracker) board allows you to connect a Particle Electron with its uBlox M8 GNSS GPS receiver and Adafruit LIS3DH Triple Axis Accelerometer. You can connect Grove Sensors to it as well.
 
 ## Particle Electron software toolchain
 1. Set up your Particle.io Account at  http://login.particle.io/
