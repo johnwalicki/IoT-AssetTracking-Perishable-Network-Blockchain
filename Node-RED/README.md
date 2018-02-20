@@ -52,7 +52,7 @@ In this Step, you will add the Node-RED Dashboard nodes to your Internet of Thin
 * Turn to the Install tab **(3)**, type node-red-dashboard **(4)** and press the Install button **(5)**.
 ![IBM Cloud Node-RED Starter screenshot](screenshots/IBMCloud-NodeRED-nodeinstall.png)
 * Press the Install button in the next dialog.
-* Repeat **(4)** to install **node-red-contrib-particle** and **node-red-contrib-web-worldmap**
+* Repeat **(4)** to install **node-red-contrib-particle** and **node-red-contrib-web-worldmap** nodes.
 
 ### Import a prebuilt flow from GitHub
 Since configuring Node-RED nodes and wiring them together requires many steps to document in screenshots, there is an easier way to build a flow by importing a prebuilt flow into your IoT Starter Application.
@@ -79,6 +79,7 @@ that sets up the params and uses a **http request node** to post the Particle fu
 ![IoT Asset Tracker Node-RED flow screenshot](screenshots/Node-RED-flow-ControlParticleDevice.png)
 
 As a first step, copy the code from GitHub to your Clipboard and import it into your Node-RED editor.
+
 Get the Code [IoT Asset Tracker Node-RED flow - Control Particle Device ](flows/IoTAssetTracker-ControlParticleElectrons.json)
 
 ## Receive Particle Electron events
