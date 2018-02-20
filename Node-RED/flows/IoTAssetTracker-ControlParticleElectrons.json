@@ -1,0 +1,1177 @@
+[
+    {
+        "id": "56f9cd86.fe4934",
+        "type": "tab",
+        "label": "Start Particle Electron",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "dc7e7dac.b3d278",
+        "type": "function",
+        "z": "56f9cd86.fe4934",
+        "name": "Particle.io URL",
+        "func": "var ParticleElectron=\"320022000251363131363432\";\nvar ParticleAccessToken=\"30859d93988f4e1cf4fae73eb48b5a1322478c4e\";\nmsg.url = \"https://api.particle.io/v1/devices/\"+ParticleElectron+\"/SetInterval?access_token=\"+ParticleAccessToken;\nmsg.headers = {'Content-Type' : 'application/x-www-form-urlencoded'};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 100,
+        "wires": [
+            [
+                "d3ea2b16.01aff8"
+            ]
+        ]
+    },
+    {
+        "id": "d3ea2b16.01aff8",
+        "type": "http request",
+        "z": "56f9cd86.fe4934",
+        "name": "Send POST request",
+        "method": "POST",
+        "ret": "txt",
+        "url": "",
+        "tls": "",
+        "x": 780,
+        "y": 100,
+        "wires": [
+            [
+                "3c32693c.6527a6"
+            ]
+        ]
+    },
+    {
+        "id": "3c32693c.6527a6",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "output/debug",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 980,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "f2483fb3.6c0b9",
+        "type": "inject",
+        "z": "56f9cd86.fe4934",
+        "name": "On",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "44b09e14.86ef88"
+            ]
+        ]
+    },
+    {
+        "id": "44b09e14.86ef88",
+        "type": "change",
+        "z": "56f9cd86.fe4934",
+        "name": "Start Reporting (60 Seconds)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "params=60",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 330,
+        "y": 80,
+        "wires": [
+            [
+                "dc7e7dac.b3d278"
+            ]
+        ]
+    },
+    {
+        "id": "76cf861c.d9b29",
+        "type": "change",
+        "z": "56f9cd86.fe4934",
+        "name": "Stop Reporting (0 seconds)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "params=0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "dc7e7dac.b3d278"
+            ]
+        ]
+    },
+    {
+        "id": "38bcad75.e912ca",
+        "type": "inject",
+        "z": "56f9cd86.fe4934",
+        "name": "Off",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "76cf861c.d9b29"
+            ]
+        ]
+    },
+    {
+        "id": "be4eaec8.7c3bd",
+        "type": "comment",
+        "z": "56f9cd86.fe4934",
+        "name": "You can also start Geolocation Reporting from the Particle Console",
+        "info": "You can also start Geolocation Reporting from the Particle Console:\nhttps://console.particle.io/devices/320022000251363131363432",
+        "x": 740,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "4a6a6d92.37ab8c",
+        "type": "ui_dropdown",
+        "z": "56f9cd86.fe4934",
+        "name": "Select Asset Tracking Device",
+        "label": "Select Asset Tracking Device (Particle Electron)",
+        "place": "Select a Particle Electron",
+        "group": "50a0c904.87a4b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "options": [
+            {
+                "label": "",
+                "value": "0",
+                "type": "str"
+            },
+            {
+                "label": "Electron 3G #1",
+                "value": "320022000251363131363432",
+                "type": "str"
+            },
+            {
+                "label": "Electron 2G #2",
+                "value": "32",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 140,
+        "y": 180,
+        "wires": [
+            [
+                "ec4bfec6.c6edc"
+            ]
+        ]
+    },
+    {
+        "id": "b067b459.3793e8",
+        "type": "ui_form",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "label": "Enable this Asset Tracking Device",
+        "group": "50a0c904.87a4b",
+        "order": 2,
+        "width": "12",
+        "height": "8",
+        "options": [
+            {
+                "label": "Start Geolocation Reporting",
+                "value": "EnableReporting",
+                "type": "switch",
+                "required": false
+            },
+            {
+                "label": "Interval (default 60sec)",
+                "value": "SetInterval",
+                "type": "number",
+                "required": false
+            }
+        ],
+        "formValue": {
+            "EnableReporting": false,
+            "SetInterval": ""
+        },
+        "payload": "",
+        "topic": "",
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "b9a42386.b265d"
+            ]
+        ]
+    },
+    {
+        "id": "39203ecf.fa2aa2",
+        "type": "switch",
+        "z": "56f9cd86.fe4934",
+        "name": "Set Reporting Interval",
+        "property": "payload.SetInterval",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 660,
+        "y": 240,
+        "wires": [
+            [
+                "3a0b016d.a4319e"
+            ],
+            [
+                "6b3e63bf.0d3244"
+            ]
+        ]
+    },
+    {
+        "id": "b9a42386.b265d",
+        "type": "switch",
+        "z": "56f9cd86.fe4934",
+        "name": "EnableReporting",
+        "property": "payload.EnableReporting",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 430,
+        "y": 280,
+        "wires": [
+            [
+                "39203ecf.fa2aa2"
+            ],
+            [
+                "e6c10cd2.1d3a78"
+            ]
+        ]
+    },
+    {
+        "id": "e6c10cd2.1d3a78",
+        "type": "change",
+        "z": "56f9cd86.fe4934",
+        "name": "Stop Reporting (0 seconds)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "params=0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 680,
+        "y": 320,
+        "wires": [
+            [
+                "5ead36ee.a18"
+            ]
+        ]
+    },
+    {
+        "id": "6b3e63bf.0d3244",
+        "type": "change",
+        "z": "56f9cd86.fe4934",
+        "name": "Start Reporting (60 Sec)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "params=60",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 260,
+        "wires": [
+            [
+                "5ead36ee.a18"
+            ]
+        ]
+    },
+    {
+        "id": "3a0b016d.a4319e",
+        "type": "template",
+        "z": "56f9cd86.fe4934",
+        "name": "Set Reporting Interval",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "params={{payload.SetInterval}}",
+        "output": "str",
+        "x": 900,
+        "y": 220,
+        "wires": [
+            [
+                "5ead36ee.a18"
+            ]
+        ]
+    },
+    {
+        "id": "7158fe0b.b0c198",
+        "type": "switch",
+        "z": "56f9cd86.fe4934",
+        "name": "Set Accel Threshold",
+        "property": "payload.SetXYZThresh",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 440,
+        "y": 380,
+        "wires": [
+            [
+                "4257f1a3.822b88"
+            ]
+        ]
+    },
+    {
+        "id": "5ead36ee.a18",
+        "type": "link out",
+        "z": "56f9cd86.fe4934",
+        "name": "SetInterval",
+        "links": [
+            "f63d8f09.8ca198"
+        ],
+        "x": 1075,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f63d8f09.8ca198",
+        "type": "link in",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "links": [
+            "5ead36ee.a18"
+        ],
+        "x": 55,
+        "y": 500,
+        "wires": [
+            [
+                "40d1c747.8c4c28",
+                "c6129d51.7eb7e"
+            ]
+        ]
+    },
+    {
+        "id": "40d1c747.8c4c28",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 190,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "c6129d51.7eb7e",
+        "type": "function",
+        "z": "56f9cd86.fe4934",
+        "name": "Particle.io URL",
+        "func": "//var ParticleElectron=\"320022000251363131363432\";\nvar ParticleElectron=flow.get(\"ParticleDeviceID\");\nvar ParticleAccessToken;\n\nif( typeof(ParticleElectron) === 'undefined' ) {\n    msg.payload = \"Please Select a Particle Electron to Control\";\n    return [msg, null];\n}\n\nswitch ( ParticleElectron ) {\n    case \"320022000251363131363432\" :\n        ParticleAccessToken=\"30859d93988f4e1cf4fae73eb48b5a1322478c4e\";\n        break;\n    case \"32\" :\n        ParticleAccessToken=\"\";\n        break;\n}\n\n// Build Particle.io API call for SetInterval\nmsg.url = \"https://api.particle.io/v1/devices/\"+ParticleElectron+\"/SetInterval?access_token=\"+ParticleAccessToken;\nmsg.headers = {'Content-Type' : 'application/x-www-form-urlencoded'};\nreturn [null,msg];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 200,
+        "y": 520,
+        "wires": [
+            [
+                "2a256f64.fedf78"
+            ],
+            [
+                "71a86a59.45d0bc",
+                "a2396343.7d1fb8"
+            ]
+        ]
+    },
+    {
+        "id": "71a86a59.45d0bc",
+        "type": "http request",
+        "z": "56f9cd86.fe4934",
+        "name": "Send POST request",
+        "method": "POST",
+        "ret": "txt",
+        "url": "",
+        "tls": "",
+        "x": 440,
+        "y": 520,
+        "wires": [
+            [
+                "4746cee9.b4b08",
+                "4f5b3cad.c0391c"
+            ]
+        ]
+    },
+    {
+        "id": "4257f1a3.822b88",
+        "type": "template",
+        "z": "56f9cd86.fe4934",
+        "name": "Set Accel Thresh",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "params={{payload.SetXYZThresh}}",
+        "output": "str",
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "2ca7693a.c28fa6"
+            ]
+        ]
+    },
+    {
+        "id": "2ca7693a.c28fa6",
+        "type": "link out",
+        "z": "56f9cd86.fe4934",
+        "name": "SetXYZThresh",
+        "links": [
+            "be84b5f9.63fea"
+        ],
+        "x": 835,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "be84b5f9.63fea",
+        "type": "link in",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "links": [
+            "2ca7693a.c28fa6"
+        ],
+        "x": 55,
+        "y": 660,
+        "wires": [
+            [
+                "4721488c.3a222",
+                "5ebea60.0d3995c"
+            ]
+        ]
+    },
+    {
+        "id": "ec4bfec6.c6edc",
+        "type": "change",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ParticleDeviceID",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 450,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2a256f64.fedf78",
+        "type": "ui_toast",
+        "z": "56f9cd86.fe4934",
+        "position": "top right",
+        "displayTime": "20",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 430,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "a2396343.7d1fb8",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 390,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "4721488c.3a222",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 190,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "5ebea60.0d3995c",
+        "type": "function",
+        "z": "56f9cd86.fe4934",
+        "name": "Particle.io URL",
+        "func": "//var ParticleElectron=\"320022000251363131363432\";\nvar ParticleElectron=flow.get(\"ParticleDeviceID\");\nvar ParticleAccessToken;\n\nif( typeof(ParticleElectron) === 'undefined' ) {\n    msg.payload = \"Please Select a Particle Electron to Control\";\n    return [msg, null];\n}\n\nswitch ( ParticleElectron ) {\n    case \"320022000251363131363432\" :\n        ParticleAccessToken=\"30859d93988f4e1cf4fae73eb48b5a1322478c4e\";\n        break;\n    case \"32\" :\n        ParticleAccessToken=\"\";\n        break;\n}\n\n// Build Particle.io API call for SetXYZThresh\nmsg.url = \"https://api.particle.io/v1/devices/\"+ParticleElectron+\"/SetXYZThresh?access_token=\"+ParticleAccessToken;\nmsg.headers = {'Content-Type' : 'application/x-www-form-urlencoded'};\nreturn [null,msg];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 200,
+        "y": 680,
+        "wires": [
+            [
+                "418d0ddd.571204"
+            ],
+            [
+                "838dd8e8.7a3848",
+                "9f6bb856.935a9"
+            ]
+        ]
+    },
+    {
+        "id": "838dd8e8.7a3848",
+        "type": "http request",
+        "z": "56f9cd86.fe4934",
+        "name": "Send POST request",
+        "method": "POST",
+        "ret": "txt",
+        "url": "",
+        "tls": "",
+        "x": 440,
+        "y": 680,
+        "wires": [
+            [
+                "4f5b3cad.c0391c",
+                "4746cee9.b4b08"
+            ]
+        ]
+    },
+    {
+        "id": "4f5b3cad.c0391c",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "output/debug",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 700,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "418d0ddd.571204",
+        "type": "ui_toast",
+        "z": "56f9cd86.fe4934",
+        "position": "top right",
+        "displayTime": "20",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 430,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "9f6bb856.935a9",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 390,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "75132e30.e8f8c",
+        "type": "ui_form",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "label": "Set Accelerometer Threshold",
+        "group": "50a0c904.87a4b",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Set Accelerometer Threshold",
+                "value": "SetXYZThresh",
+                "type": "number",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "SetXYZThresh": ""
+        },
+        "payload": "",
+        "topic": "",
+        "x": 140,
+        "y": 380,
+        "wires": [
+            [
+                "7158fe0b.b0c198"
+            ]
+        ]
+    },
+    {
+        "id": "e5f5839.571f38",
+        "type": "switch",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "property": "payload.ok",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 770,
+        "y": 600,
+        "wires": [
+            [
+                "9586eda.aea999"
+            ]
+        ]
+    },
+    {
+        "id": "71bd925b.e0e28c",
+        "type": "ui_toast",
+        "z": "56f9cd86.fe4934",
+        "position": "top right",
+        "displayTime": "10",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 1070,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "4746cee9.b4b08",
+        "type": "json",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "pretty": false,
+        "x": 650,
+        "y": 600,
+        "wires": [
+            [
+                "e5f5839.571f38"
+            ]
+        ]
+    },
+    {
+        "id": "9586eda.aea999",
+        "type": "template",
+        "z": "56f9cd86.fe4934",
+        "name": "Error Msg",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Error contacting device : {{payload.error}}",
+        "output": "str",
+        "x": 900,
+        "y": 600,
+        "wires": [
+            [
+                "71bd925b.e0e28c"
+            ]
+        ]
+    },
+    {
+        "id": "351e89f5.58647e",
+        "type": "inject",
+        "z": "56f9cd86.fe4934",
+        "name": "GetCurrTemp",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 820,
+        "wires": [
+            [
+                "bf1721d8.08b6d"
+            ]
+        ]
+    },
+    {
+        "id": "bf1721d8.08b6d",
+        "type": "function",
+        "z": "56f9cd86.fe4934",
+        "name": "Particle.io URL",
+        "func": "//var ParticleElectron=\"320022000251363131363432\";\nvar ParticleElectron=flow.get(\"ParticleDeviceID\");\nvar ParticleAccessToken;\n\nif( typeof(ParticleElectron) === 'undefined' ) {\n    msg.payload = \"Please Select a Particle Electron to Control\";\n    return [msg, null];\n}\n\nswitch ( ParticleElectron ) {\n    case \"320022000251363131363432\" :\n        ParticleAccessToken=\"30859d93988f4e1cf4fae73eb48b5a1322478c4e\";\n        break;\n    case \"32\" :\n        ParticleAccessToken=\"\";\n        break;\n}\n\n// Build Particle.io API call for SetInterval\nmsg.url = \"https://api.particle.io/v1/devices/\"+ParticleElectron+\"/GetCurrTemp?access_token=\"+ParticleAccessToken;\nmsg.headers = {'Content-Type' : 'application/x-www-form-urlencoded'};\nreturn [null,msg];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 280,
+        "y": 820,
+        "wires": [
+            [
+                "a3d5a98a.54f6a8"
+            ],
+            [
+                "8fd4c2dc.889fb",
+                "86b0be76.980de8"
+            ]
+        ]
+    },
+    {
+        "id": "8fd4c2dc.889fb",
+        "type": "http request",
+        "z": "56f9cd86.fe4934",
+        "name": "Send POST request",
+        "method": "POST",
+        "ret": "txt",
+        "url": "",
+        "tls": "",
+        "x": 520,
+        "y": 820,
+        "wires": [
+            [
+                "a79fc084.e40d58",
+                "705992d7.f0aa2c"
+            ]
+        ]
+    },
+    {
+        "id": "a3d5a98a.54f6a8",
+        "type": "ui_toast",
+        "z": "56f9cd86.fe4934",
+        "position": "top right",
+        "displayTime": "20",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 510,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "86b0be76.980de8",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 470,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "a79fc084.e40d58",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "output/debug",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 740,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "597bcdcf.e9c854",
+        "type": "switch",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "property": "payload.return_value",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 830,
+        "y": 840,
+        "wires": [
+            [
+                "47f55639.6570a8"
+            ]
+        ]
+    },
+    {
+        "id": "f1fb79ae.718f48",
+        "type": "ui_toast",
+        "z": "56f9cd86.fe4934",
+        "position": "dialog",
+        "displayTime": "10",
+        "highlight": "",
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 1150,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "705992d7.f0aa2c",
+        "type": "json",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "pretty": false,
+        "x": 710,
+        "y": 840,
+        "wires": [
+            [
+                "597bcdcf.e9c854",
+                "e5f5839.571f38"
+            ]
+        ]
+    },
+    {
+        "id": "47f55639.6570a8",
+        "type": "template",
+        "z": "56f9cd86.fe4934",
+        "name": "Curr Temp Msg",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "The current temperature is : {{payload.return_value}}",
+        "output": "str",
+        "x": 980,
+        "y": 840,
+        "wires": [
+            [
+                "f1fb79ae.718f48"
+            ]
+        ]
+    },
+    {
+        "id": "8a85f717.6fc1a8",
+        "type": "ui_button",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "group": "999ba5dc.e7c48",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Get Current Temperature of Device",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 160,
+        "y": 880,
+        "wires": [
+            [
+                "bf1721d8.08b6d"
+            ]
+        ]
+    },
+    {
+        "id": "22ba20e7.530888",
+        "type": "ui_button",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "group": "999ba5dc.e7c48",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Get Recent Accelerometer Data",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 150,
+        "y": 1020,
+        "wires": [
+            [
+                "c4406f94.fc1d1"
+            ]
+        ]
+    },
+    {
+        "id": "c4406f94.fc1d1",
+        "type": "function",
+        "z": "56f9cd86.fe4934",
+        "name": "Particle.io URL",
+        "func": "//var ParticleElectron=\"320022000251363131363432\";\nvar ParticleElectron=flow.get(\"ParticleDeviceID\");\nvar ParticleAccessToken;\n\nif( typeof(ParticleElectron) === 'undefined' ) {\n    msg.payload = \"Please Select a Particle Electron to Control\";\n    return [msg, null];\n}\n\nswitch ( ParticleElectron ) {\n    case \"320022000251363131363432\" :\n        ParticleAccessToken=\"30859d93988f4e1cf4fae73eb48b5a1322478c4e\";\n        break;\n    case \"32\" :\n        ParticleAccessToken=\"\";\n        break;\n}\n\n// Build Particle.io API call for SetInterval\nmsg.url = \"https://api.particle.io/v1/devices/\"+ParticleElectron+\"/GetRecentXYZ?access_token=\"+ParticleAccessToken;\nmsg.headers = {'Content-Type' : 'application/x-www-form-urlencoded'};\nreturn [null,msg];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 280,
+        "y": 980,
+        "wires": [
+            [
+                "9c608e1.ced2df"
+            ],
+            [
+                "1dcd44c5.c040a3",
+                "4f0a0cd3.67588c"
+            ]
+        ]
+    },
+    {
+        "id": "1dcd44c5.c040a3",
+        "type": "http request",
+        "z": "56f9cd86.fe4934",
+        "name": "Send POST request",
+        "method": "POST",
+        "ret": "txt",
+        "url": "",
+        "tls": "",
+        "x": 520,
+        "y": 980,
+        "wires": [
+            [
+                "b45aab9b.c9c86",
+                "aaf951ab.e9f798"
+            ]
+        ]
+    },
+    {
+        "id": "9c608e1.ced2df",
+        "type": "ui_toast",
+        "z": "56f9cd86.fe4934",
+        "position": "top right",
+        "displayTime": "20",
+        "highlight": "",
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 510,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "4f0a0cd3.67588c",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 470,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "b45aab9b.c9c86",
+        "type": "debug",
+        "z": "56f9cd86.fe4934",
+        "name": "output/debug",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 740,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "cbe09ea6.f2fe08",
+        "type": "switch",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "property": "payload.return_value",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nnull"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 830,
+        "y": 1000,
+        "wires": [
+            [
+                "1363a930.7a40f7"
+            ]
+        ]
+    },
+    {
+        "id": "e2e42815.53b1d",
+        "type": "ui_toast",
+        "z": "56f9cd86.fe4934",
+        "position": "dialog",
+        "displayTime": "10",
+        "highlight": "",
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "topic": "",
+        "name": "",
+        "x": 1150,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aaf951ab.e9f798",
+        "type": "json",
+        "z": "56f9cd86.fe4934",
+        "name": "",
+        "pretty": false,
+        "x": 710,
+        "y": 1000,
+        "wires": [
+            [
+                "cbe09ea6.f2fe08",
+                "e5f5839.571f38"
+            ]
+        ]
+    },
+    {
+        "id": "1363a930.7a40f7",
+        "type": "template",
+        "z": "56f9cd86.fe4934",
+        "name": "Recent XYZ  Msg",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Recent Accelerometer data : {{payload.return_value}}",
+        "output": "str",
+        "x": 990,
+        "y": 1000,
+        "wires": [
+            [
+                "e2e42815.53b1d"
+            ]
+        ]
+    },
+    {
+        "id": "3ea89fc2.4c02e8",
+        "type": "inject",
+        "z": "56f9cd86.fe4934",
+        "name": "Recent XYZ",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 980,
+        "wires": [
+            [
+                "c4406f94.fc1d1"
+            ]
+        ]
+    },
+    {
+        "id": "50a0c904.87a4b",
+        "type": "ui_group",
+        "z": "",
+        "name": "Start Particle Electron Geolocation",
+        "tab": "ae68f83b.8f0f08",
+        "order": 1,
+        "disp": true,
+        "width": "12"
+    },
+    {
+        "id": "999ba5dc.e7c48",
+        "type": "ui_group",
+        "z": "",
+        "name": "Query Particle Electron",
+        "tab": "ae68f83b.8f0f08",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ae68f83b.8f0f08",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Start Particle Geolocation Reporting",
+        "icon": "dashboard",
+        "order": 3
+    }
+]

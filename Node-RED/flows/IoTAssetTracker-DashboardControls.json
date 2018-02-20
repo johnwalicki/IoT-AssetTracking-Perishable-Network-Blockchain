@@ -1,0 +1,1066 @@
+[
+    {
+        "id": "79d32cd8.ef96ec",
+        "type": "tab",
+        "label": "IoT Asset Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9ce34ea0.f1063",
+        "type": "ui_template",
+        "z": "79d32cd8.ef96ec",
+        "group": "2e59e7c9.8998c",
+        "name": "Embedded Map",
+        "order": 0,
+        "width": "10",
+        "height": "10",
+        "format": "<div ng-bind-html=\"msg.payload | trusted\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 820,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a8f981be.de6088",
+        "type": "template",
+        "z": "79d32cd8.ef96ec",
+        "name": "Add Map to Dashboard",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<iframe src={{{payload}}} height=515px width=490px></iframe>",
+        "x": 570,
+        "y": 120,
+        "wires": [
+            [
+                "9ce34ea0.f1063"
+            ]
+        ]
+    },
+    {
+        "id": "7ea95430.7b5acc",
+        "type": "ui_dropdown",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "label": "Select Truck Route",
+        "place": "",
+        "group": "27003579.de1d82",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "x": 330,
+        "y": 280,
+        "wires": [
+            [
+                "8d20d39e.fe2b9"
+            ]
+        ]
+    },
+    {
+        "id": "b0cb78de.ca2d5",
+        "type": "ui_switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "Play Particle Electron Route",
+        "label": "Track Truck Route",
+        "group": "27003579.de1d82",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 360,
+        "y": 482,
+        "wires": [
+            [
+                "5c7eee8e.1f7468"
+            ]
+        ]
+    },
+    {
+        "id": "5c7eee8e.1f7468",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "Enable / Disable Tracking Map",
+        "rules": [
+            {
+                "t": "set",
+                "p": "start-stop",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 482,
+        "wires": [
+            [
+                "3d40f6c8.68b282"
+            ]
+        ]
+    },
+    {
+        "id": "3d40f6c8.68b282",
+        "type": "debug",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 910,
+        "y": 482,
+        "wires": []
+    },
+    {
+        "id": "13531cc8.2e9ddb",
+        "type": "comment",
+        "z": "79d32cd8.ef96ec",
+        "name": "One time - Add Map to Dashboard",
+        "info": "",
+        "x": 190,
+        "y": 82,
+        "wires": []
+    },
+    {
+        "id": "3ae666be.39522a",
+        "type": "comment",
+        "z": "79d32cd8.ef96ec",
+        "name": "Select Asset and Date Range",
+        "info": "",
+        "x": 160,
+        "y": 182,
+        "wires": []
+    },
+    {
+        "id": "bc3eeee3.cd1b58",
+        "type": "comment",
+        "z": "79d32cd8.ef96ec",
+        "name": "Play Asset Route",
+        "info": "",
+        "x": 100,
+        "y": 482,
+        "wires": []
+    },
+    {
+        "id": "1cbfd419.4abe54",
+        "type": "inject",
+        "z": "79d32cd8.ef96ec",
+        "name": "Init Dashboard",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 120,
+        "y": 120,
+        "wires": [
+            [
+                "f0b2c022.df819",
+                "38fd1df3.0306ca",
+                "f2799a68.3216c",
+                "b59c7fa0.f40a08"
+            ]
+        ]
+    },
+    {
+        "id": "f0b2c022.df819",
+        "type": "function",
+        "z": "79d32cd8.ef96ec",
+        "name": "Asset DB",
+        "func": "AssetDB = [ {\"Truck #1\":\"34301\"},\n            {\"Truck #2\":\"34302\"},\n            {\"Truck #3\":\"34303\"},\n            {\"Car #1\":\"320022000251363131363432\" }\n          ];\nmsg.options = AssetDB;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 300,
+        "y": 222,
+        "wires": [
+            [
+                "7ea95430.7b5acc"
+            ]
+        ]
+    },
+    {
+        "id": "c6a7b42b.a6df68",
+        "type": "ui_date_picker",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "label": "Start Date",
+        "group": "27003579.de1d82",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "f614a63.50929d8"
+            ]
+        ]
+    },
+    {
+        "id": "e6a64177.e1dd58",
+        "type": "ui_date_picker",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "label": "End Date",
+        "group": "27003579.de1d82",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "topic": "",
+        "x": 460,
+        "y": 400,
+        "wires": [
+            [
+                "a7721230.b08058"
+            ]
+        ]
+    },
+    {
+        "id": "3aa6168b.b578ea",
+        "type": "comment",
+        "z": "79d32cd8.ef96ec",
+        "name": "Select Date Range",
+        "info": "",
+        "x": 110,
+        "y": 422,
+        "wires": []
+    },
+    {
+        "id": "c82245a.6ae4bb8",
+        "type": "ui_text",
+        "z": "79d32cd8.ef96ec",
+        "group": "27003579.de1d82",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "Blank text",
+        "label": "",
+        "format": "",
+        "layout": "row-spread",
+        "x": 300,
+        "y": 442,
+        "wires": []
+    },
+    {
+        "id": "8d20d39e.fe2b9",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "KitNum",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 590,
+        "y": 280,
+        "wires": [
+            [
+                "894bdaa6.d311",
+                "145637eb.f9d218"
+            ]
+        ]
+    },
+    {
+        "id": "31e93bbf.7b1b54",
+        "type": "debug",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 1010,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b42cc248.28ddb8",
+        "type": "debug",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 850,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "a1ca538c.3bc3a8",
+        "type": "debug",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 850,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "894bdaa6.d311",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "Reset Location",
+        "rules": [
+            {
+                "t": "set",
+                "p": "location",
+                "pt": "global",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 820,
+        "y": 280,
+        "wires": [
+            [
+                "31e93bbf.7b1b54"
+            ]
+        ]
+    },
+    {
+        "id": "15d8af24.13b009",
+        "type": "ui_switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "Where is Asset Now",
+        "label": "Where is Asset Now",
+        "group": "27003579.de1d82",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 330,
+        "y": 560,
+        "wires": [
+            [
+                "deae3dad.1c475"
+            ]
+        ]
+    },
+    {
+        "id": "deae3dad.1c475",
+        "type": "function",
+        "z": "79d32cd8.ef96ec",
+        "name": "Find it now!",
+        "func": "if ( msg.payload === true ) {\n    msg.payload = false;\n    global.set(\"zoom\",true);\n    global.set(\"ZoomedAlready\", false);\n    return msg;\n} else {\n    global.set(\"zoom\",false);   \n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 520,
+        "y": 560,
+        "wires": [
+            [
+                "b0cb78de.ca2d5",
+                "532c7788.4f8f38"
+            ]
+        ]
+    },
+    {
+        "id": "38fd1df3.0306ca",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "Start Date",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1451624400000",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 360,
+        "wires": [
+            [
+                "c6a7b42b.a6df68"
+            ]
+        ]
+    },
+    {
+        "id": "f2799a68.3216c",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "End Date",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1546300799000",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 400,
+        "wires": [
+            [
+                "e6a64177.e1dd58"
+            ]
+        ]
+    },
+    {
+        "id": "b59c7fa0.f40a08",
+        "type": "function",
+        "z": "79d32cd8.ef96ec",
+        "name": "Inject /worldmap",
+        "func": "msg.payload = \"/worldmap\";\nmsg.payload.command = {};\n\nvar u = 'http://{s}.tile.openstreetmap.org/hot/{z}/{x}/{y}.png';\nvar o = JSON.stringify({ maxZoom: 19, attribution: '&copy; OpenStreetMap'});\n\nmsg.payload.command =   {\n                        layer:\"Esri\",\n                        // Moscone Center\n//                        lat:37.7841772,\n//                        lon-122.403751\n                        // Puerto Rico\n                        lat:18.44081,\n                        lon:-66.08068,                        \n                        zoom:10,\n                        // map: {name:\"OSMhot\", url:u, opt:o},\n                        map: {name:\"Esri\", url:u, opt:o},\n                        };\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 120,
+        "wires": [
+            [
+                "a8f981be.de6088"
+            ]
+        ]
+    },
+    {
+        "id": "f614a63.50929d8",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "Start Time Range",
+        "rules": [
+            {
+                "t": "set",
+                "p": "start-time",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 360,
+        "wires": [
+            [
+                "b42cc248.28ddb8"
+            ]
+        ]
+    },
+    {
+        "id": "a7721230.b08058",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "End Time Range",
+        "rules": [
+            {
+                "t": "set",
+                "p": "end-time",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 400,
+        "wires": [
+            [
+                "a1ca538c.3bc3a8"
+            ]
+        ]
+    },
+    {
+        "id": "532c7788.4f8f38",
+        "type": "debug",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 780,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "145637eb.f9d218",
+        "type": "function",
+        "z": "79d32cd8.ef96ec",
+        "name": "Build Table",
+        "func": "var WhichKit=global.get(\"KitNum\");\n// Make certain that an Asset Kit has been selected from the drop down\nif (typeof WhichKit == 'undefined') {\n    return null;\n}\n\nvar AssetHistory = global.get(\"AssetHistory\");\nvar AssetTagLocations = [];\nvar starttime = global.get(\"start-time\");\nvar endtime = global.get(\"end-time\");\n\nfor(i = 0; i < AssetHistory.length; i++ ) {\n    if( AssetHistory[i].AssetID == WhichKit ) {\n        // Filter on the selected timestamp range\n        if( (AssetHistory[i].timestamp > starttime) && (AssetHistory[i].timestamp < endtime)) {\n            AssetTagLocations.push(AssetHistory[i]); \n        }\n    }\n}\n\n// Sort by timestamp\nAssetTagLocations.sort(function(x,y) {\n    return x.timestamp - y.timestamp;\n});\n\nvar current_location = global.get(\"location\")||0;\nmsg.payload=current_location;\n// Shorten the Device Asset string.\n// In the DB its 320022000251363131363432\n// Call the last 5 as unique\nvar Device = WhichKit.substr(WhichKit.length - 5);\n\nmsg.template=\"<style>\";\nmsg.template=msg.template+\"#asset table { width: 560px; margin-top: 10px; }\";\nmsg.template=msg.template+\"#asset tr:nth-child(even){background-color: #f2f2f2;}\";\nmsg.template=msg.template+\"#asset th, #asset td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; width: 10%;}\";\nmsg.template=msg.template+\"</style>\";\n\nmsg.template=msg.template+\"<table id=\\\"asset\\\" span=100%><tr><th>Device</th><th>Timestamp</th><th>Geo Location</th></tr>\";\nfor (var i = 0; i < AssetTagLocations.length; i++) {\n  var d = new Date(AssetTagLocations[i].timestamp);\n  if( i == current_location ) {\n    msg.template = msg.template + \"<tr style=\\\"color:white; background-color:black;\\\"><td>\"+Device+\"</td><td>\" + d.toLocaleDateString()+\" \"+d.toLocaleTimeString() + \"</td><td>\" + AssetTagLocations[i].gps.lat.substr(0,9)+\",\"+AssetTagLocations[i].gps.lon.substr(0,10) + \"</td></tr>\";\n  } else {\n//    msg.template = msg.template + \"<tr><td>\" + Device + \"</td><td>\" + d.getTime() + \"</td><td>\" + AssetTagLocations[i].gps.lat.substr(0,9)+\",\"+AssetTagLocations[i].gps.lon.substr(0,10) + \"</td></tr>\";\n    msg.template = msg.template + \"<tr><td>\" + Device + \"</td><td>\" + d.toLocaleDateString()+\" \"+d.toLocaleTimeString() + \"</td><td>\" + AssetTagLocations[i].gps.lat.substr(0,9)+\",\"+AssetTagLocations[i].gps.lon.substr(0,10) + \"</td></tr>\";\n  }\n}\nmsg.template = msg.template + \"</table>\";\nmsg.payload = AssetHistory;\nreturn msg ;\n",
+        "outputs": "1",
+        "noerr": 0,
+        "x": 810,
+        "y": 240,
+        "wires": [
+            [
+                "de88d5bd.ab03c",
+                "51b6644.7c8c91c"
+            ]
+        ]
+    },
+    {
+        "id": "51b6644.7c8c91c",
+        "type": "ui_template",
+        "z": "79d32cd8.ef96ec",
+        "group": "c0849f22.f7bf58",
+        "name": "Location Table",
+        "order": 0,
+        "width": "11",
+        "height": "10",
+        "format": "<div ng-bind-html=\"msg.template\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 1020,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f9307331.450c6",
+        "type": "link in",
+        "z": "79d32cd8.ef96ec",
+        "name": "Table Highlight",
+        "links": [
+            "3ef8b710.42a89",
+            "b6da26ca.9a1"
+        ],
+        "x": 655,
+        "y": 240,
+        "wires": [
+            [
+                "145637eb.f9d218"
+            ]
+        ]
+    },
+    {
+        "id": "de88d5bd.ab03c",
+        "type": "debug",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "template",
+        "x": 1010,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8b50ecf5.96d188",
+        "type": "ui_switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "label": "Show Geo Fence Zones",
+        "group": "27003579.de1d82",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 310,
+        "y": 640,
+        "wires": [
+            [
+                "e96ff3a5.643828"
+            ]
+        ]
+    },
+    {
+        "id": "cb9effa9.b776e",
+        "type": "function",
+        "z": "79d32cd8.ef96ec",
+        "name": "Draw GeoFence Zones",
+        "func": "// If the payload contains an area property - that is an array of co-ordinates, e.g.\nvar Geofence = [\n[40.98221,-74.10203],\n[40.98037,-74.08866],\n[40.97198,-74.09075],\n[40.97611,-74.10416],\n[40.98221,-74.10203]\n];\n\n// Areas\n//    iconColor : can set the colour of the polygon or line.\n//    name : is used as the id key - so can be redrawn/moved.\n//    layer : declares which layer you put it on..\n//\n//Areas, Lines and Circles can also specify more optional properties:\n//    color\n//    fillColor\n//    stroke\n//    weight\n//    opacity\n//    fill\n//    fillOpacity\n//    clickable (if true sets the passed in name as Popup)\n\n\nmsg.payload = { area : Geofence,\n                fillColor : \"blue\",\n                name : \"home\",\n              };\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 620,
+        "wires": [
+            [
+                "d677d460.64a008"
+            ]
+        ]
+    },
+    {
+        "id": "d677d460.64a008",
+        "type": "link out",
+        "z": "79d32cd8.ef96ec",
+        "name": "GeoFence Out",
+        "links": [
+            "f3aa3024.da15a"
+        ],
+        "x": 865,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "e96ff3a5.643828",
+        "type": "switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 500,
+        "y": 640,
+        "wires": [
+            [
+                "cb9effa9.b776e"
+            ],
+            [
+                "2260fd29.306882"
+            ]
+        ]
+    },
+    {
+        "id": "2260fd29.306882",
+        "type": "function",
+        "z": "79d32cd8.ef96ec",
+        "name": "Erase GeoFence Zones",
+        "func": "msg.payload = { area : [],name : \"home\" };\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 660,
+        "wires": [
+            [
+                "d677d460.64a008"
+            ]
+        ]
+    },
+    {
+        "id": "669de98b.b698a",
+        "type": "ui_switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "label": "Show Environmental Threshold Pins",
+        "group": "27003579.de1d82",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 280,
+        "y": 720,
+        "wires": [
+            [
+                "e085a9cc.7e31c8"
+            ]
+        ]
+    },
+    {
+        "id": "e085a9cc.7e31c8",
+        "type": "switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 500,
+        "y": 720,
+        "wires": [
+            [
+                "5ad2858a.8f13d4"
+            ],
+            [
+                "7e3fa793.9e9b18"
+            ]
+        ]
+    },
+    {
+        "id": "aa2fc296.e6f4d",
+        "type": "link out",
+        "z": "79d32cd8.ef96ec",
+        "name": "GeoFence Out",
+        "links": [
+            "f3aa3024.da15a"
+        ],
+        "x": 865,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "400f7478.65c834",
+        "type": "ui_switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "label": "SMS Alert when in GeoFence",
+        "group": "27003579.de1d82",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 300,
+        "y": 800,
+        "wires": [
+            [
+                "bf9ef113.0d6108"
+            ]
+        ]
+    },
+    {
+        "id": "aa06b49.61fb848",
+        "type": "twilio out",
+        "z": "79d32cd8.ef96ec",
+        "service": "_ext_",
+        "twilio": "5952fd5c.a948fc",
+        "from": "",
+        "number": "551486-0924",
+        "name": "",
+        "x": 920,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "866b4a64.9c95e",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Medical Supplies have exceeded environment threshold",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 835,
+        "wires": [
+            [
+                "aa06b49.61fb848"
+            ]
+        ]
+    },
+    {
+        "id": "a79bc856.b61ee8",
+        "type": "ui_switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "label": "SMS Alert on Extreme Temp",
+        "group": "27003579.de1d82",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "fa-thermometer-full",
+        "oncolor": "red",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 300,
+        "y": 835,
+        "wires": [
+            [
+                "58d334e1.71d0fc"
+            ]
+        ]
+    },
+    {
+        "id": "5ba02815.5ca868",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Asset has arrived at destination",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 800,
+        "wires": [
+            [
+                "aa06b49.61fb848"
+            ]
+        ]
+    },
+    {
+        "id": "bf9ef113.0d6108",
+        "type": "switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 500,
+        "y": 800,
+        "wires": [
+            [
+                "5ba02815.5ca868"
+            ]
+        ]
+    },
+    {
+        "id": "58d334e1.71d0fc",
+        "type": "switch",
+        "z": "79d32cd8.ef96ec",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 500,
+        "y": 835,
+        "wires": [
+            [
+                "866b4a64.9c95e"
+            ]
+        ]
+    },
+    {
+        "id": "5ad2858a.8f13d4",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "Draw Alert Pins",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ShowEnvironmentalPins",
+                "pt": "global",
+                "to": "true",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 705,
+        "wires": [
+            [
+                "aa2fc296.e6f4d"
+            ]
+        ]
+    },
+    {
+        "id": "7e3fa793.9e9b18",
+        "type": "change",
+        "z": "79d32cd8.ef96ec",
+        "name": "Erase Alert Pins",
+        "rules": [
+            {
+                "t": "set",
+                "p": "ShowEnvironmentalPins",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{ \"command\" : { \"clear\":\"threshold\" } }",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 670,
+        "y": 740,
+        "wires": [
+            [
+                "aa2fc296.e6f4d"
+            ]
+        ]
+    },
+    {
+        "id": "2e59e7c9.8998c",
+        "type": "ui_group",
+        "z": "",
+        "name": "Asset Visualization on a Map",
+        "tab": "4576e05b.f0749",
+        "order": 3,
+        "disp": true,
+        "width": "10"
+    },
+    {
+        "id": "27003579.de1d82",
+        "type": "ui_group",
+        "z": "",
+        "name": "Asset Tracking",
+        "tab": "4576e05b.f0749",
+        "order": 1,
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "c0849f22.f7bf58",
+        "type": "ui_group",
+        "z": "",
+        "name": "Geo Coordinate Location Data",
+        "tab": "4576e05b.f0749",
+        "order": 3,
+        "disp": true,
+        "width": "11"
+    },
+    {
+        "id": "5952fd5c.a948fc",
+        "type": "twilio-api",
+        "z": "",
+        "sid": "ACc662d8bec298af6e95e6e4194cf7ce3b",
+        "from": "5512226866 ",
+        "name": ""
+    },
+    {
+        "id": "4576e05b.f0749",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Developer View of IoT Asset Tracking using BlockChain ",
+        "icon": "dashboard"
+    }
+]

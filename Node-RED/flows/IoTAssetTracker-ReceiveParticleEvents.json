@@ -1,0 +1,470 @@
+[
+    {
+        "id": "5e102eff.67646",
+        "type": "tab",
+        "label": "Particle Receiver",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "bde6465e.7a19d",
+        "type": "ParticleSSE in",
+        "z": "5e102eff.67646",
+        "baseurl": "393d1778.26aef",
+        "evtname": "deviceLocator",
+        "devid": "320022000251363131363432",
+        "consolelog": false,
+        "x": 240,
+        "y": 100,
+        "wires": [
+            [
+                "4da65482.7b757c"
+            ]
+        ]
+    },
+    {
+        "id": "4da65482.7b757c",
+        "type": "debug",
+        "z": "5e102eff.67646",
+        "name": "Data Arriving",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 570,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a2dfbda6.1ac89",
+        "type": "ParticleSSE in",
+        "z": "5e102eff.67646",
+        "baseurl": "393d1778.26aef",
+        "evtname": "hook-response/deviceLocator/320022000251363131363432/0",
+        "devid": "",
+        "consolelog": false,
+        "x": 290,
+        "y": 200,
+        "wires": [
+            [
+                "9298c4a4.0e1dc8",
+                "c1e62991.4c4268"
+            ]
+        ]
+    },
+    {
+        "id": "9298c4a4.0e1dc8",
+        "type": "debug",
+        "z": "5e102eff.67646",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 630,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "c1e62991.4c4268",
+        "type": "function",
+        "z": "5e102eff.67646",
+        "name": "Split GeoLocation string",
+        "func": "// Split \"40.9837518,-74.11384330000001,1057\" at the ,\nvar geolocation = msg.payload.split(\",\");\n// Split \"hook-response/deviceLocator/320022000251363131363432/0\"\nvar ParticleID = msg.evtname.split(\"/\");\nParticleID[2]=\"2\"+ParticleID[2];\n// Create a JSON object to store in the database\nmsg.payload = { \"AssetID\": ParticleID[2],\n                \"gps\":{\"lat\":geolocation[0],\"lon\":geolocation[1]},\n                \"uncertaintyradius\":geolocation[2],\n                \"timestamp\" : Date.now()\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 200,
+        "wires": [
+            [
+                "41573d27.4228dc"
+            ]
+        ]
+    },
+    {
+        "id": "41573d27.4228dc",
+        "type": "debug",
+        "z": "5e102eff.67646",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 910,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "44f702e9.2f40ac",
+        "type": "rbe",
+        "z": "5e102eff.67646",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "x": 1030,
+        "y": 380,
+        "wires": [
+            [
+                "c8ca615d.b75558"
+            ]
+        ]
+    },
+    {
+        "id": "9200a611.62f0e8",
+        "type": "comment",
+        "z": "5e102eff.67646",
+        "name": "Particle Board is Active",
+        "info": "",
+        "x": 140,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ed6f840c.80b28",
+        "type": "comment",
+        "z": "5e102eff.67646",
+        "name": "Particle Board received response from Google Location API",
+        "info": "",
+        "x": 260,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "52ffa5a5.d4ad3c",
+        "type": "comment",
+        "z": "5e102eff.67646",
+        "name": "Only record location when Particle Board moves",
+        "info": "",
+        "x": 1220,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "68d9fa1b.1b2a2c",
+        "type": "ParticleSSE in",
+        "z": "5e102eff.67646",
+        "baseurl": "393d1778.26aef",
+        "evtname": "AssetTrackerTemperatureEvent",
+        "devid": "320022000251363131363432",
+        "consolelog": false,
+        "x": 290,
+        "y": 560,
+        "wires": [
+            [
+                "dd596e58.8e0e48",
+                "f1d26bf1.43688"
+            ]
+        ]
+    },
+    {
+        "id": "64ef2361.53c9fc",
+        "type": "debug",
+        "z": "5e102eff.67646",
+        "name": "Temperature Reading",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 800,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "ea421aa8.1eb238",
+        "type": "ParticleSSE in",
+        "z": "5e102eff.67646",
+        "baseurl": "393d1778.26aef",
+        "evtname": "AssetTrackerAccelerationEvent",
+        "devid": "320022000251363131363432",
+        "consolelog": false,
+        "x": 290,
+        "y": 320,
+        "wires": [
+            [
+                "fe505054.6eb648",
+                "f1d26bf1.43688"
+            ]
+        ]
+    },
+    {
+        "id": "14f97215.2ea326",
+        "type": "debug",
+        "z": "5e102eff.67646",
+        "name": "Excessive Acceleration Detected",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 840,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "fe505054.6eb648",
+        "type": "json",
+        "z": "5e102eff.67646",
+        "name": "",
+        "pretty": false,
+        "x": 610,
+        "y": 320,
+        "wires": [
+            [
+                "14f97215.2ea326",
+                "ffa71bbc.c95cd8"
+            ]
+        ]
+    },
+    {
+        "id": "dd596e58.8e0e48",
+        "type": "json",
+        "z": "5e102eff.67646",
+        "name": "",
+        "pretty": false,
+        "x": 610,
+        "y": 560,
+        "wires": [
+            [
+                "64ef2361.53c9fc",
+                "12d98a05.01eab6"
+            ]
+        ]
+    },
+    {
+        "id": "f1d26bf1.43688",
+        "type": "debug",
+        "z": "5e102eff.67646",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 650,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "ffa71bbc.c95cd8",
+        "type": "function",
+        "z": "5e102eff.67646",
+        "name": "Format Accel Event Record",
+        "func": "// this was a GetRecentXYZ query, no GPS data\nif( typeof msg.payload.gps === 'undefined') {\n    return null ;\n}\n// Create a JSON object to store in the database\nmsg.blockchaindata = { \"AssetID\": msg.id,\n                \"Accel\":msg.payload.Accel,\n                \"gps\":msg.payload.gps,\n                \"timestamp\" : msg.published_at\n};\n// If the asset didn't move, don't write temp data to the blockchain.\nmsg.payload = msg.payload.gps;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 340,
+        "wires": [
+            [
+                "2073b067.8cb4d",
+                "44f702e9.2f40ac"
+            ]
+        ]
+    },
+    {
+        "id": "12d98a05.01eab6",
+        "type": "function",
+        "z": "5e102eff.67646",
+        "name": "Format Temp Event Record",
+        "func": "// this was a GetCurrTemp query, no GPS data\nif( typeof msg.payload.gps === 'undefined') {\n    return null ;\n}\n\n// Create a JSON object to store in the database\nmsg.blockchaindata = { \"AssetID\": msg.id,\n                \"Temperature\":msg.payload.Temp,\n                \"gps\":msg.payload.gps,\n                \"timestamp\" : msg.published_at\n};\n\n// If the asset didn't move, don't write temp data to the blockchain.\nmsg.payload = msg.payload.gps;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 820,
+        "y": 540,
+        "wires": [
+            [
+                "30749e54.02c8ca",
+                "ac947b6a.5024f"
+            ]
+        ]
+    },
+    {
+        "id": "30749e54.02c8ca",
+        "type": "debug",
+        "z": "5e102eff.67646",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 1050,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "2073b067.8cb4d",
+        "type": "debug",
+        "z": "5e102eff.67646",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 1050,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c8ca615d.b75558",
+        "type": "change",
+        "z": "5e102eff.67646",
+        "name": "Store Record",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "blockchaindata",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1180,
+        "y": 380,
+        "wires": [
+            [
+                "f9f7b4b4.f1b3e",
+                "95790c5f.44e5d8"
+            ]
+        ]
+    },
+    {
+        "id": "f9f7b4b4.f1b3e",
+        "type": "debug",
+        "z": "5e102eff.67646",
+        "name": "BlockChain Data",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 1370,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "dae9e9a5.12f72",
+        "type": "comment",
+        "z": "5e102eff.67646",
+        "name": "Example TemperatureReading",
+        "info": "{\"AssetID\":\"320022000251363131363432\",\"Temperature\":{\"Celsius\":24.25,\"Fahrenheit\":75.650002},\"gps\":{\"lat\":40.973312,\"lon\":-74.092712,\"accuracy\":0},\"timestamp\":\"2018-02-14T14:49:08.132Z\"}",
+        "x": 1070,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "38b30653.ba168a",
+        "type": "link out",
+        "z": "5e102eff.67646",
+        "name": "AccelReading Arrived",
+        "links": [
+            "68e1c93f.be9338"
+        ],
+        "x": 1475,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "ac947b6a.5024f",
+        "type": "rbe",
+        "z": "5e102eff.67646",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "x": 1030,
+        "y": 500,
+        "wires": [
+            [
+                "abbcc0e6.12427"
+            ]
+        ]
+    },
+    {
+        "id": "abbcc0e6.12427",
+        "type": "change",
+        "z": "5e102eff.67646",
+        "name": "Store Record",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "blockchaindata",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1180,
+        "y": 500,
+        "wires": [
+            [
+                "43c6eed4.fce798",
+                "f9f7b4b4.f1b3e"
+            ]
+        ]
+    },
+    {
+        "id": "43c6eed4.fce798",
+        "type": "link out",
+        "z": "5e102eff.67646",
+        "name": "TemperatureReading Arrived",
+        "links": [
+            "72463b9c.c06064"
+        ],
+        "x": 1315,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "278dfe56.493d02",
+        "type": "inject",
+        "z": "5e102eff.67646",
+        "name": "Reset RBE GPS Data",
+        "topic": "",
+        "payload": "{\"lat\":41.972904,\"lon\":-75.092216,\"accuracy\":0}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 900,
+        "y": 440,
+        "wires": [
+            [
+                "44f702e9.2f40ac",
+                "ac947b6a.5024f"
+            ]
+        ]
+    },
+    {
+        "id": "95790c5f.44e5d8",
+        "type": "delay",
+        "z": "5e102eff.67646",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1360,
+        "y": 380,
+        "wires": [
+            [
+                "38b30653.ba168a"
+            ]
+        ]
+    },
+    {
+        "id": "393d1778.26aef",
+        "type": "particle-cloud",
+        "z": "",
+        "host": "https://api.particle.io",
+        "port": "443",
+        "accesstoken": "30859d93988f4e1cf4fae73eb48b5a1322478c4e",
+        "name": "blockchain-iot-asset-tracker1"
+    }
+]
