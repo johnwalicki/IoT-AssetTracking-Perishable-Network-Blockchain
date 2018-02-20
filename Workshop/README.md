@@ -1,5 +1,7 @@
 # IoT Asset Tracking Perishable Network Blockchain Workshop
-Author: @johnwalicki
+Author: []@johnwalicki](https://twitter.com/johnwalicki)
+
+## Follow this workshop at **https://github.com/johnwalicki/IoT-AssetTracking-Perishable-Network-Blockchain**
 
 I've arranged this git repository to be read as an **[IBM Code Pattern](https://developer.ibm.com/code/)** [workshop tutorial](Workshop/README.md).
 

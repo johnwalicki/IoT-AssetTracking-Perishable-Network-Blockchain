@@ -87,3 +87,5 @@ http://YOUR_PUBLIC_IP_HERE:31090/explorer
 ```
 
 ![Perishable Network REST API swagger screenshot](screenshots/Perishable-Network-REST-API-swagger.png "Hyperledger Composer REST API")
+
+Congratulations!  You have completed the Blockchain section of the workshop.  Proceed to the [Node-RED section](../Node-RED/README.md) which will leverage the REST API you just enabled to write / read / visualize IoT Asset environmental sensor data to the transaction history.
