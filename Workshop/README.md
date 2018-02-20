@@ -3,7 +3,7 @@ Author: []@johnwalicki](https://twitter.com/johnwalicki)
 
 ## Follow this workshop at **https://github.com/johnwalicki/IoT-AssetTracking-Perishable-Network-Blockchain**
 
-I've arranged this git repository to be read as an **[IBM Code Pattern](https://developer.ibm.com/code/)** [workshop tutorial](Workshop/README.md).
+I've arranged this git repository to be read as an **[IBM Code Pattern](https://developer.ibm.com/code/)** [workshop tutorial](README.md).
 
 ## Section Overviews
 The first [section](../ParticleElectron/README.md) details how to set up a **Particle Electron Asset Tracker v2** to send environmental sensor data and location to the cloud. This implementation uses a [Particle Electron](https://docs.particle.io/datasheets/kits-and-accessories/particle-shields/#electron-asset-tracker-v2). Since we don't have dozens of Particle Electrons, I will demo mine from the podium.  By the end of the workshop you will be reading environmental data off this tracker.
