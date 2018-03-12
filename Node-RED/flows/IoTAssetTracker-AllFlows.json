@@ -1021,7 +1021,7 @@
         "payloadType": "str",
         "topic": "",
         "x": 160,
-        "y": 880,
+        "y": 860,
         "wires": [
             [
                 "a51a60d6.5e1568"
@@ -1221,11 +1221,11 @@
         "type": "ParticleSSE in",
         "z": "5e102eff.67646",
         "baseurl": "393d1778.26aef",
-        "evtname": "hook-response/deviceLocator/<your Particle Device ID>",
+        "evtname": "hook-response/deviceLocator/<your Particle Device ID>/0",
         "devid": "",
         "consolelog": false,
-        "x": 325,
-        "y": 610,
+        "x": 320,
+        "y": 620,
         "wires": [
             [
                 "9298c4a4.0e1dc8",
@@ -1306,7 +1306,7 @@
         "z": "5e102eff.67646",
         "name": "Particle Board received response from Google Location API",
         "info": "",
-        "x": 600,
+        "x": 710,
         "y": 560,
         "wires": []
     },
@@ -1663,7 +1663,7 @@
         "type": "comment",
         "z": "5e11e736.5672e",
         "name": "One Time Setup to create the Blockchain Demo",
-        "info": "",
+        "info": "Remember to edit the Blockchain Model chaincode (logic.js) \nIn the setupDemo() function, insert your Particle Device ID\nas the Shipment ID",
         "x": 330,
         "y": 60,
         "wires": []
@@ -1684,7 +1684,7 @@
         "z": "5e11e736.5672e",
         "name": "Sample Temp Data",
         "topic": "",
-        "payload": "{\"AssetID\":\"<Your Particle Device ID>\",\"Temperature\":{\"Celsius\":22.625,\"Fahrenheit\":72.724998},\"gps\":{\"lat\":40.972904,\"lon\":-74.092216,\"accuracy\":0},\"timestamp\":\"2018-02-14T15:06:41.178Z\"}",
+        "payload": "{\"AssetID\":\"<your Particle Device ID>\",\"Temperature\":{\"Celsius\":22.625,\"Fahrenheit\":72.724998},\"gps\":{\"lat\":40.972904,\"lon\":-74.092216,\"accuracy\":0},\"timestamp\":\"2018-02-14T15:06:41.178Z\"}",
         "payloadType": "json",
         "repeat": "",
         "crontab": "",
@@ -1702,7 +1702,7 @@
         "type": "function",
         "z": "5e11e736.5672e",
         "name": "Build a TemperatureReading Transaction",
-        "func": "// A TemperatureReading Blockchain transaction looks like this:\n//      {\n//      \"$class\": \"org.acme.shipping.perishable.TemperatureReading\",\n//      \"celsius\": 0,\n//      \"latitude\": \"string\",\n//      \"longitude\": \"string\",\n//      \"readingTime\": \"string\",\n//      \"shipment\": \"resource:org.acme.shipping.perishable.Shipment#NNNN\"\n//      }\nvar FabricIP=global.get(\"HyperLedgerFabricIP\");\n\n// This function will be passed a msg.payload from the Particle Electron\n// AssetTrackerTemperatureEvent  looks like this:\n//   {\"AssetID\":\"<Particle Device ID>\",\n//    \"Temperature\":{\"Celsius\":22.625,\"Fahrenheit\":72.724998},\n//    \"gps\":{\"lat\":40.972904,\"lon\":-74.092216,\"accuracy\":0},\n//    \"timestamp\":\"2018-02-14T15:06:41.178Z\"}\n\nmsg.payload = {\n  \"$class\"     : \"org.acme.shipping.perishable.TemperatureReading\",\n  \"celsius\"    : msg.payload.Temperature.Celsius,\n  \"readingTime\": msg.payload.timestamp,\n  \"latitude\"   : msg.payload.gps.lat.toString(),\n  \"longitude\"  : msg.payload.gps.lon.toString(),\n  \"shipment\"   : \"resource:org.acme.shipping.perishable.Shipment#\"+msg.payload.AssetID\n};\nTempReadingMsg = JSON.stringify(msg.payload);\n\nmsg.url = \"http://\"+FabricIP+\":31090/api/TemperatureReading?data=\"+TempReadingMsg;\nmsg.headers = {\n    \"Content-Type\":\"application/json\",\n    \"Accept\":\"application/json\"\n};\nreturn msg;",
+        "func": "// A TemperatureReading Blockchain transaction looks like this:\n//      {\n//      \"$class\": \"org.acme.shipping.perishable.TemperatureReading\",\n//      \"celsius\": 0,\n//      \"latitude\": \"string\",\n//      \"longitude\": \"string\",\n//      \"readingTime\": \"string\",\n//      \"shipment\": \"resource:org.acme.shipping.perishable.Shipment#NNNN\"\n//      }\nvar FabricIP=global.get(\"HyperLedgerFabricIP\");\n\n// This function will be passed a msg.payload from the Particle Electron\n// AssetTrackerTemperatureEvent which looks like this:\n//   {\"AssetID\":\"<Particle Device ID>\",\n//    \"Temperature\":{\"Celsius\":22.625,\"Fahrenheit\":72.724998},\n//    \"gps\":{\"lat\":40.972904,\"lon\":-74.092216,\"accuracy\":0},\n//    \"timestamp\":\"2018-02-14T15:06:41.178Z\"}\n\nmsg.payload = {\n  \"$class\"     : \"org.acme.shipping.perishable.TemperatureReading\",\n  \"celsius\"    : msg.payload.Temperature.Celsius,\n  \"readingTime\": msg.payload.timestamp,\n  \"latitude\"   : msg.payload.gps.lat.toString(),\n  \"longitude\"  : msg.payload.gps.lon.toString(),\n  \"shipment\"   : \"resource:org.acme.shipping.perishable.Shipment#\"+msg.payload.AssetID\n};\nTempReadingMsg = JSON.stringify(msg.payload);\n\nmsg.url = \"http://\"+FabricIP+\":31090/api/TemperatureReading?data=\"+TempReadingMsg;\nmsg.headers = {\n    \"Content-Type\":\"application/json\",\n    \"Accept\":\"application/json\"\n};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 500,
@@ -1771,7 +1771,7 @@
         "z": "5e11e736.5672e",
         "name": "Sample Accel Data",
         "topic": "",
-        "payload": "{\"AssetID\":\"<Your Particle Device ID>\",\"Accel\":{\"x\":23264,\"y\":-20960,\"z\":-2448},\"gps\":{\"lat\":40.972904,\"lon\":-74.092216,\"accuracy\":0},\"timestamp\":\"2018-02-14T15:16:44.284Z\"}",
+        "payload": "{\"AssetID\":\"<your Particle Device ID>\",\"Accel\":{\"x\":23264,\"y\":-20960,\"z\":-2448},\"gps\":{\"lat\":40.972904,\"lon\":-74.092216,\"accuracy\":0},\"timestamp\":\"2018-02-14T15:16:44.284Z\"}",
         "payloadType": "json",
         "repeat": "",
         "crontab": "",
@@ -1858,7 +1858,7 @@
         "z": "5e11e736.5672e",
         "name": "Sample GPS Data",
         "topic": "",
-        "payload": "{\"AssetID\":\"<Your Particle Device ID>\",\"Temperature\":{\"Celsius\":22.625,\"Fahrenheit\":72.724998},\"gps\":{\"lat\":40.972904,\"lon\":-74.092216,\"accuracy\":0},\"timestamp\":\"2018-02-14T15:06:41.178Z\"}",
+        "payload": "{\"AssetID\":\"<your Particle Device ID>\",\"Temperature\":{\"Celsius\":22.625,\"Fahrenheit\":72.724998},\"gps\":{\"lat\":40.972904,\"lon\":-74.092216,\"accuracy\":0},\"timestamp\":\"2018-02-14T15:06:41.178Z\"}",
         "payloadType": "json",
         "repeat": "",
         "crontab": "",
@@ -2171,7 +2171,7 @@
                 "t": "set",
                 "p": "HyperLedgerFabricIP",
                 "pt": "global",
-                "to": "184.173.1.180",
+                "to": "<your Hyperledger Fabric Public IP>",
                 "tot": "str"
             }
         ],
@@ -3997,7 +3997,7 @@
         "type": "ParticleFunc out",
         "z": "56f9cd86.fe4934",
         "baseurl": "393d1778.26aef",
-        "devid": "320022000251363131363432",
+        "devid": "<your Particle Device ID>",
         "fname": "GetCurrTemp",
         "param": "",
         "once": false,
@@ -4080,7 +4080,7 @@
         "type": "comment",
         "z": "ac3b7d6e.3a52",
         "name": "READ this comment - How to configure this set of flows",
-        "info": "1. Hopefully you're here because you're following the README at\nhttps://github.com/johnwalicki/IoT-AssetTracking-Perishable-Network-Blockchain\n\n2. If you have already configured your Hyperledger Fabric\nyou know the public IP address to the Composer REST API\n\n  You need to insert the HyperLedger Fabric IP address \n    - On this flow, open the Change node below and set the HyperLedgerFabricIP\n    \n3. On this Init Perishable Blockchain Demo flow\n    - For the demo / workshop, copy the Particle Device ID and Particle Access Token\n      into the change node",
+        "info": "1. Hopefully you're here because you're following the README at\nhttps://github.com/johnwalicki/IoT-AssetTracking-Perishable-Network-Blockchain\n\n2. If you have already configured your Hyperledger Fabric\nyou know the public IP address to the Composer REST API\nHint - run this command:\n  $ bx cs workers blockchain\n\n  You need to insert the HyperLedger Fabric IP address \n    - On this flow, open the Change node below and set the HyperLedgerFabricIP\n    \n3. On this Init Perishable Blockchain Demo flow\n    - For the demo / workshop, copy the Particle Device ID and Particle Access Token\n      into the change node",
         "x": 400,
         "y": 40,
         "wires": []
@@ -4225,7 +4225,7 @@
                 "t": "set",
                 "p": "HyperLedgerFabricIP",
                 "pt": "global",
-                "to": "184.173.1.180",
+                "to": "<your Hyperledger Fabric Public IP>",
                 "tot": "str"
             }
         ],
@@ -4403,20 +4403,6 @@
         "wires": []
     },
     {
-        "id": "4baff0be.47399",
-        "type": "debug",
-        "z": "56f9cd86.fe4934",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 890,
-        "y": 160,
-        "wires": []
-    },
-    {
         "id": "ac5fea78.7cf178",
         "type": "change",
         "z": "ac3b7d6e.3a52",
@@ -4426,14 +4412,21 @@
                 "t": "set",
                 "p": "ParticleDeviceID",
                 "pt": "global",
-                "to": "320022000251363131363432",
+                "to": "<your Particle Device ID>",
                 "tot": "str"
             },
             {
                 "t": "set",
                 "p": "ParticleAccessToken",
                 "pt": "global",
-                "to": "<Your Particle Device Token>",
+                "to": "<your Particle Access Token>",
+                "tot": "str"
+            },            
+            {
+                "t": "set",
+                "p": "HyperLedgerFabricIP",
+                "pt": "global",
+                "to": "<your Hyperledger Fabric Public IP>",
                 "tot": "str"
             }
         ],
@@ -4459,8 +4452,8 @@
             "3a803d32.9f2f52",
             "8034c2c.14a97c"
         ],
-        "x": 90,
-        "y": 525,
+        "x": 95,
+        "y": 540,
         "wires": [
             [
                 "c359da40.084ad"
@@ -4500,8 +4493,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 270,
-        "y": 525,
+        "x": 260,
+        "y": 540,
         "wires": [
             [
                 "a2dfbda6.1ac89"
@@ -4681,7 +4674,7 @@
         "type": "ParticleFunc out",
         "z": "56f9cd86.fe4934",
         "baseurl": "393d1778.26aef",
-        "devid": "320022000251363131363432",
+        "devid": "<your Particle Device ID>",
         "fname": "GetRecentXYZ",
         "param": "",
         "once": false,
@@ -4772,6 +4765,16 @@
         "info": "",
         "x": 290,
         "y": 1115,
+        "wires": []
+    },
+    {
+        "id": "98b38b5.7cdcdf8",
+        "type": "comment",
+        "z": "5e102eff.67646",
+        "name": "Unused but useful to see Device Locator events arrive",
+        "info": "",
+        "x": 910,
+        "y": 640,
         "wires": []
     }
 ]
