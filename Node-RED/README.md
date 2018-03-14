@@ -73,7 +73,7 @@ This flow sets several global variables that drive all of the other flows. Inste
 
 * If you have set up your [Hyperledger Fabric](../Blockchain/README.md), edit the **Set HyperLedgerFabricIP** change node and insert the public IP address.
 * If you purchased your own Particle Electron, you will need to know the Particle Device ID and Access Token and insert those details into the **Particle Electron to Monitor** change node.
-* If your participating in a workshop, the instructor will share the Particle Device ID and Access Token in a separate slide (not part of GitHub)
+* If you are participating in a workshop, the instructor will share the Particle Device ID and Access Token in a separate slide (not part of GitHub)
 
 The Initialization flow then uses Link nodes to most all of the other flows described below to drive the demo and workshop.
 ![IoT Asset Tracker Node-RED flow screenshot](screenshots/Node-RED-flow-InitPerishableBlockchain.png)
@@ -135,4 +135,7 @@ This flow constructs a variety of Node-RED Dashboard UI elements to select and c
 ### Introduction
 This final flow drives the movement of a selected Particle Electron IoT AssetTracker device during its journey. Every fraction of a second, it advances the device on a map.  It filters the array down to the selected device and time frame.  There might be better ways to manage these arrays.  After a few dozen routes, it probably doesn't scale.  It makes for a great demo and workshop. There's always room for enterprise scale improvements.  Enjoy!
 ![IoT Asset Tracker Node-RED flow screenshot](screenshots/Node-RED-flow-AssetTrackerMap.png)
+
+## Congratulations! You have completed the Workshop / IBM Code Pattern
+You've built an IoT Asset Tracker with environmental sensors that store data in a Hyperledger Blockchain.
 ![IoT Asset Tracker Node-RED flow screenshot](screenshots/Node-RED-dashboard-AssetTracker-NJ.png)
