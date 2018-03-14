@@ -7,9 +7,9 @@ These Node-RED program flows implement an IoT Asset Tracker that receives geoloc
 
 During this workshop you will copy the flow from github and deploy it into your to Watson IoT / Node-RED Starter application running on IBM Cloud.
 
-These sevem flows perform the following functions:
+These seven flows perform the following functions:
 
-* **Initialize Blockchain and Node-RED** - Set some globals that drive all of the flows.
+* **Initialize Blockchain and Node-RED variables** - Set some globals that drive all of the flows.
 * **Control a Particle Electron** - A Node-RED Dashboard which enables / disables / configures a Particle Electron.
 * **Receive Particle Electron events** - subscribe to Particle Electron event handlers.
 * **Write Particle Electron data** to a Hyperledger Fabric Blockchain.
@@ -71,12 +71,16 @@ Since configuring Node-RED nodes and wiring them together requires many steps to
 ### Introduction
 This flow sets several global variables that drive all of the other flows. Instead of hunting through the other flows to modify the Hyperledger Fabric IP address or your Particle Electron Device ID and access token, this flow simply pulls the globals forward and initializes the remaining flows.
 
+* If you have set up your [Hyperledger Fabric](../Blockchain/README.md), edit the **Set HyperLedgerFabricIP** change node and insert the public IP address.
+* If you purchased your own Particle Electron, you will need to know the Particle Device ID and Access Token and insert those details into the **Particle Electron to Monitor** change node.
+* If your participating in a workshop, the instructor will share the Particle Device ID and Access Token in a separate slide (not part of GitHub)
+
 The Initialization flow then uses Link nodes to most all of the other flows described below to drive the demo and workshop.
 ![IoT Asset Tracker Node-RED flow screenshot](screenshots/Node-RED-flow-InitPerishableBlockchain.png)
 
 As a first step, copy the code from GitHub to your Clipboard and import it into your Node-RED editor.
 
-Get the Code [IoT Asset Tracker Node-RED flow - Init Perishable Blockchain Demo ](flows/IoTAssetTracker-AllFlows.json)
+Get the Code [IoT Asset Tracker Node-RED flows](flows/IoTAssetTracker-AllFlows.json)
 
 ## Control Particle Electron events
 ### Introduction
@@ -91,8 +95,6 @@ I also experimented with the Node-RED Particle Function nodes but I found them i
 
 ![IoT Asset Tracker Node-RED flow screenshot](screenshots/Node-RED-dashboard-ControlParticleDevice.png)
 ![IoT Asset Tracker Node-RED flow screenshot](screenshots/Node-RED-flow-ControlParticleDevice.png)
-
-Get the Code [IoT Asset Tracker Node-RED flow - Control Particle Device ](flows/IoTAssetTracker-AllFlows.json)
 
 ## Receive Particle Electron events
 ## Introduction
@@ -109,7 +111,7 @@ In summary, this flow takes the arriving data, reformats it and calls the next f
 ## Write Particle Events to Hyperledger Perishable Network Blockchain
 ### Introduction
 This flow sets up the http parameters to call the Hyperledger Perishable Network REST APIs.  Learn about the Hyperledger Perishable Network model in the [Blockchain README](../Blockchain/README.md) section of this workshop / IBM Code pattern. There are six REST API examples in this flow.
-* The first REST API calls the SetupDemo API.  This only needs to be called once.
+* The first REST API calls the SetupDemo API.  This only needs to be called once. Buried deep in the Blockchain Model [chaincode logic.js](../Blockchain/IoT-Perishable-Network/logic.js), there is a setupDemo() function where you will need to insert your Particle Device ID as the Shipment ID
 * The second section sets up the POST command required to write a Temperature event into the blockchain as a transaction.
 * The third section sets up the GET command required to query all of the Temperature transactions on the blockchain.
 * The fourth section sets up the POST command required to write an Acceleration event into the blockchain as a transaction.
