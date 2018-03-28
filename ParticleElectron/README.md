@@ -29,7 +29,7 @@ The [Particle Electron Asset Tracker v2](https://store.particle.io/products/asse
 ```
  The [firmware upgrade](https://docs.particle.io/guide/tools-and-features/firmware-manager/electron/) was important to get the Google Maps geolocation device locator working.  My Particle Electron was factory installed with v0.4.9, once I upgraded to v0.6.4, the Google Maps function finally worked.
 
-9. The next step was to learn about the [$particle compile]( https://docs.particle.io/reference/cli/#particle-compile) command
+9. The next step was to learn about the [$ particle compile]( https://docs.particle.io/reference/cli/#particle-compile) command
 ```
     $ particle compile
 ```
@@ -46,7 +46,7 @@ $ particle library view OneWire
 11. To flash your Particle Electron, you need to install [dfu-util](https://docs.particle.io/faq/particle-tools/installing-dfu-util/core/).
 I grabbed a copy of *dfu-util-0.9-1.fc25.x86_64.rpm* from the Fedora 25 repo.
 12. Hold down both the Reset and Mode buttons on the Electron
- * Release the Reset
+ * Release the Reset button
  * Wait for the LED to turn Yellow
  * Release the Mode button
 13. Finally flash your program to the board using the next command
@@ -84,7 +84,7 @@ Particle.function("SetXYZThresh",AssetTrackerSetAccelThresh);
 Particle.function("GetRecentXYZ",AssetTrackerGetRecentAccel);
 ```
 
-The next most interesting thing about the program is that it uses the [Google Maps Locator API](https://docs.particle.io/tutorials/integrations/google-maps/) to triangulate its geo location based on Cellular tower signal strength.  If you know where the cell towers are (hint - they don't move and are cemented to the ground) and the RSSI strength of the signals from the towers to your thing, its a math calculation to approximate your things' location. Nice that the Particle Electron has a SIM card and communicates over the cellular network. While it's great to use the GPS on the Asset Tracker board, often the thing you want to track is deep in a truck or a car or ship without clear line of sight to the Global Navigation Satellite System - rendering GPS useless. In truth, cellular triangulation is not as accurate as GPS. For most cases of answering "where's the thing" as it drives down the highway, a few hundred meter radius is plenty good enough.  I got myself a [Google Maps API Key](https://developers.google.com/maps/documentation/geolocation/get-api-key)  It uses the CellularHelper library.
+The next most interesting thing about the program is that it uses the [Google Maps Locator API](https://docs.particle.io/tutorials/integrations/google-maps/) to triangulate its geo location based on Cellular tower signal strength.  Google knows where the cell towers are (hint - they don't move and are cemented to the ground) and the RSSI strength of the signals from the towers to your thing, its a math calculation to approximate your things' location. Nice that the Particle Electron has a SIM card and communicates over the cellular network. While it's great to use the GPS on the Asset Tracker board, often the thing you want to track is deep in a truck or a car or ship without clear line of sight to the Global Navigation Satellite System - rendering GPS useless. The GPS chipset also draws substantial battery power that would be better used to increase the tracker's time between charges.  In truth, cellular triangulation is not as accurate as GPS. For most cases of answering "where's the thing" as it drives down the highway, a few hundred meter radius is plenty good enough.  I got myself a [Google Maps API Key](https://developers.google.com/maps/documentation/geolocation/get-api-key)  It uses the CellularHelper library.
 ```
 $ particle library view CellularHelper
 $ particle library view google-maps-device-locator
@@ -95,7 +95,7 @@ The program proceeds to implement the four Particle Function callbacks and the h
 Of note, while it would have been a much cleaner implementation, I could not get the [Grove Temperature sensor](http://wiki.seeed.cc/Grove-Temperature_Sensor_V1.2/) to work with the Grove connectors on the AssetTracker board. I ordered some good old Dallas DS18B20 temperature sensors.  I wired one of them (and a resistor) to my Particle Electron following these [tutorial instructions](https://docs.particle.io/tutorials/projects/maker-kit/#tutorial-4-temperature-logger). It uses the OneWire library.
 
 ### Program Logic
-The program wakes up periodically on an interval you set to determine its location.  That triggers a DeviceLocator event.  After querying cellular tower signal strengths and sending the RSSI data to the Google Maps API, it responds back to the board with geolocation latitude / longitude / uncertainty coordinates.  When the program gets the geolocation, it reads the temperature and checks if the accelerometer has exceeded a motion threshold. It then sends three datapoints to the cloud via the Particle Function() - **WHERE, WHAT and WHEN**  The combination of that information is the basis of an **IoT Asset Tracker**.
+The program wakes up periodically on an interval you set to determine its location.  That triggers a DeviceLocator event.  After querying cellular tower signal strengths and sending the RSSI data to the Google Maps API, it responds back to the board with geolocation latitude / longitude / uncertainty coordinates.  When the program gets the geolocation, it reads the temperature and checks if the accelerometer has exceeded a motion threshold. It then sends three datapoints - **WHERE, WHAT and WHEN** - to the cloud via the Particle callback function *AssetTrackerLocationCallback()*  The combination of that information is the basis of an **IoT Asset Tracker**.
 
 Put it all together and it looks like this.
 ![WatsonIoTAssetTracker board](screenshots/ParticleElectronAssetTracker-IoT.jpg)
@@ -110,7 +110,7 @@ You'll be all giddy the first time data arrives in the Particle Console.  Here's
 
 What you really want to do is send that data somewhere else.  In my case, I want to route the IoT data to the IBM Cloud and Node-RED for storage in a Hyperledger Fabric blockchain.  Jump to the next [section](../Node-RED/README.md).  
 
-Before you go, you'll need a Particle token to authorize your Cloud program.
+Before you go, you'll need a Particle token to authorize your Node-RED program to observe / subscribe to these sensor events.
 ```
 $ particle token list
 $ particle token new
