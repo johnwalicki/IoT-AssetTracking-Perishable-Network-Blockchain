@@ -1,19 +1,75 @@
 # IoT Asset Tracking on a Hyperledger Blockchain
 
-This section of the IoT Asset tracking workshop is really split into two parts. The first part, which we will call **Blockchain Part A**, follows the tutorial to deploy a [Hyperledger](https://www.hyperledger.org/) Fabric and Hyperledger Composer running in the [IBM Cloud Container Service](https://www.ibm.com/cloud/container-service) managed by a [Kubernetes cluster](https://console.bluemix.net/docs/tutorials/scalable-webapp-kubernetes.html#deploy-a-scalable-web-application-on-kubernetes) in the IBM Cloud.
+This section of the IoT Asset tracking workshop is really split into two parts. The first part, which we will call **Blockchain Part A**, follows the tutorial to deploy a [Hyperledger](https://www.hyperledger.org/) Fabric and Hyperledger Composer running in the [IBM Blockchain Starter Plan](https://www.ibm.com/blockchain/getting-started.html) in the IBM Cloud.
 
-The IBM Blockchain tutorial is excellent and I won't try to repeat it here.  Part A takes a while to provision so you'll want to start it and then get a head start on the [Node-RED section](../Node-RED/README.md) of the workshop while you wait. The out-of-order execution is detailed below. Finally, the **Blockchain Part B** will detail how to implement a **Perishable Business Network** and Hyperledger Composer REST APIs.
+The IBM Blockchain tutorial is excellent and I won't try to repeat it here.  **Blockchain Part B** will detail how to implement a **Perishable Business Network** and Hyperledger Composer REST APIs. Finally, you'll get to work with Node-RED  to interact and visually see the tracking of the asset.
 
 ## Blockchain Part A - Build a basic IBM Blockchain Hyperledger network
-The IBM Container Service free plan includes everything you need to deploy a Hyperledger Fabric (Blockchain runtime) and a Hyperledger Composer (UI for creating and deploying Business Networks to Fabric).  The [guide](https://ibm-blockchain.github.io/) makes it relatively simple. Get started however, because provisioning a kubernetes cluster can take 30 minutes.
+The IBM Container Service free plan includes everything you need to deploy a Hyperledger Fabric (Blockchain runtime) and a Hyperledger Composer (UI for creating and deploying Business Networks to Fabric).  The [guide](https://www.ibm.com/developerworks/cloud/library/cl-ibm-blockchain-101-quick-start-guide-for-developers-bluemix-trs/index.html) makes it relatively simple. 
 
-Follow the **Free Cluster** [Prepare & Setup](https://ibm-blockchain.github.io/setup/) instructions. Once you execute the cluster-create command, you'll be waiting.... Return here.
+Here is a quick review of the steps in the guide  to creating your blockchain network:
 
-Glad, you're back. Your free cluster is provisioning.  You've got about 25-30 minutes to get a jump on the [Node-RED section](../Node-RED/README.md) of the workshop.  Every few minutes, keep an eye on the status of your cluster.
-```
-$ bx cs clusters
-```
-Once the IBM Cloud Container Service returns from the cluster provisioning, finish that section of the Prepare & Setup instructions and then proceed to the Hyperledger Composer setup in the [Simple Install](https://ibm-blockchain.github.io/simple/) instructions.
+* Follow the link to start your [blockchain network](http://www.ibm.com/blockchain/getting-started.html).
+* Setup your IBM Cloud account.
+* Create your starter plan instance. Call it **IoTAssetTrackingXXX** where XXX are your initials.
+* Access your blockchain network.
+
+Once your network is in place, you'll deploy one of the samples provided in the starter plan to test your network before moving on to Part B.
+1. Inside your Blockchain Starter Plan service, select **Try samples** from the left navigational menu. 
+![Select Try samples.](screenshots/TrySamples.png)
+
+2. To deploy the Marbles sample to your network,, select **Deploy via Toolchain** .
+![Select Deploy via Toolchain.](screenshots/DeployMarbles.png)
+
+3.  On the create toolchain screen, customize your toolchain name to something you can enter to see your application. Change the *Toolchain Name* to **TryMarblesXXX** where XXX are your initials.
+![Enter a Toolchain Name.](screenshots/ToolchainName.png)
+
+4. Scroll down the page. You'll notice that under *Tool Integrations*  it shows that *GitHub* and *Delivery Pipeline* say that they are required. Select **GitHub** to authenticate with your GitHub repository.
+![Select GitHub.](screenshots/SelectGitHub.png)
+
+5. Leaving **GitHub** showing in the drop down box, click **Authorize**.
+![Select Authorize.](screenshots/Authorize.png)
+
+6. In the pop-up window, select **Authorize IBM-Cloud**.
+![Select Authorize IBM-Cloud.](screenshot/AuthorizeCloud.png)
+
+7. Scroll down and update the *Repository Name* to something you'd like.
+![Enter a Repository Name.](screenshots/RepoName.png)
+
+8. Click on **Marbles** to update *Tool Instance URL*, **https://TryMarblesXXX.mybluemix.net/login **, where XXX are your initials. Click **Create**.
+![Update the Tool Instance URL and click Create.](screenshots/Create.png)
+
+9. Be patient while deployment takes place. This is a good time for a break as it can take 5-10 minutes.
+![Deployment progress.](screenshots/DeploymentProgress.png)
+
+10. Check on the progress of the application deployment:
+* Switch tabs back to the **IBM Cloud tab**.
+* Select the **menu bar icon** in the left corner.
+![Select the Menu bar icon.](screenshots/menubar.png)
+* Navigate to **DevOps**.
+![Select DevOps.](screenshots/DevOps.png)
+* Select the name of your marbles toolchain.
+![Select your marbles toolchain.](screenshots/MarblesToolchain.png)
+* Select **Delivery Pipeline**.
+![Select Delivery Pipeline.](screenshots/DeliveryPipeline.png)
+* Click **View logs and history** to watch the deployment.
+![View logs and history.](screenshots/ViewLogs.png)
+* When it is complete, you'll see a *passed* message at the top and *Finished: SUCCESS* at the bottom of the log.
+![Passed stage messages.](screenshot/Passed.png)
+![Finished: SUCCESS script message.](screenshots/Success.png)
+
+11. Using the breadcrumbs at the top, navigate back to the prior screen.
+![Go back to the prior page.](screenshots/Breadcrumbs.png)
+
+12. Click on the top link in the *Last Execution Result* to launch your application.
+![Launch your application.](screenshots/SeeApp.png)
+
+13.Click on **Guided** and follow the prompts to interact with your successfully deployed Marbles sample application.
+![Select Guided.](screenshots/Guided.png)
+
+14. After following the guide, if all defaults all used, a page like this will be available. Congratulations! You have deployed a successful sample application! Your network is ready for you to build your own application. Feel free to play and explore this user interface.
+![Welcome to Marbles!](screenshots/MarblesUI.png)
+
 
 ## Blockchain Part B - Implement a Perishable Business Network
 Follow Step #1 and #2 of [Interacting with your Blockchain](https://ibm-blockchain.github.io/interacting/) instructions.
