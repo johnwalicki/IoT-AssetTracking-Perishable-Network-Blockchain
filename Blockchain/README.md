@@ -5,7 +5,9 @@ This section of the IoT Asset tracking workshop is really split into two parts. 
 The IBM Blockchain tutorial is excellent and I won't try to repeat it here.  **Blockchain Part B** will detail how to implement a **Perishable Business Network** and Hyperledger Composer REST APIs. Finally, you'll get to work with Node-RED  to interact and visually see the tracking of the asset.
 
 ## Blockchain Part A - Build a basic IBM Blockchain Hyperledger network
-The IBM Container Service free plan includes everything you need to deploy a Hyperledger Fabric (Blockchain runtime) and a Hyperledger Composer (UI for creating and deploying Business Networks to Fabric).  The [guide](https://www.ibm.com/developerworks/cloud/library/cl-ibm-blockchain-101-quick-start-guide-for-developers-bluemix-trs/index.html) makes it relatively simple. 
+The IBM Container Service free plan includes everything you need to deploy a Hyperledger Fabric (Blockchain runtime) and a Hyperledger Composer (UI for creating and deploying Business Networks to Hyperledger Fabric).  The [guide](https://www.ibm.com/developerworks/cloud/library/cl-ibm-blockchain-101-quick-start-guide-for-developers-bluemix-trs/index.html) makes it relatively simple. 
+
+More information on the IBM Blockchain Starter Plan can be found [here](https://console.bluemix.net/docs/services/blockchain/dashboard.html#write-code).
 
 Here is a quick review of the steps in the guide  to creating your blockchain network:
 
