@@ -74,7 +74,15 @@ Once your network is in place, you'll deploy one of the samples provided in the 
 
 
 ## Blockchain Part B - Implement a Perishable Business Network
-To be able to work with Hyperledger Composer Playground, a web based user interface for developing blockchain applications from a business perspective, you'll need to install it locally on your machine. 
+Now it's time for the fun to begin! We are going to break this down into a few sections:
+
+* Creating your blockchain network in Hyperledger Composer Playground running on IBM Cloud
+* Deploying your blockchain network to your IBM Blockchain Starter Plan
+* Generating your API for your deployed blockchain network with Hyperledger Composer Rest Server
+
+
+
+
 1. Press the **Launch Now** button
 2. Click on **Deploy a new business network**
 3. For our use case, you should substitute the **Perishable Network** sample instead of the basic Business Network.  Don't pick the first / prefilled basic-sample-network! Scroll down to the 'Samples on npm'.  The **perishable-network** is in the list of Model Network Starter Templates.  
