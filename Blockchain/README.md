@@ -76,18 +76,30 @@ Once your network is in place, you'll deploy one of the samples provided in the 
 ## Blockchain Part B - Implement a Perishable Business Network
 Now it's time for the fun to begin! We are going to break this down into a few sections:
 
-* Creating your blockchain network in Hyperledger Composer Playground running on IBM Cloud
+* [Creating your blockchain network in Hyperledger Composer Playground running on IBM Cloud](#create-your-blockchain-network-in-hyperledger-composer-playground-on-ibm-cloud)
 * Deploying your blockchain network to your IBM Blockchain Starter Plan
 * Generating your API for your deployed blockchain network with Hyperledger Composer Rest Server
 
 
+### Create your blockchain network in Hyperledger Composer Playground on IBM Cloud
 
+1. ​Inside your IBM Blockchain Starter Plan, under *My Code* on the left side of the screen, select **Develop code**.
+![Select Develop code.](screenshots/developcode.png)
 
-1. Press the **Launch Now** button
-2. Click on **Deploy a new business network**
-3. For our use case, you should substitute the **Perishable Network** sample instead of the basic Business Network.  Don't pick the first / prefilled basic-sample-network! Scroll down to the 'Samples on npm'.  The **perishable-network** is in the list of Model Network Starter Templates.  
-4. Scroll down and choose **perishable-network** from the samples.
-5. Give your new Business Network a name <span style="color:red">(1)</span> **perishable-network**
+2. In the main section of the page, choose to **Try web playground** to launch Hyperledger Composer Playground running in IBM Cloud.
+* Note: This instance of Hyperledger Composer Playground only exists in your browser. If you close your browser or it crashes, it is possible you could lose your work. To avoid losing your work, you can *Export* your code to your desktop.
+![Choose Try web playground.](screenshots/webplayground.png)
+
+3. From the *Welcome* page, click **Launch Now**.
+![Select Launch Now.](screenshots/launchnow.png)
+
+4. Click on **Deploy a new business network**
+![Select Deploy a new business network.](screenshots/deploynew.png)
+
+5. Scroll down and choose **perishable-network** from the samples on npm.
+![Select perishable-network from the *Samples on npm*.](screenshots/npmsample.png)
+
+6. Scrollign back to the top, you should now have a business network name of **perishable-network**.
 6. Give the network admin card that will be created a name <span style="color:red">(2)</span> **admin@perishable-network**
 ![Perishable Network BNA screenshot](screenshots/Perishable-Network-BNA-annotated.png "Hyperledger Composer")
 7. Scroll to the bottom, Click on <span style="color:red">(3)</span>  **ID and Secret**
