@@ -153,53 +153,34 @@ event ShipmentInPortEvent {
 }
 ```
 
-## Blockchain Part B - Implement a Perishable Business Network
-Now it's time for the fun to begin! We are going to break this down into a few sections:
+10. Our model file is now complete. Select **Update** to save the changes in the Hyperledger Composer Playground.
+![Click Update.](screenshots/Update.png)
 
-* [Creating your blockchain network in Hyperledger Composer Playground running on IBM Cloud](#create-your-blockchain-network-in-hyperledger-composer-playground-on-ibm-cloud)
-* [Modify the blockchain network](#customise-the-parishable-network)
-* [Deploying your blockchain network to your IBM Blockchain Starter Plan](#deploy-your-network)
-* [Generating your API for your deployed blockchain network with Hyperledger Composer Rest Server](#working-with-the-rest-api)
+11. Now it is time to **copy** (CTRL+C) our new logic.js file from our [repository](https://raw.githubusercontent.com/johnwalicki/IoT-AssetTracking-Perishable-Network-Blockchain/master/Blockchain/IoT-Perishable-Network/lib/logic.js).
 
-
-<<<<<<< HEAD
-### Customize the parishable network
-=======
-### Customize the perishable network
-Let's pause for a moment to review the perishable-network you just deployed.  It tracks temperature but not geolocation information. There is an excellent three part Hyperledger series of articles in developerWorks that introduce the perishable-network.  
-* [Hyperledger Composer basics, Part 1 -Model and test your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-refine-deploy-your-blockchain-network-with-hyperledger-composer-playground/index.html)
-* [Hyperledger Composer basics, Part 2 - Refine and deploy your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-refine-deploy-your-blockchain-network-with-hyperledger-composer-playground/index.html)
-* [Hyperledger Composer basics, Part 3 - Deploy locally, interact with, and extend your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-deploy-interact-extend-local-blockchain-network-with-hyperledger-composer/index.html)
->>>>>>> 15a1fd147070e645d17d85fd983fdd0bd22f6921
-
-
-
-
-That brings me to my **forked implementation of the perishable-network**.  It adds accelerometer data transactions and chaincode.  It also changes the transactions to include environmental data, geolocation and a timestamp in one record.  My blockchain model implementation is necessary for this IoT Asset Tracking Perishable Network to function correctly.
-
-This repository contains the forked [perishable.cto](IoT-Perishable-Network/perishable.cto) and the perishable [chaincode](IoT-Perishable-Network/logic.js)
-
-#### Replace the default perishable-network model and chaincode
-The following instructions replace the default perishable-network model and chaincode with my implementation.
-1. Recall that you've pressed the **Connect now ->** button.
-2. Click on the **Model File** (1) in the Files sidebar
-3. Place your cursor in the Model File editor, Ctrl-A to select all the text.  Ctrl-D to delete the text.
-4. Visit [perishable.cto](IoT-Perishable-Network/perishable.cto) and copy that file to your clipboard.
-5. Paste in my modified Model from github into the model.
-6. Click **Update** to save your changes in the browser.
-7. Scroll down in the Files sidebar.
-8. Click on **Script File** (2) in the Files sidebar
-9. Place your cursor in the Script File editor, Ctrl-A to select all the text. Ctrl-D to delete the text.
-10. Visit [chaincode](IoT-Perishable-Network/logic.js) and copy that file to your clipboard.
-11. Paste in my modified chaincode from github into the Script file.
-12. Press the Update button.
+12. Back in the Hyperledger Composer Playground:
+* **Remove all of the content** (CTRL+A) in the logic.js file
+* **Paste** (CTRL+V) in the content copied from the logic.js file in our repository.
+* Select **Update** to save the changes.
 ![Perishable Network BNA model update screenshot](screenshots/Perishable-Network-BNA-Model-update-annotated.png "Hyperledger Composer Model")
+
+13. Now let's test our work! Click on the **Test** tab at the top of the page.
 
 13. **Export** the code to your local system. We will use it during the deployment process.
 ![Click Export.](screenshots/export.png)
 
 14. Save the business network archive, **perishable-network.bna**, somewhere you can easily find it.
 ![Save your business network archive locally.](screenshots/savebna.png)
+
+## Blockchain Part B - Implement a Perishable Business Network
+Now it's time for the fun to begin! We are going to break this down into a few sections:
+
+* [Deploying your blockchain network to your IBM Blockchain Starter Plan](#deploy-your-network)
+* [Generating your API for your deployed blockchain network with Hyperledger Composer Rest Server](#working-with-the-rest-api)
+
+
+
+
 
 ### Deploy your network
 Now that you've created your blockchain application, it's time to make it run on the IBM Blockchain Starter Plan. To do that, we are going to use the DevOps service in the IBM Cloud to deploy our code and start a REST server. This entire process is documented [here](https://github.com/sstone1/blockchain-starter-kit/blob/master/README.md) if you are interested in doing something similar outside of this exercise. This breaks down into the following steps:
