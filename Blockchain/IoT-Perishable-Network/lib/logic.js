@@ -12,6 +12,7 @@
  * limitations under the License.
  */
 
+'use strict';
 /**
  * A shipment has been received by an importer
  * @param {org.acme.shipping.perishable.ShipmentReceived} shipmentReceived - the ShipmentReceived transaction
@@ -160,7 +161,7 @@ function AccelReading(AccelReading) {
         AccelerationEvent.accel_x = AccelReading.accel_x;
         AccelerationEvent.accel_y = AccelReading.accel_y;
         AccelerationEvent.accel_z = AccelReading.accel_z;
-	AccelerationEvent.latitude = AccelReading.latitude;
+        AccelerationEvent.latitude = AccelReading.latitude;
         AccelerationEvent.longitude = AccelReading.longitude;
         AccelerationEvent.readingTime = AccelReading.readingTime;
         AccelerationEvent.message = 'Acceleration threshold violated! Emitting AccelerationEvent for shipment: ' + shipment.$identifier;
@@ -182,7 +183,7 @@ function AccelReading(AccelReading) {
 function gpsReading(gpsReading) {
 
     var factory = getFactory();
-    var NS = "org.acme.shipping.perishable";
+    var NS = 'org.acme.shipping.perishable';
     var shipment = gpsReading.shipment;
     var PORT_OF_NEW_YORK = '/LAT:40.6840N/LONG:74.0062W';
 
@@ -195,7 +196,7 @@ function gpsReading(gpsReading) {
     var latLong = '/LAT:' + gpsReading.latitude + gpsReading.latitudeDir + '/LONG:' +
     gpsReading.longitude + gpsReading.longitudeDir;
 
-    if (latLong == PORT_OF_NEW_YORK) {
+    if (latLong === PORT_OF_NEW_YORK) {
         var shipmentInPortEvent = factory.newEvent(NS, 'ShipmentInPortEvent');
         shipmentInPortEvent.shipment = shipment;
         var message = 'Shipment has reached the destination port of ' + PORT_OF_NEW_YORK;
@@ -204,10 +205,10 @@ function gpsReading(gpsReading) {
     }
 
     return getAssetRegistry(NS + '.Shipment')
-    .then(function (shipmentRegistry) {
+        .then(function (shipmentRegistry) {
         // add the temp reading to the shipment
-        return shipmentRegistry.update(shipment);
-    });
+            return shipmentRegistry.update(shipment);
+        });
 }
 
 /**
