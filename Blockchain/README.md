@@ -41,7 +41,7 @@ We're going to need to learn a little bit about the Hyperledger Blockchain model
 
 In the following steps, we will make changes to the model file to add in accelerometer data, environmental data, geolocation and a timestamp. Adding in the IoT data will also require additional transactions. To save time after we complete the model file updates, we will import the transactions from a cloned repository.
 
-1. In your model file,  scroll until you find **enum CompassDirection**. Enter the following values to enumerate the four cardinal directions:
+1. In your model file,  add **enum CompassDirection**. Enter the following values to enumerate the four cardinal directions:
 ```
 /**
  * Directions of the compass
@@ -53,8 +53,17 @@ enum CompassDirection {
   o W
 }
 ```
-2. Now we need some transaction models to be able to get data from our sensors.  In the empty **transaction AccelReading extends ShipmentTransaction** complete the following information:
+2. Now we need some transaction models to be able to get data from our sensors. Add the following **transaction AccelReading extends ShipmentTransaction**:
 ```
+/**
+ * An Accelerometer reading for a shipment. E.g. received from a
+ * device within an accelerometer controlled shipping container
+ *
+ * The combination of the accelerometer environment reading,
+ * PLUS the GPS location, PLUS the timestamp is what is interesting
+ * Just knowing temperature without knowing where or when is
+ * not sufficient.
+ */
 transaction AccelReading extends ShipmentTransaction {
   o Double accel_x
   o Double accel_y
@@ -73,8 +82,12 @@ transaction TemperatureReading extends ShipmentTransaction {
   o String readingTime
 }
 ```
-4. It's time to setup the **transaction GpsReading extends ShipmentTransaction**:
+4. It's time to setup the **transaction GpsReading extends ShipmentTransaction**. Add the following:
 ```
+/**
+ * A GPS reading for a shipment. E.g. received from a device
+ * within a shipping container
+ */
 transaction GpsReading extends ShipmentTransaction {
   o String readingTime
   o String readingDate
@@ -118,8 +131,11 @@ asset Contract identified by contractId {
   o Double maxAccel
 }
 ```
-7. Now we need to create some events so we can alert the appropriate participants when agreed upon thresholds are exceeded. Scroll down and fill in the following information for the **TemperatureThresholdEvent**.
+7. Now we need to create some events so we can alert the appropriate participants when agreed upon thresholds are exceeded. Scroll down to the bottom of the model and add in the following information for the **TemperatureThresholdEvent**.
 ```
+/**
+ * An event - when the temperature goes outside the agreed-upon boundaries
+ */
 event TemperatureThresholdEvent {
   o String message
   o Double temperature
@@ -130,8 +146,11 @@ event TemperatureThresholdEvent {
 }
 ```
 
-8. Create the variables for the **AccelerationThresholdEvent**.
+8. Create an event for the **AccelerationThresholdEvent**.
 ```
+/**
+ * An event - when the acceleration event has been detected
+ */
 event AccelerationThresholdEvent {
   o String message
   o Double accel_x
@@ -143,8 +162,11 @@ event AccelerationThresholdEvent {
   --> Shipment shipment
 }
 ```
-9. Complete the information to create the model for the event **ShipmentInPort**.
+9. Add in the event **ShipmentInPort**.
 ```
+/**
+ * An event - when the ship arrives at the port
+ */
 event ShipmentInPortEvent {
   o String message
   --> Shipment shipment
