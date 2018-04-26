@@ -8,26 +8,21 @@ There are quite a few IBM Blockchain tutorials that are excellent and we won't t
 
 We will be using Hyperledger Composer Playground to build our perishable network. When we are done, we will export the code to our local system to use in Part B.
 
-
-
-<<<<<<< HEAD
 ###Import the sample perishable network into Hyperledger Composer Playground
 1. Access the [IBM Hyperledger Composer Playground](https://blockchaindevelop.mybluemix.net/login).
-=======
+
 ### Import the sample perishable network into Hyperledger Composer Playground
 1. Access the [IBM Hyperledger Composer Playground](https://blockchaindevelop.mybluemix.net/test).
->>>>>>> 15a1fd147070e645d17d85fd983fdd0bd22f6921
 2. Click on **Deploy a new business network**
 ![Select Deploy a new business network.](screenshots/deploynew.png)
 3. Scroll down and choose **perishable-network** from the samples on npm.
-   ![Select perishable-network from the *Samples on npm*.](screenshots/npmsample.png)
+![Select perishable-network from the *Samples on npm*.](screenshots/npmsample.png)
 4. Scrolling back to the top, you should now have a business network name of **perishable-network**.
 5. Give the network admin card that will be created a name **admin@perishable-network**.
-   ![Perishable Network BNA screenshot](screenshots/Perishable-Network-BNA-annotated.png "Hyperledger Composer")
+![Perishable Network BNA screenshot](screenshots/Perishable-Network-BNA-annotated.png "Hyperledger Composer")
 6. On the right sidebar, click on **Deploy**.
 7. Press **Connect now ->**
-
-   ![Select Connect now](screenshots/ConnectNow.png)
+![Select Connect now](screenshots/ConnectNow.png)
 
 ### Customize the perishable network for IoT tracking
 Let's pause for a moment to review the perishable-network you just deployed.  It tracks temperature but not geolocation information. There is an excellent three part Hyperledger series of articles in developerWorks that introduce the perishable-network.  
