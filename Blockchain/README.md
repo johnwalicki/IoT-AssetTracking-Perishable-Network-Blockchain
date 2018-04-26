@@ -11,7 +11,7 @@ We will be using Hyperledger Composer Playground to build our perishable network
 
 
 ###Import the sample perishable network into Hyperledger Composer Playground
-1. Access the [IBM Hyperledger Composer Playground](https://blockchaindevelop.mybluemix.net/test).
+1. Access the [IBM Hyperledger Composer Playground](https://blockchaindevelop.mybluemix.net/login).
 2. Click on **Deploy a new business network**
 ![Select Deploy a new business network.](screenshots/deploynew.png)
 3. Scroll down and choose **perishable-network** from the samples on npm.
@@ -29,21 +29,6 @@ Let's pause for a moment to review the perishable-network you just deployed.  It
 * [Hyperledger Composer basics, Part 2 - Refine and deploy your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-refine-deploy-your-blockchain-network-with-hyperledger-composer-playground/index.html)
 * [Hyperledger Composer basics, Part 3 - Deploy locally, interact with, and extend your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-deploy-interact-extend-local-blockchain-network-with-hyperledger-composer/index.html)
 
-## Blockchain Part B - Implement a Perishable Business Network
-Now it's time for the fun to begin! We are going to break this down into a few sections:
-
-* [Creating your blockchain network in Hyperledger Composer Playground running on IBM Cloud](#create-your-blockchain-network-in-hyperledger-composer-playground-on-ibm-cloud)
-* [Modify the blockchain network](#customise-the-parishable-network)
-* [Deploying your blockchain network to your IBM Blockchain Starter Plan](#deploy-your-network)
-* [Generating your API for your deployed blockchain network with Hyperledger Composer Rest Server](#working-with-the-rest-api)
-
-
-### Customize the parishable network
-Let's pause for a moment to review the perishable-network you just deployed.  It tracks temperature but not geolocation information. There is an excellent three part Hyperledger series of articles in developerWorks that introduce the perishable-network.  
-* [Hyperledger Composer basics, Part 1 -Model and test your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-refine-deploy-your-blockchain-network-with-hyperledger-composer-playground/index.html)
-* [Hyperledger Composer basics, Part 2 - Refine and deploy your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-refine-deploy-your-blockchain-network-with-hyperledger-composer-playground/index.html)
-* [Hyperledger Composer basics, Part 3 - Deploy locally, interact with, and extend your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-deploy-interact-extend-local-blockchain-network-with-hyperledger-composer/index.html)
-
 Part 2 includes instructions
 
 > Then you'll make changes to the sample Perishable Goods network that you worked with in Part 1. Specifically, you'll model an IoT GPS sensor in the shipping container by adding GPS readings to the Shipment asset, and modify the smart contract (chaincode) to send an alert when the Shipment reaches its destination port.
@@ -54,6 +39,132 @@ https://github.com/makotogo/developerWorks) that contains the variants he detail
 Of course, those samples only got me so far because I also want to send accelerometer data from the Particle Electron Asset Tracker to the cloud.
 
 We're going to need to learn a little bit about the Hyperledger Blockchain modeling language CTO files and chaincode. Part 1 of the dW Series (link above) is a good primer.
+
+In the following steps, we will make changes to the model file to add in accelerometer data, environmental data, geolocation and a timestamp. Adding in the IoT data will also require additional transactions. To save time after we complete the model file updates, we will import the transactions from a cloned repository.
+
+1. In your model file,  scroll until you find **enum CompassDirection**. Enter the following values to enumerate the four cardinal directions:
+```
+/**
+ * Directions of the compass
+ */
+enum CompassDirection {
+  o N
+  o S
+  o E
+  o W
+}
+```
+2. Now we need some transaction models to be able to get data from our sensors.  In the empty **transaction AccelReading extends ShipmentTransaction** complete the following information:
+```
+transaction AccelReading extends ShipmentTransaction {
+  o Double accel_x
+  o Double accel_y
+  o Double accel_z
+  o String latitude
+  o String longitude
+  o String readingTime
+}
+```
+3. For **transaction TemperatureReading extends ShipmentTransaction**  modify the transaction to match the following variables:
+```
+transaction TemperatureReading extends ShipmentTransaction {
+  o Double celsius
+  o String latitude
+  o String longitude
+  o String readingTime
+}
+```
+4. It's time to setup the **transaction GpsReading extends ShipmentTransaction**:
+```
+transaction GpsReading extends ShipmentTransaction {
+  o String readingTime
+  o String readingDate
+  o String latitude
+  o CompassDirection latitudeDir
+  o String longitude
+  o CompassDirection longitudeDir
+}
+```
+
+5. For the IoT data to be associated with the asset, shipment, we will need to add some IoT related variables to the asset model for shipment. Make the following additions to the shipment model.
+* AccelReading[] AccelReadings optional
+* GpsReading[] gpsReadings optional
+```
+asset Shipment identified by shipmentId {
+  o String shipmentId
+  o ProductType type
+  o ShipmentStatus status
+  o Long unitCount
+  --> Contract contract
+  o TemperatureReading[] temperatureReadings optional
+  o AccelReading[] AccelReadings optional
+  o GpsReading[] gpsReadings optional
+}
+```
+
+6. Our contract will also now be dependent on the shipment arriving without any incidents captured by the accelerometer. We will need to add a field for the accelerometer value to the contract asset model. This will allow us to specify conditions for a crash, a hard jolt or other incidents based on the accelerometer data in the logic.js file.
+* Add **Double maxAccel** to the contract asset model.
+```
+asset Contract identified by contractId {
+  o String contractId
+  --> Grower grower
+  --> Shipper shipper
+  --> Importer importer
+  o DateTime arrivalDateTime
+  o Double unitPrice
+  o Double minTemperature
+  o Double maxTemperature
+  o Double minPenaltyFactor
+  o Double maxPenaltyFactor
+  o Double maxAccel
+}
+```
+7. Now we need to create some events so we can alert the apropriate participants when agreed upon thresholds are exceeded. Scroll down and fill in the following information for the **TemperatureThresholdEvent**.
+```
+event TemperatureThresholdEvent {
+  o String message
+  o Double temperature
+  o String latitude
+  o String longitude
+  o String readingTime
+  --> Shipment shipment
+}
+```
+
+8. Create the variables for the **AccelerationThresholdEvent**.
+```
+event AccelerationThresholdEvent {
+  o String message
+  o Double accel_x
+  o Double accel_y
+  o Double accel_z
+  o String latitude
+  o String longitude
+  o String readingTime
+  --> Shipment shipment
+}
+```
+9. Complete the information to create the model for the event **ShipmentInPort**.
+```
+event ShipmentInPortEvent {
+  o String message
+  --> Shipment shipment
+}
+```
+
+## Blockchain Part B - Implement a Perishable Business Network
+Now it's time for the fun to begin! We are going to break this down into a few sections:
+
+* [Creating your blockchain network in Hyperledger Composer Playground running on IBM Cloud](#create-your-blockchain-network-in-hyperledger-composer-playground-on-ibm-cloud)
+* [Modify the blockchain network](#customise-the-parishable-network)
+* [Deploying your blockchain network to your IBM Blockchain Starter Plan](#deploy-your-network)
+* [Generating your API for your deployed blockchain network with Hyperledger Composer Rest Server](#working-with-the-rest-api)
+
+
+### Customize the parishable network
+
+
+
 
 That brings me to my **forked implementation of the perishable-network**.  It adds accelerometer data transactions and chaincode.  It also changes the transactions to include environmental data, geolocation and a timestamp in one record.  My blockchain model implementation is necessary for this IoT Asset Tracking Perishable Network to function correctly.
 
