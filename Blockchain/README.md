@@ -10,8 +10,11 @@ We will be using Hyperledger Composer Playground to build our perishable network
 
 
 
+<<<<<<< HEAD
 ###Import the sample perishable network into Hyperledger Composer Playground
 1. Access the [IBM Hyperledger Composer Playground](https://blockchaindevelop.mybluemix.net/login).
+=======
+>>>>>>> 15a1fd147070e645d17d85fd983fdd0bd22f6921
 2. Click on **Deploy a new business network**
 ![Select Deploy a new business network.](screenshots/deploynew.png)
 3. Scroll down and choose **perishable-network** from the samples on npm.
@@ -20,8 +23,7 @@ We will be using Hyperledger Composer Playground to build our perishable network
 5. Give the network admin card that will be created a name **admin@perishable-network**.
    ![Perishable Network BNA screenshot](screenshots/Perishable-Network-BNA-annotated.png "Hyperledger Composer")
 6. On the right sidebar, click on **Deploy**.
-7. Press **Connect now ->**.
-   ![Select Connect now -->](screenshots/ConnectNow.png)
+7. Press **Connect now ->**
 
 ###Customize the perishable network for IoT tracking
 Let's pause for a moment to review the perishable-network you just deployed.  It tracks temperature but not geolocation information. There is an excellent three part Hyperledger series of articles in developerWorks that introduce the perishable-network.  
@@ -192,14 +194,12 @@ The following instructions replace the default perishable-network model and chai
 14. Save the business network archive, **perishable-network.bna**, somewhere you can easily find it.
 ![Save your business network archive locally.](screenshots/savebna.png)
 
-###Deploy your network
 Now that you've created your blockchain application, it's time to make it run on the IBM Blockchain Starter Plan. To do that, we are going to use the DevOps service in the IBM Cloud to deploy our code and start a REST server. This entire process is documented [here](https://github.com/sstone1/blockchain-starter-kit/blob/master/README.md) if you are interested in doing something similar outside of this exercise. This breaks down into the following steps:
 * [Create a DevOps toolchain](#create-a-devops-toolchain)
 * [Installing Hyperledger Composer locally](#install-hyperledger-composer-locally)
 * [Moving your code into your repository](#prepare-your-code-for-deployment)
 * [Verifying deployment of code](#verify-deployment)
 
-####Create a DevOps toolchain
 1. Start [here](https://console.bluemix.net/devops/setup/deploy/?repository=https%3A//github.com/sstone1/blockchain-starter-kit&branch=master&env_id=ibm%3Ayp%3Aus-south) to create your DevOps toolchain. 
 
 2. Enter a name for your toolchain. Make it unique!
@@ -217,13 +217,11 @@ The "GitHub" button in the middle will take you to your newly created GitHub rep
 
 The "Delivery Pipeline" button on the right will take you to the delivery pipeline for your DevOps toolchain. From here, you can inspect the output from the latest automated build and deployment of your blockchain application.
 
-####Install Hyperledger Composer locally
 To deploy our code, we'll need to work with some of the Hyperledger Composer commands on our system.
 
 1. Follow the [directions](https://hyperledger.github.io/composer/latest/installing/installing-index) for installing the prerequisites and installing Hyperledger Composer. 
 * Only complete Step 1 and Step 2 of intalling Hyperledger Composer for this exercise.
 
-####Prepare your code for deployment
 1. In your toolchain, select the **GitHub** icon to open your newly created repository.
 ![Select GitHub.](screenshots/gotogithub.png)
 
@@ -232,7 +230,6 @@ To deploy our code, we'll need to work with some of the Hyperledger Composer com
 
 3. In a terminal on your local system, enter `git clone <URL>` where <URL> is the value you copied in the previous step.
 ```
- ~  git clone https://github.com/SweetJenn23/XXX-blockchain-starter-kit.git
 Cloning into 'XXX-blockchain-starter-kit'...
 remote: Counting objects: 40, done.
 remote: Compressing objects: 100% (35/35), done.
@@ -294,7 +291,6 @@ Archive:  perishable-network.zip
 ![Run these git commands.](screenshots/gitcommit.png)
 
 
-####Verify deployment
 When you committed your code to GitHub, the DevOps toolchain automatically picked up the changes. The toolchain will immediately begin deploying those changes.
 
 1. Navigate to the DevOps toolchain page, and click on the "Delivery Pipeline" button. You should see the following page, giving you an overview of the current status of your delivery pipeline:
