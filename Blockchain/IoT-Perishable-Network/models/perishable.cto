@@ -32,10 +32,7 @@ enum ShipmentStatus {
  * Directions of the compass
  */
 enum CompassDirection {
-  o N
-  o S
-  o E
-  o W
+
 }
 
 /**
