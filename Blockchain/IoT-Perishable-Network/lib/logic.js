@@ -171,7 +171,7 @@ function AccelReading(AccelReading) {
         .then(function (shipmentRegistry) {
             // add the temp reading to the shipment
             return shipmentRegistry.update(shipment);
-        });   
+        });
 }
 
 /**
@@ -185,7 +185,7 @@ function gpsReading(gpsReading) {
     var NS = "org.acme.shipping.perishable";
     var shipment = gpsReading.shipment;
     var PORT_OF_NEW_YORK = '/LAT:40.6840N/LONG:74.0062W';
-    
+
     if (shipment.gpsReadings) {
         shipment.gpsReadings.push(gpsReading);
     } else {
