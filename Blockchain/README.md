@@ -267,7 +267,7 @@ Archive:  perishable-network.zip
  extracting: lib/logic.js
 ```
 7. Copy the extracted files into your cloned GitHub directory, */XXX-blockchain-starter-kit/contracts/xxx-perishable-network*. Replace the files already in the *xxx-perishable-network* directory with the same name. Do this for all of the following files:
-* remove `/xxx-blockchain-starter-kit/contracts/xxx-perisable-network/lib/org.acme.biznet.perishable.cto`
+* remove `/xxx-blockchain-starter-kit/contracts/xxx-perisable-network/models/org.acme.biznet.perishable.cto`
 * copy `perishable-network/README.md` to `XXX-blockchain-starter-kit/contracts/xxx-perishable-network`
 * copy `perishable-network/permissions.acl` to `XXX-blockchain-starter-kit/contracts/xxx-perishable-network`
 * copy `perishable-network/models/perishable.cto` to `XXX-blockchain-starter-kit/contracts/xxx-perishable-network/models/`
