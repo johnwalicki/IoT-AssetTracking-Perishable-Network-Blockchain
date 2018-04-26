@@ -2,76 +2,32 @@
 
 This section of the IoT Asset tracking workshop is really split into two parts. The first part, which we will call **Blockchain Part A**, follows the tutorial to deploy a [Hyperledger](https://www.hyperledger.org/) Fabric and Hyperledger Composer running in the [IBM Blockchain Starter Plan](https://www.ibm.com/blockchain/getting-started.html) in the IBM Cloud.
 
-The IBM Blockchain tutorial is excellent and I won't try to repeat it here.  **Blockchain Part B** will detail how to implement a **Perishable Business Network** and Hyperledger Composer REST APIs. Finally, you'll get to work with Node-RED  to interact and visually see the tracking of the asset.
+There are quite a few IBM Blockchain tutorials that areexcellent and we won't try to repeat them here.  We will be using a couple of them along the way. In **Blockchain Part A** we are going to create our blockchain business network of perishable goods. In **Blockchain Part B** we will convert it into smart contracts to deploy to the IBM Blockchain Starter Plan. We will use part of the IBM Cloud called DevOps to build our code and deploy it to an instance of the IBM Blockchain Starter Plan. The build process will also deploy a Hyperledger Composer Rest Server running as a Cloud Foundry service in the IBM Cloud. The Hyperledger Composer REST APIs will be used by Node-RED to talk to the blockchain perishable network. Finally, you'll get to work with Node-RED  to interact and visually see the tracking of the asset.
 
-## Blockchain Part A - Build a basic IBM Blockchain Hyperledger network
-The IBM Container Service free plan includes everything you need to deploy a Hyperledger Fabric (Blockchain runtime) and a Hyperledger Composer (UI for creating and deploying Business Networks to Hyperledger Fabric).  The [guide](https://www.ibm.com/developerworks/cloud/library/cl-ibm-blockchain-101-quick-start-guide-for-developers-bluemix-trs/index.html) makes it relatively simple. 
+## Blockchain Part A - Build your perishable network
 
-More information on the IBM Blockchain Starter Plan can be found [here](https://console.bluemix.net/docs/services/blockchain/dashboard.html#write-code).
+We will be using Hyperledger Composer Playground to build our perishable network. When we are done, we will export the code to our local system to use in Part B.
 
-Here is a quick review of the steps in the guide  to creating your blockchain network:
 
-* Follow the link to start your [blockchain network](http://www.ibm.com/blockchain/getting-started.html).
-* Setup your IBM Cloud account.
-* Create your starter plan instance. Call it **IoTAssetTrackingXXX** where XXX are your initials.
-* Access your blockchain network.
 
-Once your network is in place, you'll deploy one of the samples provided in the starter plan to test your network before moving on to Part B.
-1. Inside your Blockchain Starter Plan service, select **Try samples** from the left navigational menu. 
-![Select Try samples.](screenshots/TrySamples.png)
+###Import the sample perishable network into Hyperledger Composer Playground
+1. Access the [IBM Hyperledger Composer Playground](https://blockchaindevelop.mybluemix.net/test).
+2. Click on **Deploy a new business network**
+![Select Deploy a new business network.](screenshots/deploynew.png)
+3. Scroll down and choose **perishable-network** from the samples on npm.
+   ![Select perishable-network from the *Samples on npm*.](screenshots/npmsample.png)
+4. Scrollign back to the top, you should now have a business network name of **perishable-network**.
+5. Give the network admin card that will be created a name **admin@perishable-network**.
+   ![Perishable Network BNA screenshot](screenshots/Perishable-Network-BNA-annotated.png "Hyperledger Composer")
+6. On the right sidebar, click on **Deploy**.
+7. Press **Connect now ->**.
+   ![Select Connect now -->](screenshots/ConnectNow.png)
 
-2. To deploy the Marbles sample to your network,, select **Deploy via Toolchain** .
-![Select Deploy via Toolchain.](screenshots/DeployMarbles.png)
-
-3.  On the create toolchain screen, customize your toolchain name to something you can enter to see your application. Change the *Toolchain Name* to **TryMarblesXXX** where XXX are your initials.
-![Enter a Toolchain Name.](screenshots/ToolchainName.png)
-
-4. Scroll down the page. You'll notice that under *Tool Integrations*  it shows that *GitHub* and *Delivery Pipeline* say that they are required. Select **GitHub** to authenticate with your GitHub repository.
-![Select GitHub.](screenshots/SelectGitHub.png)
-
-5. Leaving **GitHub** showing in the drop down box, click **Authorize**.
-![Select Authorize.](screenshots/Authorize.png)
-
-6. In the pop-up window, select **Authorize IBM-Cloud**.
-![Select Authorize IBM-Cloud.](screenshot/AuthorizeCloud.png)
-
-7. Scroll down and update the *Repository Name* to something you'd like.
-![Enter a Repository Name.](screenshots/RepoName.png)
-
-8. Click on **Marbles** to update *Tool Instance URL*, **https://TryMarblesXXX.mybluemix.net/login **, where XXX are your initials. Click **Create**.
-![Update the Tool Instance URL and click Create.](screenshots/Create.png)
-
-9. Be patient while deployment takes place. This is a good time for a break as it can take 5-10 minutes.
-![Deployment progress.](screenshots/DeploymentProgress.png)
-
-10. Check on the progress of the application deployment:
-* Switch tabs back to the **IBM Cloud tab**.
-* Select the **menu bar icon** in the left corner.
-![Select the Menu bar icon.](screenshots/menubar.png)
-* Navigate to **DevOps**.
-![Select DevOps.](screenshots/DevOps.png)
-* Select the name of your marbles toolchain.
-![Select your marbles toolchain.](screenshots/MarblesToolchain.png)
-* Select **Delivery Pipeline**.
-![Select Delivery Pipeline.](screenshots/DeliveryPipeline.png)
-* Click **View logs and history** to watch the deployment.
-![View logs and history.](screenshots/ViewLogs.png)
-* When it is complete, you'll see a *passed* message at the top and *Finished: SUCCESS* at the bottom of the log.
-![Passed stage messages.](screenshot/Passed.png)
-![Finished: SUCCESS script message.](screenshots/Success.png)
-
-11. Using the breadcrumbs at the top, navigate back to the prior screen.
-![Go back to the prior page.](screenshots/Breadcrumbs.png)
-
-12. Click on the top link in the *Last Execution Result* to launch your application.
-![Launch your application.](screenshots/SeeApp.png)
-
-13.Click on **Guided** and follow the prompts to interact with your successfully deployed Marbles sample application.
-![Select Guided.](screenshots/Guided.png)
-
-14. After following the guide, if all defaults all used, a page like this will be available. Congratulations! You have deployed a successful sample application! Your network is ready for you to build your own application. Feel free to play and explore this user interface.
-![Welcome to Marbles!](screenshots/MarblesUI.png)
-
+###Customize the perishable network for IoT tracking
+Let's pause for a moment to review the perishable-network you just deployed.  It tracks temperature but not geolocation information. There is an excellent three part Hyperledger series of articles in developerWorks that introduce the perishable-network.  
+* [Hyperledger Composer basics, Part 1 -Model and test your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-refine-deploy-your-blockchain-network-with-hyperledger-composer-playground/index.html)
+* [Hyperledger Composer basics, Part 2 - Refine and deploy your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-refine-deploy-your-blockchain-network-with-hyperledger-composer-playground/index.html)
+* [Hyperledger Composer basics, Part 3 - Deploy locally, interact with, and extend your blockchain network](https://www.ibm.com/developerworks/cloud/library/cl-deploy-interact-extend-local-blockchain-network-with-hyperledger-composer/index.html)
 
 ## Blockchain Part B - Implement a Perishable Business Network
 Now it's time for the fun to begin! We are going to break this down into a few sections:
@@ -81,31 +37,6 @@ Now it's time for the fun to begin! We are going to break this down into a few s
 * [Deploying your blockchain network to your IBM Blockchain Starter Plan](#deploy-your-network)
 * [Generating your API for your deployed blockchain network with Hyperledger Composer Rest Server](#working-with-the-rest-api)
 
-
-### Create your blockchain network in Hyperledger Composer Playground on IBM Cloud
-
-1. ​Inside your IBM Blockchain Starter Plan, under *My Code* on the left side of the screen, select **Develop code**.
-![Select Develop code.](screenshots/developcode.png)
-
-2. In the main section of the page, choose to **Try web playground** to launch Hyperledger Composer Playground running in IBM Cloud.
-* Note: This instance of Hyperledger Composer Playground only exists in your browser. If you close your browser or it crashes, it is possible you could lose your work. To avoid losing your work, you can *Export* your code to your desktop.
-![Choose Try web playground.](screenshots/webplayground.png)
-
-3. From the *Welcome* page, click **Launch Now**.
-![Select Launch Now.](screenshots/launchnow.png)
-
-4. Click on **Deploy a new business network**
-![Select Deploy a new business network.](screenshots/deploynew.png)
-
-5. Scroll down and choose **perishable-network** from the samples on npm.
-![Select perishable-network from the *Samples on npm*.](screenshots/npmsample.png)
-
-6. Scrollign back to the top, you should now have a business network name of **perishable-network**.
-7. Give the network admin card that will be created a name **admin@perishable-network**.
-![Perishable Network BNA screenshot](screenshots/Perishable-Network-BNA-annotated.png "Hyperledger Composer")
-8. On the right sidebar, click on **Deploy**.
-9. Press **Connect now ->**.
-![Select Connect now -->](screenshots/ConnectNow.png)
 
 ### Customize the parishable network
 Let's pause for a moment to review the perishable-network you just deployed.  It tracks temperature but not geolocation information. There is an excellent three part Hyperledger series of articles in developerWorks that introduce the perishable-network.  
