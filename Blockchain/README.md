@@ -8,9 +8,6 @@ There are quite a few IBM Blockchain tutorials that are excellent and we won't t
 
 We will be using Hyperledger Composer Playground to build our perishable network. When we are done, we will export the code to our local system to use in Part B.
 
-###Import the sample perishable network into Hyperledger Composer Playground
-1. Access the [IBM Hyperledger Composer Playground](https://blockchaindevelop.mybluemix.net/login).
-
 ### Import the sample perishable network into Hyperledger Composer Playground
 1. Access the [IBM Hyperledger Composer Playground](https://blockchaindevelop.mybluemix.net/test).
 2. Click on **Deploy a new business network**
@@ -22,6 +19,7 @@ We will be using Hyperledger Composer Playground to build our perishable network
 ![Perishable Network BNA screenshot](screenshots/Perishable-Network-BNA-annotated.png "Hyperledger Composer")
 6. On the right sidebar, click on **Deploy**.
 7. Press **Connect now ->**
+
 ![Select Connect now](screenshots/ConnectNow.png)
 
 ### Customize the perishable network for IoT tracking
@@ -104,7 +102,7 @@ asset Shipment identified by shipmentId {
 ```
 
 6. Our contract will also now be dependent on the shipment arriving without any incidents captured by the accelerometer. We will need to add a field for the accelerometer value to the contract asset model. This will allow us to specify conditions for a crash, a hard jolt or other incidents based on the accelerometer data in the logic.js file.
-* Add **Double maxAccel** to the contract asset model.
+* Add **Double maxAccel** to the Contract asset model.
 ```
 asset Contract identified by contractId {
   o String contractId
@@ -120,7 +118,7 @@ asset Contract identified by contractId {
   o Double maxAccel
 }
 ```
-7. Now we need to create some events so we can alert the apropriate participants when agreed upon thresholds are exceeded. Scroll down and fill in the following information for the **TemperatureThresholdEvent**.
+7. Now we need to create some events so we can alert the appropriate participants when agreed upon thresholds are exceeded. Scroll down and fill in the following information for the **TemperatureThresholdEvent**.
 ```
 event TemperatureThresholdEvent {
   o String message
@@ -170,10 +168,10 @@ event ShipmentInPortEvent {
 14. First, select **Submit Transaction** so we can run our *setupDemo* transaction to give us some default values.
 ![Select Submit Transaction.](screenshots/SubmitTransaction.png)
 
-15. From the *drop down*, select **setupDemo** and then **Submit**.
+15. From the *drop down*, select **SetupDemo** and then **Submit**.
 ![Run setupDemo.](screenshots/SetupDemo.png)
 
-16. Look through your three partipants and two assets. You should now have a defined grower, importer, shipper, shipment and contract.
+16. Look through your three partipants and two assets. You should now have a defined Grower, Importer, Shipper, Shipment and Contract.
 
 17. Play with the other transactions to make sure that they update your assets. You should see fields added to your shipment in particular like the example below. You can enter any data. It doesn't need to be realistic.
 ![Test your transactions and verify it updates the asset.](screenshots/example.png)
@@ -194,7 +192,7 @@ Now it's time for the fun to begin! We are going to break this down into two sec
 ### Deploy your network
 Now that you've created your blockchain application, it's time to make it run on the IBM Blockchain Starter Plan. To do that, we are going to use the DevOps service in the IBM Cloud to deploy our code and start a REST server. This entire process is documented [here](https://github.com/sstone1/blockchain-starter-kit/blob/master/README.md) if you are interested in doing something similar outside of this exercise. This process will create the IBM Blockchain Starter Plan for you. 
 
-**NOTE:** You may have to upgrade your IBM Cloud account to a pay-as-you-go account to use the IBM Blockchain Stater Plan. It is free for up to 30 days. It is your responsibility to monitor usage to avoid fees.
+**NOTE:** You may have to upgrade your IBM Cloud account to a pay-as-you-go account to use the IBM Blockchain Starter Plan. It is free for up to 30 days. It is your responsibility to monitor usage to avoid fees.
 
 This breaks down into the following steps:
 * [Create a DevOps toolchain](#create-a-devops-toolchain)
@@ -227,7 +225,7 @@ The "Delivery Pipeline" button on the right will take you to the delivery pipeli
 To deploy our code, we'll need to work with some of the Hyperledger Composer commands on our system.
 
 1. Follow the [directions](https://hyperledger.github.io/composer/latest/installing/installing-index) for installing the prerequisites and installing Hyperledger Composer. 
-* Only complete Step 1 and Step 2 of intalling Hyperledger Composer for this exercise.
+* Only complete Step 1 and Step 2 of installing Hyperledger Composer for this exercise.
 
 #### Prepare your code for deployment
 1. In your toolchain, select the **GitHub** icon to open your newly created repository.
@@ -236,7 +234,7 @@ To deploy our code, we'll need to work with some of the Hyperledger Composer com
 2. In GitHub, click **Clone or download** and then the **copy** button to get the URL to use to clone your repository to your local system.
 ![Select Clone and then copy.](screenshots/clonegithub.png)
 
-3. In a terminal on your local system, enter `git clone <URL>` where <URL> is the value you copied in the previous step.
+3. In a terminal on your local system, enter `git clone <URL>` where \<URL\> is the value you copied in the previous step.
 ```
 $ git clone https://github.com/SweetJenn23/XXX-blockchain-starter-kit.git
 Cloning into 'XXX-blockchain-starter-kit'...
@@ -246,7 +244,7 @@ remote: Total 40 (delta 2), reused 40 (delta 2), pack-reused 0
 Unpacking objects: 100% (40/40), done.
 ```
 
-4. Move into the contracts directory, `cd XXX-blockchain-starter-kit/contracts` where XXX are your intitials.
+4. Move into the contracts directory, `cd XXX-blockchain-starter-kit/contracts` where XXX are your initials.
 
 5. We need to make a smart contract from our blockchain network (.bna). To do this we will use one of the tools installed with Hyperledger Composer called Yeoman. This will create a smart contract skeleton we can deploy to Hyperledger Fabric. We will have to copy our work into this skeleton. 
 
@@ -276,11 +274,11 @@ Archive:  perishable-network.zip
 * copy `perishable-network/lib/logic.js` to `XXX-blockchain-starter-kit/contracts/xxx-perishable-network/lib/`
 ![Move the contents of your perishable-network.bna into the generated skeleton.](screenshots/movecontents.png)
 
-8. In your repository edit the file, **~/XXX-blockchain-starter-kit/.bluemix/pipeline_BUILD.sh**.
+8. In your repository edit the file, **~/XXX-blockchain-starter-kit/.bluemix/pipeline_BUILD.sh**
 
-   * Find **function test_composer_contract**.
+   * Find **function test_composer_contract**
 
-   * In the function comment out the line  **npm test**, `#npm test`.
+   * In the function comment out the line  **npm test**, `#npm test`
 ```
      function test_composer_contract {
        CONTRACT=$1
@@ -319,12 +317,12 @@ Both "BUILD" and "DELIVERY" phases should be green and showing that no errors ha
 
 ### Working with the REST API
 
-To manipulate the blockchain from Node-RED, we will expose the perishable-network business network using the Hyperledger Composer REST API. Currently, this starter kit does not deply a RESTful API server for smart contracts developed using Hyperledger Fabric. Since we used Hyperledger Composer, the DevOps toolchain has automatically deployed a RESTful API server for each deployed smart contract. You can use these RESTful APIs to build end user applications that interact with a smart contract.
+To manipulate the blockchain from Node-RED, we will expose the perishable-network business network using the Hyperledger Composer REST API. Currently, this starter kit does not deploy a RESTful API server for smart contracts developed using Hyperledger Fabric. Since we used Hyperledger Composer, the DevOps toolchain has automatically deployed a RESTful API server for each deployed smart contract. You can use these RESTful APIs to build end user applications that interact with a smart contract.
 
 1. The URLs for the deployed RESTful API servers are available in the logs for the "DELIVERY" phase, but you can also find them in the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps). The RESTful API server is deployed as an application, with a name made up of "composer-rest-server-" and the name of the smart contract. Ours are called **composer-rest-server-xxx-perishable-network**.
 ![Find your composer-rest-server in the IBM Cloud Dashboard.](screenshots/composer-rest-server.png)
 
-2. Click on the rest server to naviage the application details page.
+2. Click on the rest server to navigate to the application details page.
 ![View the rest server application details.](screenshots/restserverdetails.png)
 
 3. Select the **Visit App URL** to view your API.
