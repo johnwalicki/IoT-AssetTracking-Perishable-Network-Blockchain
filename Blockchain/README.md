@@ -165,25 +165,38 @@ event ShipmentInPortEvent {
 ![Perishable Network BNA model update screenshot](screenshots/Perishable-Network-BNA-Model-update-annotated.png "Hyperledger Composer Model")
 
 13. Now let's test our work! Click on the **Test** tab at the top of the page.
+![Click Test.](screenshots/Test.png)
 
-13. **Export** the code to your local system. We will use it during the deployment process.
+14. First, select **Submit Transaction** so we can run our *setupDemo* transaction to give us some default values.
+![Select Submit Transaction.](screenshots/SubmitTransaction.png)
+
+15. From the *drop down*, select **setupDemo** and then **Submit**.
+![Run setupDemo.](screenshots/SetupDemo.png)
+
+16. Look through your three partipants and two assets. You should now have a defined grower, importer, shipper, shipment and contract.
+
+17. Play with the other transactions to make sure that they update your assets. You should see fields added to your shipment in particular like the example below. You can enter any data. It doesn't need to be realistic.
+![Test your transactions and verify it updates the asset.](screenshots/example.png)
+
+18. **Export** the code to your local system. We will use it during the deployment process.
 ![Click Export.](screenshots/export.png)
 
-14. Save the business network archive, **perishable-network.bna**, somewhere you can easily find it.
+19. Save the business network archive, **perishable-network.bna**, somewhere you can easily find it.
 ![Save your business network archive locally.](screenshots/savebna.png)
 
 ## Blockchain Part B - Implement a Perishable Business Network
-Now it's time for the fun to begin! We are going to break this down into a few sections:
+Now it's time for the fun to begin! We are going to break this down into two sections:
 
 * [Deploying your blockchain network to your IBM Blockchain Starter Plan](#deploy-your-network)
 * [Generating your API for your deployed blockchain network with Hyperledger Composer Rest Server](#working-with-the-rest-api)
 
 
-
-
-
 ### Deploy your network
-Now that you've created your blockchain application, it's time to make it run on the IBM Blockchain Starter Plan. To do that, we are going to use the DevOps service in the IBM Cloud to deploy our code and start a REST server. This entire process is documented [here](https://github.com/sstone1/blockchain-starter-kit/blob/master/README.md) if you are interested in doing something similar outside of this exercise. This breaks down into the following steps:
+Now that you've created your blockchain application, it's time to make it run on the IBM Blockchain Starter Plan. To do that, we are going to use the DevOps service in the IBM Cloud to deploy our code and start a REST server. This entire process is documented [here](https://github.com/sstone1/blockchain-starter-kit/blob/master/README.md) if you are interested in doing something similar outside of this exercise. This process will create the IBM Blockchain Starter Plan for you. 
+
+NOTE: You may have to upgrade your IBM Cloud account to a pay-as-you-go account to use the IBM Blockchain Stater Plan. It is free for up to 30 days. It is your responsibility to monitor usage to avoid fees.
+
+This breaks down into the following steps:
 * [Create a DevOps toolchain](#create-a-devops-toolchain)
 * [Installing Hyperledger Composer locally](#install-hyperledger-composer-locally)
 * [Moving your code into your repository](#prepare-your-code-for-deployment)
@@ -253,11 +266,11 @@ Archive:  perishable-network.zip
  extracting: lib/logic.js
 ```
 7. Copy the extracted files into your cloned GitHub directory, */XXX-blockchain-starter-kit/contracts/xxx-perishable-network*. Replace the files already in the *xxx-perishable-network* directory with the same name. Do this for all of the following files:
-* remove /xxx-blockchain-starter-kit/contracts/xxx-perisable-network/lib/org.acme.biznet.perishable.cto
-* README.md
-* permissions.acl
-* perishable.cto
-* logic.js
+* remove `/xxx-blockchain-starter-kit/contracts/xxx-perisable-network/lib/org.acme.biznet.perishable.cto`
+* copy `perishable-network/README.md` to `XXX-blockchain-starter-kit/contracts/xxx-perishable-network`
+* copy `perishable-network/permissions.acl` to `XXX-blockchain-starter-kit/contracts/xxx-perishable-network`
+* copy `perishable-network/models/perishable.cto` to `XXX-blockchain-starter-kit/contracts/xxx-perishable-network/models/`
+* copy `perishable-network/lib/logic.js` to `XXX-blockchain-starter-kit/contracts/xxx-perishable-network/lib/`
 ![Move the contents of your perishable-network.bna into the generated skeleton.](screenshots/movecontents.png)
 
 8. In your repository edit the file, **~/XXX-blockchain-starter-kit/.bluemix/pipeline_BUILD.sh**.
