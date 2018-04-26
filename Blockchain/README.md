@@ -194,7 +194,7 @@ Now it's time for the fun to begin! We are going to break this down into two sec
 ### Deploy your network
 Now that you've created your blockchain application, it's time to make it run on the IBM Blockchain Starter Plan. To do that, we are going to use the DevOps service in the IBM Cloud to deploy our code and start a REST server. This entire process is documented [here](https://github.com/sstone1/blockchain-starter-kit/blob/master/README.md) if you are interested in doing something similar outside of this exercise. This process will create the IBM Blockchain Starter Plan for you. 
 
-NOTE: You may have to upgrade your IBM Cloud account to a pay-as-you-go account to use the IBM Blockchain Stater Plan. It is free for up to 30 days. It is your responsibility to monitor usage to avoid fees.
+**NOTE:** You may have to upgrade your IBM Cloud account to a pay-as-you-go account to use the IBM Blockchain Stater Plan. It is free for up to 30 days. It is your responsibility to monitor usage to avoid fees.
 
 This breaks down into the following steps:
 * [Create a DevOps toolchain](#create-a-devops-toolchain)
@@ -206,7 +206,10 @@ This breaks down into the following steps:
 1. Start [here](https://console.bluemix.net/devops/setup/deploy/?repository=https%3A//github.com/sstone1/blockchain-starter-kit&branch=master&env_id=ibm%3Ayp%3Aus-south) to create your DevOps toolchain. 
 
 2. Enter a name for your toolchain. Make it unique!
-![Enter a name for your toolchain.](screenshots/starterkittoolchain.png)
+
+  **Note:** If you haven't authenticated with GitHub in IBM Cloud before, you will need to do this before you will be able to create the Blockchain Starter Kit. You can do this now by scrolling down on this screen and selecting the authenticate button.
+
+  ![Enter a name for your toolchain.](screenshots/starterkittoolchain.png)
 
 3. Scroll down and create a unique repository name, **XXX-blockchain-toolkit** where XXX are your initials.
 
