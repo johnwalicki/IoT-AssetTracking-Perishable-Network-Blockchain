@@ -41,7 +41,26 @@ We're going to need to learn a little bit about the Hyperledger Blockchain model
 
 In the following steps, we will make changes to the model file to add in accelerometer data, environmental data, geolocation and a timestamp. Adding in the IoT data will also require additional transactions. To save time after we complete the model file updates, we will import the transactions from a cloned repository.
 
-1. In your model file,  add **enum CompassDirection**. Enter the following values to enumerate the four cardinal directions:
+1. In the **enum ProductType**, add a variable to the enum for **medicine**.
+```
+    enum ProductType{
+
+     o BANANAS
+
+     o APPLES
+
+     o PEARS
+
+     o PEACHES
+
+     o COFFEE
+
+     o MEDICINE
+
+   }
+```
+
+2. In your model file,  add **enum CompassDirection**. Enter the following values to enumerate the four cardinal directions:
 ```
 /**
  * Directions of the compass
