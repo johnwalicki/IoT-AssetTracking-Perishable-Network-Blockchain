@@ -154,7 +154,7 @@ event ShipmentInPortEvent {
 10. Our model file is now complete. Select **Update** to save the changes in the Hyperledger Composer Playground.
 ![Click Update.](screenshots/Update.png)
 
-11. Now it is time to **copy** (CTRL+C) our new logic.js file from our [repository](https://raw.githubusercontent.com/johnwalicki/IoT-AssetTracking-Perishable-Network-Blockchain/master/Blockchain/IoT-Perishable-Network/lib/logic.js).
+11. Now it is time to **copy** (CTRL+C) our new logic.js file from our [repository](IoT-Perishable-Network/lib/logic.js).
 
 12. Back in the Hyperledger Composer Playground:
 * **Remove all of the content** (CTRL+A) in the logic.js file
