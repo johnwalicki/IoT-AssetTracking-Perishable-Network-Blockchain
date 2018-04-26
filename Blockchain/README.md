@@ -98,7 +98,7 @@ transaction GpsReading extends ShipmentTransaction {
 }
 ```
 
-5. For the IoT data to be associated with the asset, shipment, we will need to add some IoT related variables to the asset model for shipment. Make the following additions to the shipment model.
+5. For the IoT data to be associated with the asset, shipment, we will need to add some IoT related variables to the asset model for shipment. Make the following additions to **asset Shipment identified by shipmentId**.
 * AccelReading[] AccelReadings optional
 * GpsReading[] gpsReadings optional
 ```
