@@ -9,7 +9,7 @@ There are quite a few IBM Blockchain tutorials that are excellent and we won't t
 We will be using Hyperledger Composer Playground to build our perishable network. When we are done, we will export the code to our local system to use in Part B.
 
 ### Import the sample perishable network into Hyperledger Composer Playground
-1. Access the [IBM Hyperledger Composer Playground](https://blockchaindevelop.mybluemix.net/test).
+1. Access the [IBM Hyperledger Composer Playground](http://composer-playground.mybluemix.net/).
 2. Click on **Deploy a new business network**
 ![Select Deploy a new business network.](screenshots/deploynew.png)
 3. Scroll down and choose **perishable-network** from the samples on npm.
@@ -60,7 +60,7 @@ In the following steps, we will make changes to the model file to add in acceler
    }
 ```
 
-2. In your model file,  add **enum CompassDirection**. Enter the following values to enumerate the four cardinal directions:
+2. In your model file,  create **enum CompassDirection**. Enter the following values to enumerate the four cardinal directions:
 ```
 /**
  * Directions of the compass
@@ -192,7 +192,7 @@ event ShipmentInPortEvent {
 }
 ```
 
-10. Our model file is now complete. Select **Update** to save the changes in the Hyperledger Composer Playground.
+10. Our model file is now complete. Select **Deploy changes** to save the changes in the Hyperledger Composer Playground.
 ![Click Update.](screenshots/Update.png)
 
 11. Now it is time to **copy** (CTRL+C) our new logic.js file from our [repository](IoT-Perishable-Network/lib/logic.js).
@@ -200,7 +200,7 @@ event ShipmentInPortEvent {
 12. Back in the Hyperledger Composer Playground:
 * **Remove all of the content** (CTRL+A) in the logic.js file
 * **Paste** (CTRL+V) in the content copied from the logic.js file in our repository.
-* Select **Update** to save the changes.
+* Select **Deploy Changes** to save the changes.
 ![Perishable Network BNA model update screenshot](screenshots/Perishable-Network-BNA-Model-update-annotated.png "Hyperledger Composer Model")
 
 13. Now let's test our work! Click on the **Test** tab at the top of the page.
@@ -267,6 +267,7 @@ To deploy our code, we'll need to work with some of the Hyperledger Composer com
 
 1. Follow the [directions](https://hyperledger.github.io/composer/latest/installing/installing-index) for installing the prerequisites and installing Hyperledger Composer. 
 * Only complete Step 1 and Step 2 of installing Hyperledger Composer for this exercise.
+* If you've previously had Hyperledger Composer installed, follow these directions for [updating Hyperledger Composer](https://hyperledger.github.io/composer/v0.16/managing/updating-composer). Complete both steps.
 
 #### Prepare your code for deployment
 1. In your toolchain, select the **GitHub** icon to open your newly created repository.
