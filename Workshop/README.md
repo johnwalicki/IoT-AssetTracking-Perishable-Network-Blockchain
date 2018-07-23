@@ -1,3 +1,5 @@
+*Read this in other languages: [日本語](README-ja.md).*
+
 # IoT Asset Tracking Perishable Network Blockchain Workshop
 Author: [@johnwalicki](https://twitter.com/johnwalicki)
 

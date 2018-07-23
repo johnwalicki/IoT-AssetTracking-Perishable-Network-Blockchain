@@ -1,3 +1,5 @@
+*Read this in other languages: [日本語](README-ja.md).*
+
 # Particle Electron Asset Tracker
 The Particle Electron Asset Tracker can be used to collect environmental sensor data, calculate its location using GPS or Cellular triangulation and send both data events to the Particle.io console using Particle Functions.  The power of knowing **Where, What and When** physical things were subjected to harsh environmental conditions can improve many business processes.
 

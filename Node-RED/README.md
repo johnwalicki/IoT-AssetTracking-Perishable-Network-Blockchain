@@ -1,3 +1,5 @@
+*Read this in other languages: [日本語](README-ja.md).*
+
 # Node-RED - IoT Asset Tracker
 ## Node-RED - IoT Asset Tracker Introduction
 
