@@ -5,9 +5,9 @@
 
 # 元となるワークショップは: **https://github.com/johnwalicki/IoT-AssetTracking-Perishable-Network-Blockchain**
 
-私はこのgitリポジトリを **[IBM コードパターン](https://developer.ibm.com/code/)** の [ワークショップ・チュートリアル](README.md) として読むように調整しました。
+私はこのgitリポジトリを **[IBM コードパターン](https://developer.ibm.com/code/)** の [ワークショップ・チュートリアル](README-ja.md) として読むように調整しました。
 
-## Section Overviews
+## セクションの概要
 
 [最初のセクション](../ParticleElectron/README-ja.md) は、**Particle Electron Asset Tracker v2** をセットアップして環境センサーのデータと場所をクラウドに送信する方法を詳しく説明しています。
 我々は多数の Particle Electrons を持たないので、私はその代表として所持するものをデモします。ワークショップの最後に、このトラッカーから環境データを読んでいきます。

@@ -35,9 +35,9 @@ Grove センサーを接続することもできます。
     $ particle login
     $ particle upgrade
 ```
- [ファームウェアのアップグレード](https://docs.particle.io/guide/tools-and-features/firmware-manager/electron/) は、Googleマップジオロケーションデバイスのロケータを機能させるために重要でした。私の Particle Electron は v0.4.9 が工場出荷時にインストールされていましたが、v0.6.4にアップグレードすると Google Maps 機能が機能するようになりました。
+ [ファームウェアのアップグレード](https://docs.particle.io/guide/tools-and-features/firmware-manager/electron/) は、Google Map ジオロケーションデバイスのロケータを機能させるために重要でした。私の Particle Electron は v0.4.9 が工場出荷時にインストールされていましたが、v0.6.4にアップグレードすると Google Maps 機能が機能するようになりました。
 
-9. 次のステップとして [$ particle compile]( https://docs.particle.io/reference/cli/#particle-compile) コマンドを学びます。
+9. 次のステップとして [particle compile]( https://docs.particle.io/reference/cli/#particle-compile) コマンドを学びます。
 ```
     $ particle compile
 ```
@@ -76,9 +76,11 @@ $ particle serial monitor
 このリポジトリで [WatsonIoTAssetTracker.ino](WatsonIoTAssetTracker.ino) コードを取得し、以下のレビューに従ってください。
 これは [Particle Simple project](https://docs.particle.io/guide/tools-and-features/libraries/#project-file-structure) ですので、[project.properties](project.properties) ファイルもリポジトリからダウンロードする必要があります。これには、プログラムをコンパイルするために必要なライブラリのリストが含まれています。
 
+> 訳注: INO ファイルは Arduino Sketch File 形式で、Arduino ベースの IoT 機器上で動作するプログラムです。
+
 ### ```void setup()```
 
-この Arduino プログラムのもっとも興味深い点は、 ``setup()`` で、温度と加速度センサーのデータを送信して問い合わせる4つの Particle 関数を宣言しています。
+この Arduino プログラムのもっとも興味深いのは ``setup()`` で、温度と加速度センサーのデータを送信して問い合わせる4つの Particle 関数を宣言しています。
 
 ``` C
 // Declare a Particle.function so that we can adjust the Asset Tracking on and off reporting interval from the cloud.

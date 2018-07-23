@@ -9,8 +9,8 @@ IoT 資産追跡ワークショップのこのセクションは、実際には2
 私たちは道に沿って、それらを組み合わせて使用します。
 **ブロックチェーン Aパート** では、生鮮品のブロックチェーンビジネスネットワークを構築します。
 
-**ブロックチェーン Bパート** では、それを IBM Blockchain Starter Plan に展開するためにスマートコントラクトに変換します。
-DevOps という IBM Cloud の一部を使用して、コードを作成し、IBM Blockchain Starter Plan のインスタンスにデプロイします。
+**ブロックチェーン Bパート** では、それを IBM Blockchain Starter プランにデプロイするためにスマートコントラクトに変換します。
+DevOps という IBM Cloud の一部を使用して、コードを作成し、IBM Blockchain Starter プランのインスタンスにデプロイします。
 構築プロセスでは、Cloudly Foundry サービスとして動作する Hyperledger Composer Rest Server も IBM Cloud に導入します。
 Hyperledger Composer REST API は、Node-RED によってブロックチェーンの生鮮品のネットワークと通信するために使用されます。
 最後に、Node-RED を操作して対話し、資産のトラッキングを視覚的に表示します。
@@ -18,7 +18,7 @@ Hyperledger Composer REST API は、Node-RED によってブロックチェー�
 ## ブロックチェーン Aパート: 生鮮品ネットワークを構築
 
 私たちは生鮮品ネットワークを構築するために Hyperledger Composer Playground を使用します。
-作業が完了したら、パートBで使用するコードをローカルシステムにエクスポートします。
+作業が完了したら、Bパートで使用するコードをローカルシステムにエクスポートします。
 
 ### 生鮮品ネットワークのサンプルを Hyperledger Composer Playground にインポート
 
@@ -109,11 +109,10 @@ transaction GpsReading extends ShipmentTransaction {
 ```
 
 5. IoTデータを資産、出荷に関連付けるには、IoT関連の変数を出荷するための資産モデルに追加する必要があります。出荷モデルに以下の追加を行います。
-<ul>
-<li>AccelReading[] AccelReadings optional</li>
-<li>GpsReading[] gpsReadings optional</li>
-</ul>
-```
+   * AccelReading[] AccelReadings optional
+   * GpsReading[] gpsReadings optional
+
+  ```
 asset Shipment identified by shipmentId {
   o String shipmentId
   o ProductType type
@@ -129,10 +128,9 @@ asset Shipment identified by shipmentId {
 6. 我々の契約は、現在、加速度計によって捕捉された事故なしに到着する出荷を前提としたものです。
 加速度計値のフィールドを契約 (Contract) 資産モデルに追加する必要があります。
 これにより、logic.js ファイルの加速度計データに基づいて、衝突、ひどい揺れ、その他のインシデントの条件を指定することができます。
-<ul>
-<li>Contract 資産モデルに **Double maxAccel** を追加する。</li>
-</ul>
-```
+   * Contract 資産モデルに **Double maxAccel** を追加する。
+
+  ```
 asset Contract identified by contractId {
   o String contractId
   --> Grower grower
@@ -186,18 +184,18 @@ event ShipmentInPortEvent {
 11. 私たちの新しい logic.js ファイルの内容を私たちの [リポジトリ](IoT-Perishable-Network/lib/logic.js) から **コピー** (CTRL+C) します。
 
 12. Hyperledger Composer Playground に戻り:
-<ul>
-<li>logic.js ファイルの内容を **全て選択** (CTRL+A) して削除します</li>
-<li>さきほどリポジトリの logic.js ファイルからコピーした内容を **ペースト** (CTRL+V) します</li>
-<li>`Update` をクリックして変更を保存します</li>
-</ul>
-![Perishable Network BNA model update screenshot](screenshots/Perishable-Network-BNA-Model-update-annotated.png "Hyperledger Composer Model")
+   * logic.js ファイルの内容を **全て選択** (CTRL+A) して削除します
+   * さきほどリポジトリの logic.js ファイルからコピーした内容を **ペースト** (CTRL+V) します
+   * `Update` をクリックして変更を保存します
+
+  ![Perishable Network BNA model update screenshot](screenshots/Perishable-Network-BNA-Model-update-annotated.png "Hyperledger Composer Model")
 
 13. さあ、私たちの仕事をテストしましょう！ページの上部にある `Test` タブをクリックします。
 ![Click Test.](screenshots/Test.png)
 
 14. まず、`Submit Transaction` を選択することで、*setupDemo* トランザクションを実行してデフォルト値を与えることができます。
-![Select Submit Transaction.](screenshots/SubmitTransaction.png)
+
+  ![Select Submit Transaction.](screenshots/SubmitTransaction.png)
 
 15. ドロップダウンから `SetupDemo` を選択して `Submit` します。
 ![Run setupDemo.](screenshots/SetupDemo.png)
@@ -242,7 +240,7 @@ event ShipmentInPortEvent {
 
 2. あなたのツールチェーンの名前を入力してください。ユニークなものにしましょう！
 
-  **Note:** 以前に IBM Cloud で GitHub 認証を実施していない場合は、Blockchain Starter Kit を作成する前に実施する必要があります。この画面をスクロールして認証ボタンを選択してください。
+**ノート:** 以前に IBM Cloud で GitHub 認証を実施していない場合は、Blockchain Starter Kit を作成する前に実施する必要があります。この画面をスクロールして認証ボタンを選択してください。
 
   ![Enter a name for your toolchain.](screenshots/starterkittoolchain.png)
 
@@ -251,19 +249,19 @@ event ShipmentInPortEvent {
 4. `Create` をクリック。
 ![Create a uniquire repository name and select Create.](screenshots/repositorycreate.png)
 
-5. おめでとう！コードをデプロイするために使用できる完全なツールチェーンが用意されました。
+5. おめでとうございます！コードをデプロイするために使用できる完全なツールチェーンが用意されました。
 ![Complete blockchain-starter-kit toolchain.](screenshots/completetoolchain.png)
 
 途中の `GitHub` ボタンを押すと、新しく作成した GitHub リポジトリに移動します。この GitHub リポジトリをローカル開発環境にクローンすることで、ブロックチェーンアプリケーションを操作できます。
 
-右側の `Delivery Pipeline` ボタンをクリックすると、DevOps ツールチェーンの配信パイプラインに移動します。ここからは、ブロックチェーンアプリケーションの最新の自動ビルドとデプロイメントの結果を調べることができます。
+右側の `Delivery Pipeline` ボタンをクリックすると、DevOps ツールチェーンのデリバリーパイプラインに移動します。ここからは、ブロックチェーンアプリケーションの最新の自動ビルドとデプロイメントの結果を調べることができます。
 
 <a name="install-hyperledger-composer-locally"></a>
 #### Hyperledger Composer をローカル環境にインストールする
 コードを展開するには、システム上の Hyperledger Composer コマンドのいくつかを使用する必要があります。
 
 1. 前提条件のインストールと Hyperledger Composerの インストールについては、[指示](https://hyperledger.github.io/composer/latest/installing/installing-index) に従ってください。
-  * この演習で Hyperledger Composer をインストールする場合は、手順1と手順2のみを完了してください。
+   * この演習で Hyperledger Composer をインストールする場合は、手順1と手順2のみを完了してください。
 
 <a name="prepare-your-code-for-deployment"></a>
 #### デプロイのためのコードを準備する
@@ -321,7 +319,7 @@ Archive:  perishable-network.zip
    * **function test_composer_contract** を探す
 
    * function 定義のなかで `#npm test` の行のコメントを外して **npm test** とする:
-```
+  ```
      function test_composer_contract {
        CONTRACT=$1
        echo testing composer contract ${CONTRACT}
@@ -351,10 +349,10 @@ GitHub にコードをコミットすると、DevOps ツールチェインが自
 
 2. デリバリーパイプラインには "BUILD" と "DEPLOY" の2つのフェーズがあります。
 
-デリバリーパイプラインの **BUILD** フェーズは、GitHubリポジトリをクローンし、依存関係をインストールし、すべてのスマートコントラクトの自動化ユニットテストをすべて実行します。ユニットテストが失敗した場合、デリバリーパイプラインは失敗し、変更はデプロイ(DEPLOY)されません。
+  デリバリーパイプラインの **BUILD** フェーズは、GitHubリポジトリをクローンし、依存関係をインストールし、すべてのスマートコントラクトの自動化ユニットテストをすべて実行します。ユニットテストが失敗した場合、デリバリーパイプラインは失敗し、変更はデプロイ(DEPLOY)されません。
 
-デリバリーパイプラインの **DEPLOY** フェーズは、スマート・コントラクトを IBM Cloud にデプロイします。
-IBM Blockchain Platform: Starter プラン (ブロックチェーンネットワーク) のインスタンス、Cloudant (ブロックチェーン資格情報の保存場所)のインスタンス、スマートコントラクトのデプロイ、デプロイ各スマートコントラクト用の RESTful API サーバーのプロビジョニングと構成を担当します。
+  デリバリーパイプラインの **DEPLOY** フェーズは、スマート・コントラクトを IBM Cloud にデプロイします。
+  IBM Blockchain Platform: Starter プラン (ブロックチェーンネットワーク) のインスタンス、Cloudant (ブロックチェーン資格情報の保存場所)のインスタンス、スマートコントラクトのデプロイ、デプロイ各スマートコントラクト用の RESTful API サーバーのプロビジョニングと構成を担当します。
 
 `View logs and history` をクリックすると、ビルドの最新ログが表示されます:
 ![View your logs.](screenshots/toolchainlog.png)
@@ -362,7 +360,7 @@ IBM Blockchain Platform: Starter プラン (ブロックチェーンネットワ
 BUILD と DELIVERY 両方のフェーズが緑色ならば、エラーが発生していないことを示します。そうでない場合は、ログを使用してエラーの原因を調査する必要があります。
 
 <a name="working-with-the-rest-api"></a>
-### Working with the REST API
+### REST API を使用してビジネスネットワークを公開する
 
 Node-RED からブロックチェーンを操作するために、Hyperledger Composer REST API を使用して perishable-network ビジネスネットワークを公開します。現在、このスターターキットでは、Hyperledger Fabric を使用して開発されたスマートコントラクト用の RESTful API サーバーはデプロイされていません。Hyperledger Composer を使用しているので、DevOps ツールチェーンは、配備された各スマートコントラクトに対して RESTful AP Iサーバーを自動的にデプロイしました。これらの RESTful API を使用して、スマートコントラクトと対話するエンドユーザー・アプリケーションを構築できます。
 
