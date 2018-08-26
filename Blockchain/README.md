@@ -1,3 +1,5 @@
+*Read this in other languages: [日本語](README-ja.md).*
+
 # IoT Asset Tracking on a Hyperledger Blockchain
 
 This section of the IoT Asset tracking workshop is really split into two parts. The first part, which we will call **Blockchain Part A**, follows the tutorial to deploy a [Hyperledger](https://www.hyperledger.org/) Fabric and Hyperledger Composer running in the [IBM Blockchain Starter Plan](https://www.ibm.com/blockchain/getting-started.html) in the IBM Cloud.
@@ -190,7 +192,7 @@ Now it's time for the fun to begin! We are going to break this down into two sec
 
 
 ### Deploy your network
-Now that you've created your blockchain application, it's time to make it run on the IBM Blockchain Starter Plan. To do that, we are going to use the DevOps service in the IBM Cloud to deploy our code and start a REST server. This entire process is documented [here](https://github.com/sstone1/blockchain-starter-kit/blob/master/README.md) if you are interested in doing something similar outside of this exercise. This process will create the IBM Blockchain Starter Plan for you. 
+Now that you've created your blockchain application, it's time to make it run on the IBM Blockchain Starter Plan. To do that, we are going to use the DevOps service in the IBM Cloud to deploy our code and start a REST server. This entire process is documented [here](https://github.com/sstone1/blockchain-starter-kit/blob/master/README.md) if you are interested in doing something similar outside of this exercise. This process will create the IBM Blockchain Starter Plan for you.
 
 **NOTE:** You may have to upgrade your IBM Cloud account to a pay-as-you-go account to use the IBM Blockchain Starter Plan. It is free for up to 30 days. It is your responsibility to monitor usage to avoid fees.
 
@@ -201,7 +203,7 @@ This breaks down into the following steps:
 * [Verifying deployment of code](#verify-deployment)
 
 #### Create a DevOps toolchain
-1. Start [here](https://console.bluemix.net/devops/setup/deploy/?repository=https%3A//github.com/sstone1/blockchain-starter-kit&branch=master&env_id=ibm%3Ayp%3Aus-south) to create your DevOps toolchain. 
+1. Start [here](https://console.bluemix.net/devops/setup/deploy/?repository=https%3A//github.com/sstone1/blockchain-starter-kit&branch=master&env_id=ibm%3Ayp%3Aus-south) to create your DevOps toolchain.
 
 2. Enter a name for your toolchain. Make it unique!
 
@@ -224,7 +226,7 @@ The "Delivery Pipeline" button on the right will take you to the delivery pipeli
 #### Install Hyperledger Composer locally
 To deploy our code, we'll need to work with some of the Hyperledger Composer commands on our system.
 
-1. Follow the [directions](https://hyperledger.github.io/composer/latest/installing/installing-index) for installing the prerequisites and installing Hyperledger Composer. 
+1. Follow the [directions](https://hyperledger.github.io/composer/latest/installing/installing-index) for installing the prerequisites and installing Hyperledger Composer.
 * Only complete Step 1 and Step 2 of installing Hyperledger Composer for this exercise.
 
 #### Prepare your code for deployment
@@ -246,7 +248,7 @@ Unpacking objects: 100% (40/40), done.
 
 4. Move into the contracts directory, `cd XXX-blockchain-starter-kit/contracts` where XXX are your initials.
 
-5. We need to make a smart contract from our blockchain network (.bna). To do this we will use one of the tools installed with Hyperledger Composer called Yeoman. This will create a smart contract skeleton we can deploy to Hyperledger Fabric. We will have to copy our work into this skeleton. 
+5. We need to make a smart contract from our blockchain network (.bna). To do this we will use one of the tools installed with Hyperledger Composer called Yeoman. This will create a smart contract skeleton we can deploy to Hyperledger Fabric. We will have to copy our work into this skeleton.
 
 To make the skeleton, type `yo` into a terminal on your local system and create a business network named **XXX-perishable-network** where XXX are your initials. Complete the rest of the information in the prompts.
 ![Enter the information for Yeoman to create a skeleton smart contract.](screenshots/yo.png)

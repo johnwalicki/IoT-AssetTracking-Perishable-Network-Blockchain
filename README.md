@@ -1,3 +1,5 @@
+*Read this in other languages: [日本語](README-ja.md).*
+
 # IoT Asset Tracking using a Hyperledger Blockchain
 
 ## Introduction
