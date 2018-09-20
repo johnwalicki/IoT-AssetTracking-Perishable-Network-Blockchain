@@ -11,12 +11,13 @@ We will be using Hyperledger Composer Playground to build our perishable network
 ### Import the sample perishable network into Hyperledger Composer Playground
 1. Access the [IBM Hyperledger Composer Playground](http://composer-playground.mybluemix.net/).
 2. Click on **Deploy a new business network**
-![Select Deploy a new business network.](screenshots/deploynew.png)
+  ![Select Deploy a new business network.](screenshots/deploynew.png)
 3. Scroll down and choose **perishable-network** from the samples on npm.
-![Select perishable-network from the *Samples on npm*.](screenshots/npmsample.png)
-4. Scrolling back to the top, you should now have a business network name of **perishable-network**.
-5. Give the network admin card that will be created a name **admin@perishable-network**.
-![Perishable Network BNA screenshot](screenshots/Perishable-Network-BNA-annotated.png "Hyperledger Composer")
+  ![Select perishable-network from the *Samples on npm*.](screenshots/npmsample.png)
+4. Scrolling back to the top, you should now have a business network name of **xxx-perishable-network**, where xxx is a unique identifer. 
+   * Note: The unique identifier becomes very important later on in this code pattern because this business network name is used to create a rest server on the IBM Cloud. If the name is not unique then it will fail during the build process.
+5. Give the network admin card that will be created a name **admin@xxx-perishable-network**.
+  ![Perishable Network BNA screenshot](screenshots/Perishable-Network-BNA-annotated.png "Hyperledger Composer")
 6. On the right sidebar, click on **Deploy**.
 7. Press **Connect now ->**
 
@@ -217,7 +218,7 @@ event ShipmentInPortEvent {
 17. Play with the other transactions to make sure that they update your assets. You should see fields added to your shipment in particular like the example below. You can enter any data. It doesn't need to be realistic.
 ![Test your transactions and verify it updates the asset.](screenshots/example.png)
 
-18. **Export** the code to your local system. We will use it during the deployment process.
+18. Click on the **Define** tab to**Export** the code to your local system. We will use it during the deployment process.
 ![Click Export.](screenshots/export.png)
 
 19. Save the business network archive, **perishable-network.bna**, somewhere you can easily find it.
@@ -250,13 +251,19 @@ This breaks down into the following steps:
 
   ![Enter a name for your toolchain.](screenshots/starterkittoolchain.png)
 
-3. Scroll down and create a unique repository name, **XXX-blockchain-toolkit** where XXX are your initials.
+3. Scroll down and create a unique repository name where your artifacts will be stored on GitHub, **XXX-blockchain-toolkit** where XXX are your initials.
 
 4. Click **Create**.
-![Create a uniquire repository name and select Create.](screenshots/repositorycreate.png)
+  ![Create a uniquire repository name and select Create.](screenshots/repositorycreate.png)
 
-5. Congratulations! You have a complete toolchain that can be used to deploy your code.
-![Complete blockchain-starter-kit toolchain.](screenshots/completetoolchain.png)
+5. If you've used the Delivery Pipeline before, then skip this step. Otherwise, complete the required fields to setup your delivery pipeline.
+
+  * Click on **Create +** to generate an IBM Cloud API Key
+  * Enter a name for your blockchain service.
+  * Click **Create** to begin working with your toolchain.
+
+6. Congratulations! You have a complete toolchain that can be used to deploy your code.
+  ![Complete blockchain-starter-kit toolchain.](screenshots/completetoolchain.png)
 
 The "GitHub" button in the middle will take you to your newly created GitHub repository. You will clone this GitHub repository into your local development environment, so you can work on your blockchain application.
 
@@ -316,7 +323,7 @@ Archive:  perishable-network.zip
 * copy `perishable-network/lib/logic.js` to `XXX-blockchain-starter-kit/contracts/xxx-perishable-network/lib/`
 ![Move the contents of your perishable-network.bna into the generated skeleton.](screenshots/movecontents.png)
 
-8. In your repository edit the file, **~/XXX-blockchain-starter-kit/.bluemix/pipeline_BUILD.sh**
+8. In your repository edit the file, **~/XXX-blockchain-starter-kit/.bluemix/pipeline-BUILD.sh**
 
    * Find **function test_composer_contract**
 
@@ -343,7 +350,7 @@ Archive:  perishable-network.zip
 #### Verify deployment
 When you committed your code to GitHub, the DevOps toolchain automatically picked up the changes. The toolchain will immediately begin deploying those changes.
 
-1. Navigate to the DevOps toolchain page, and click on the "Delivery Pipeline" button. You should see the following page, giving you an overview of the current status of your delivery pipeline:
+1. Navigate to the DevOps toolchain page, and click on the "**Delivery Pipeline**" button. You should see the following page, giving you an overview of the current status of your delivery pipeline:
 ![Successful deployment.](screenshots/deploypassed.png)
 
 2. The delivery pipeline is made up of two phases, "BUILD" and "DEPLOY".
