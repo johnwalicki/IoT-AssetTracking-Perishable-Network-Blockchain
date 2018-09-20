@@ -2,6 +2,10 @@
 
 This section of the IoT Asset tracking workshop is really split into two parts. The first part, which we will call **Blockchain Part A**, follows the tutorial to deploy a [Hyperledger](https://www.hyperledger.org/) Fabric and Hyperledger Composer running in the [IBM Blockchain Starter Plan](https://www.ibm.com/blockchain/getting-started.html) in the IBM Cloud.
 
+**Note:** User could incur charges!
+
+* The IBM Blockchain Starter Plan is free for only 30 days through IBM Cloud credits and could change at any time. You may need to enter your credit card information to be able to deploy the Blockchain Starter Plan. There will be notes at the end of the code pattern to remove the instances to help eliminate the potential risk of charges.
+
 There are quite a few IBM Blockchain tutorials that are excellent and we won't try to repeat them here.  We will be using a couple of them along the way. In **Blockchain Part A** we are going to create our blockchain business network of perishable goods. In **Blockchain Part B** we will convert it into smart contracts to deploy to the IBM Blockchain Starter Plan. We will use part of the IBM Cloud called DevOps to build our code and deploy it to an instance of the IBM Blockchain Starter Plan. The build process will also deploy a Hyperledger Composer Rest Server running as a Cloud Foundry service in the IBM Cloud. The Hyperledger Composer REST APIs will be used by Node-RED to talk to the blockchain perishable network. Finally, you'll get to work with Node-RED  to interact and visually see the tracking of the asset.
 
 ## Blockchain Part A - Build your perishable network
@@ -259,8 +263,12 @@ This breaks down into the following steps:
 5. If you've used the Delivery Pipeline before, then skip this step. Otherwise, complete the required fields to setup your delivery pipeline.
 
   * Click on **Create +** to generate an IBM Cloud API Key
-  * Enter a name for your blockchain service.
+
+  * Enter a unique name for your blockchain service, e.g. xxx-iot-asset-blockchain-service.
+
   * Click **Create** to begin working with your toolchain.
+
+    ![Create your IBM Cloud API Key.](screenshots/createkey.png)
 
 6. Congratulations! You have a complete toolchain that can be used to deploy your code.
   ![Complete blockchain-starter-kit toolchain.](screenshots/completetoolchain.png)
@@ -380,5 +388,20 @@ To manipulate the blockchain from Node-RED, we will expose the perishable-networ
 4. These APIs are how Node-RED will communicate with blockchain.
 ![View your APIs.](screenshots/API.png)
 
-
 Congratulations!  You have completed the Blockchain section of the workshop.  Proceed to the [Node-RED section](../Node-RED/README.md) which will leverage the REST API you just enabled to write / read / visualize IoT Asset environmental sensor data to the transaction history.
+
+
+
+### Removing instances from IBM Cloud
+
+1. From the [IBM Cloud Dashboard](https://console.bluemix.net/dashboard/apps) **stop** and **delete** the following services.
+
+   * Under Cloud Foundry Applications: **composer-rest-server-xxx-perishable-network**
+
+     ![Stop your app and then delete your app.](screenshots/stopanddeleteapp.png)
+
+   * Under Cloud Foundry Services: 
+
+     * Your toolchain: **iot-asset-blockchain-starter-kit** (you were told to give this a unique name, so your name may differ.)
+     * Your blockchain starter plan: **xxx-iot-asset-blockchain-service**
+
