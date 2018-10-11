@@ -1,0 +1,198 @@
+[
+    {
+        "id": "24aab329.a0d324",
+        "type": "tab",
+        "label": "Simulated Route",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "40d7609d.85a22",
+        "type": "inject",
+        "z": "24aab329.a0d324",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 220,
+        "wires": [
+            [
+                "7c8d6acb.b9d81c"
+            ]
+        ]
+    },
+    {
+        "id": "7c8d6acb.b9d81c",
+        "type": "template",
+        "z": "24aab329.a0d324",
+        "name": "Paste GPX file into this Template node",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "plain",
+        "template": "﻿<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<gpx version=\"1.1\" creator=\"https://onthegomap.com\" xmlns=\"http://www.topografix.com/GPX/1/1\">\n  <metadata>\n    <name>6.43 mi route</name>\n    <link href=\"https://onthegomap.com\"><text>On The Go Map</text></link>\n    <time>2018-10-04T04:13:47.047Z</time>\n  </metadata>\n  <rte>\n    <rtept lat=\"40.76789\" lon=\"-73.9812\"/>\n    <rtept lat=\"40.76789\" lon=\"-73.98119\"/>\n    <rtept lat=\"40.76792\" lon=\"-73.98118\"/>\n    <rtept lat=\"40.76798\" lon=\"-73.98117\"/>\n    <rtept lat=\"40.76801\" lon=\"-73.98117\"/>\n    <rtept lat=\"40.76809\" lon=\"-73.98117\"/>\n    <rtept lat=\"40.76813\" lon=\"-73.98117\"/>\n    <rtept lat=\"40.76808\" lon=\"-73.9809\"/>\n    <rtept lat=\"40.76805\" lon=\"-73.98053\"/>\n    <rtept lat=\"40.768\" lon=\"-73.98026\"/>\n    <rtept lat=\"40.76793\" lon=\"-73.98006\"/>\n    <rtept lat=\"40.76777\" lon=\"-73.97972\"/>\n    <rtept lat=\"40.76774\" lon=\"-73.97961\"/>\n    <rtept lat=\"40.76773\" lon=\"-73.97951\"/>\n    <rtept lat=\"40.76777\" lon=\"-73.97916\"/>\n    <rtept lat=\"40.76776\" lon=\"-73.97899\"/>\n    <rtept lat=\"40.76783\" lon=\"-73.97891\"/>\n    <rtept lat=\"40.76789\" lon=\"-73.97885\"/>\n    <rtept lat=\"40.76795\" lon=\"-73.97879\"/>\n    <rtept lat=\"40.76801\" lon=\"-73.97868\"/>\n    <rtept lat=\"40.76817\" lon=\"-73.97841\"/>\n    <rtept lat=\"40.76824\" lon=\"-73.97832\"/>\n    <rtept lat=\"40.76829\" lon=\"-73.97824\"/>\n    <rtept lat=\"40.76823\" lon=\"-73.97811\"/>\n    <rtept lat=\"40.76819\" lon=\"-73.97801\"/>\n    <rtept lat=\"40.76815\" lon=\"-73.97788\"/>\n    <rtept lat=\"40.76809\" lon=\"-73.97769\"/>\n    <rtept lat=\"40.76804\" lon=\"-73.97758\"/>\n    <rtept lat=\"40.768\" lon=\"-73.97755\"/>\n    <rtept lat=\"40.76801\" lon=\"-73.97748\"/>\n    <rtept lat=\"40.76809\" lon=\"-73.97718\"/>\n    <rtept lat=\"40.76815\" lon=\"-73.97706\"/>\n    <rtept lat=\"40.76859\" lon=\"-73.97645\"/>\n    <rtept lat=\"40.76871\" lon=\"-73.97639\"/>\n    <rtept lat=\"40.76876\" lon=\"-73.97637\"/>\n    <rtept lat=\"40.7688\" lon=\"-73.97635\"/>\n    <rtept lat=\"40.76892\" lon=\"-73.97616\"/>\n    <rtept lat=\"40.76901\" lon=\"-73.97607\"/>\n    <rtept lat=\"40.76916\" lon=\"-73.97575\"/>\n    <rtept lat=\"40.76925\" lon=\"-73.97566\"/>\n    <rtept lat=\"40.76962\" lon=\"-73.97542\"/>\n    <rtept lat=\"40.76969\" lon=\"-73.97537\"/>\n    <rtept lat=\"40.7697\" lon=\"-73.97528\"/>\n    <rtept lat=\"40.76971\" lon=\"-73.97524\"/>\n    <rtept lat=\"40.76971\" lon=\"-73.97519\"/>\n    <rtept lat=\"40.76972\" lon=\"-73.97514\"/>\n    <rtept lat=\"40.76976\" lon=\"-73.9751\"/>\n    <rtept lat=\"40.76978\" lon=\"-73.97504\"/>\n    <rtept lat=\"40.76979\" lon=\"-73.97497\"/>\n    <rtept lat=\"40.76977\" lon=\"-73.97482\"/>\n    <rtept lat=\"40.76978\" lon=\"-73.97472\"/>\n    <rtept lat=\"40.76978\" lon=\"-73.97469\"/>\n    <rtept lat=\"40.76984\" lon=\"-73.9746\"/>\n    <rtept lat=\"40.76984\" lon=\"-73.97455\"/>\n    <rtept lat=\"40.76991\" lon=\"-73.9744\"/>\n    <rtept lat=\"40.76995\" lon=\"-73.97429\"/>\n    <rtept lat=\"40.76992\" lon=\"-73.97427\"/>\n    <rtept lat=\"40.76996\" lon=\"-73.97405\"/>\n    <rtept lat=\"40.76995\" lon=\"-73.97369\"/>\n    <rtept lat=\"40.76987\" lon=\"-73.97342\"/>\n    <rtept lat=\"40.76982\" lon=\"-73.97328\"/>\n    <rtept lat=\"40.76972\" lon=\"-73.97308\"/>\n    <rtept lat=\"40.76968\" lon=\"-73.97311\"/>\n    <rtept lat=\"40.76962\" lon=\"-73.97299\"/>\n    <rtept lat=\"40.76953\" lon=\"-73.97272\"/>\n    <rtept lat=\"40.76951\" lon=\"-73.97256\"/>\n    <rtept lat=\"40.76951\" lon=\"-73.97253\"/>\n    <rtept lat=\"40.7695\" lon=\"-73.97234\"/>\n    <rtept lat=\"40.76952\" lon=\"-73.97224\"/>\n    <rtept lat=\"40.76958\" lon=\"-73.97227\"/>\n    <rtept lat=\"40.76961\" lon=\"-73.97211\"/>\n    <rtept lat=\"40.7697\" lon=\"-73.9719\"/>\n    <rtept lat=\"40.76996\" lon=\"-73.97147\"/>\n    <rtept lat=\"40.77001\" lon=\"-73.97141\"/>\n    <rtept lat=\"40.77017\" lon=\"-73.97128\"/>\n    <rtept lat=\"40.77036\" lon=\"-73.97117\"/>\n    <rtept lat=\"40.7705\" lon=\"-73.97109\"/>\n    <rtept lat=\"40.77066\" lon=\"-73.97102\"/>\n    <rtept lat=\"40.77082\" lon=\"-73.97092\"/>\n    <rtept lat=\"40.77093\" lon=\"-73.97082\"/>\n    <rtept lat=\"40.77107\" lon=\"-73.97065\"/>\n    <rtept lat=\"40.77119\" lon=\"-73.97046\"/>\n    <rtept lat=\"40.77125\" lon=\"-73.97032\"/>\n    <rtept lat=\"40.77145\" lon=\"-73.96991\"/>\n    <rtept lat=\"40.77155\" lon=\"-73.96971\"/>\n    <rtept lat=\"40.77164\" lon=\"-73.96955\"/>\n    <rtept lat=\"40.77177\" lon=\"-73.96939\"/>\n    <rtept lat=\"40.77213\" lon=\"-73.96915\"/>\n    <rtept lat=\"40.77229\" lon=\"-73.96907\"/>\n    <rtept lat=\"40.77228\" lon=\"-73.96902\"/>\n    <rtept lat=\"40.77224\" lon=\"-73.96886\"/>\n    <rtept lat=\"40.77234\" lon=\"-73.96877\"/>\n    <rtept lat=\"40.77247\" lon=\"-73.96867\"/>\n    <rtept lat=\"40.77265\" lon=\"-73.96851\"/>\n    <rtept lat=\"40.77268\" lon=\"-73.96847\"/>\n    <rtept lat=\"40.77271\" lon=\"-73.96841\"/>\n    <rtept lat=\"40.77274\" lon=\"-73.96822\"/>\n    <rtept lat=\"40.77271\" lon=\"-73.968\"/>\n    <rtept lat=\"40.77261\" lon=\"-73.96766\"/>\n    <rtept lat=\"40.77269\" lon=\"-73.96761\"/>\n    <rtept lat=\"40.77278\" lon=\"-73.96756\"/>\n    <rtept lat=\"40.77289\" lon=\"-73.9675\"/>\n    <rtept lat=\"40.7729\" lon=\"-73.96739\"/>\n    <rtept lat=\"40.7729\" lon=\"-73.9673\"/>\n    <rtept lat=\"40.77293\" lon=\"-73.96722\"/>\n    <rtept lat=\"40.77305\" lon=\"-73.96704\"/>\n    <rtept lat=\"40.7731\" lon=\"-73.96701\"/>\n    <rtept lat=\"40.77321\" lon=\"-73.96701\"/>\n    <rtept lat=\"40.77346\" lon=\"-73.96712\"/>\n    <rtept lat=\"40.77351\" lon=\"-73.96713\"/>\n    <rtept lat=\"40.77357\" lon=\"-73.96711\"/>\n    <rtept lat=\"40.77361\" lon=\"-73.96709\"/>\n    <rtept lat=\"40.77374\" lon=\"-73.96699\"/>\n    <rtept lat=\"40.77382\" lon=\"-73.96694\"/>\n    <rtept lat=\"40.77406\" lon=\"-73.96677\"/>\n    <rtept lat=\"40.7742\" lon=\"-73.96666\"/>\n    <rtept lat=\"40.77435\" lon=\"-73.96655\"/>\n    <rtept lat=\"40.77451\" lon=\"-73.96641\"/>\n    <rtept lat=\"40.77457\" lon=\"-73.96634\"/>\n    <rtept lat=\"40.77463\" lon=\"-73.96623\"/>\n    <rtept lat=\"40.77468\" lon=\"-73.96601\"/>\n    <rtept lat=\"40.77474\" lon=\"-73.9659\"/>\n    <rtept lat=\"40.7749\" lon=\"-73.96581\"/>\n    <rtept lat=\"40.77521\" lon=\"-73.96578\"/>\n    <rtept lat=\"40.7753\" lon=\"-73.96573\"/>\n    <rtept lat=\"40.77538\" lon=\"-73.96565\"/>\n    <rtept lat=\"40.77546\" lon=\"-73.96558\"/>\n    <rtept lat=\"40.77551\" lon=\"-73.9655\"/>\n    <rtept lat=\"40.77578\" lon=\"-73.9655\"/>\n    <rtept lat=\"40.7759\" lon=\"-73.96546\"/>\n    <rtept lat=\"40.77616\" lon=\"-73.96534\"/>\n    <rtept lat=\"40.77626\" lon=\"-73.96527\"/>\n    <rtept lat=\"40.77632\" lon=\"-73.96523\"/>\n    <rtept lat=\"40.77639\" lon=\"-73.96518\"/>\n    <rtept lat=\"40.77648\" lon=\"-73.96511\"/>\n    <rtept lat=\"40.77671\" lon=\"-73.96498\"/>\n    <rtept lat=\"40.77675\" lon=\"-73.96493\"/>\n    <rtept lat=\"40.77688\" lon=\"-73.96467\"/>\n    <rtept lat=\"40.77698\" lon=\"-73.96439\"/>\n    <rtept lat=\"40.77699\" lon=\"-73.96428\"/>\n    <rtept lat=\"40.77696\" lon=\"-73.96415\"/>\n    <rtept lat=\"40.77691\" lon=\"-73.96397\"/>\n    <rtept lat=\"40.77693\" lon=\"-73.96395\"/>\n    <rtept lat=\"40.77705\" lon=\"-73.96386\"/>\n    <rtept lat=\"40.77715\" lon=\"-73.96377\"/>\n    <rtept lat=\"40.77725\" lon=\"-73.96368\"/>\n    <rtept lat=\"40.77771\" lon=\"-73.96332\"/>\n    <rtept lat=\"40.77777\" lon=\"-73.96327\"/>\n    <rtept lat=\"40.77774\" lon=\"-73.96319\"/>\n    <rtept lat=\"40.7777\" lon=\"-73.96309\"/>\n    <rtept lat=\"40.77822\" lon=\"-73.96271\"/>\n    <rtept lat=\"40.77827\" lon=\"-73.96268\"/>\n    <rtept lat=\"40.77832\" lon=\"-73.96264\"/>\n    <rtept lat=\"40.77886\" lon=\"-73.96226\"/>\n    <rtept lat=\"40.77891\" lon=\"-73.96223\"/>\n    <rtept lat=\"40.77896\" lon=\"-73.96219\"/>\n    <rtept lat=\"40.77949\" lon=\"-73.9618\"/>\n    <rtept lat=\"40.77954\" lon=\"-73.96176\"/>\n    <rtept lat=\"40.77959\" lon=\"-73.96172\"/>\n    <rtept lat=\"40.78012\" lon=\"-73.96133\"/>\n    <rtept lat=\"40.78016\" lon=\"-73.96142\"/>\n    <rtept lat=\"40.7802\" lon=\"-73.96154\"/>\n    <rtept lat=\"40.78025\" lon=\"-73.9615\"/>\n    <rtept lat=\"40.7803\" lon=\"-73.96146\"/>\n    <rtept lat=\"40.7808\" lon=\"-73.96201\"/>\n    <rtept lat=\"40.781\" lon=\"-73.96219\"/>\n    <rtept lat=\"40.78119\" lon=\"-73.96236\"/>\n    <rtept lat=\"40.78132\" lon=\"-73.96248\"/>\n    <rtept lat=\"40.7815\" lon=\"-73.96275\"/>\n    <rtept lat=\"40.78152\" lon=\"-73.96279\"/>\n    <rtept lat=\"40.78146\" lon=\"-73.96262\"/>\n    <rtept lat=\"40.78131\" lon=\"-73.96227\"/>\n    <rtept lat=\"40.78094\" lon=\"-73.96116\"/>\n    <rtept lat=\"40.7809\" lon=\"-73.96104\"/>\n    <rtept lat=\"40.78114\" lon=\"-73.96087\"/>\n    <rtept lat=\"40.7812\" lon=\"-73.96103\"/>\n    <rtept lat=\"40.78125\" lon=\"-73.96104\"/>\n    <rtept lat=\"40.7813\" lon=\"-73.96103\"/>\n    <rtept lat=\"40.78135\" lon=\"-73.96103\"/>\n    <rtept lat=\"40.78146\" lon=\"-73.96098\"/>\n    <rtept lat=\"40.78147\" lon=\"-73.96097\"/>\n    <rtept lat=\"40.78153\" lon=\"-73.96092\"/>\n    <rtept lat=\"40.78156\" lon=\"-73.96086\"/>\n    <rtept lat=\"40.78164\" lon=\"-73.96072\"/>\n    <rtept lat=\"40.78171\" lon=\"-73.96063\"/>\n    <rtept lat=\"40.78205\" lon=\"-73.96036\"/>\n    <rtept lat=\"40.7829\" lon=\"-73.95974\"/>\n    <rtept lat=\"40.78298\" lon=\"-73.95968\"/>\n    <rtept lat=\"40.78312\" lon=\"-73.95958\"/>\n    <rtept lat=\"40.78338\" lon=\"-73.95939\"/>\n    <rtept lat=\"40.78359\" lon=\"-73.95923\"/>\n    <rtept lat=\"40.78367\" lon=\"-73.95918\"/>\n    <rtept lat=\"40.78395\" lon=\"-73.95897\"/>\n    <rtept lat=\"40.78409\" lon=\"-73.95886\"/>\n    <rtept lat=\"40.78413\" lon=\"-73.95895\"/>\n    <rtept lat=\"40.78415\" lon=\"-73.95901\"/>\n    <rtept lat=\"40.78435\" lon=\"-73.95886\"/>\n    <rtept lat=\"40.78636\" lon=\"-73.9574\"/>\n    <rtept lat=\"40.78681\" lon=\"-73.95711\"/>\n    <rtept lat=\"40.78704\" lon=\"-73.95706\"/>\n    <rtept lat=\"40.78735\" lon=\"-73.95707\"/>\n    <rtept lat=\"40.78761\" lon=\"-73.95711\"/>\n    <rtept lat=\"40.78771\" lon=\"-73.95711\"/>\n    <rtept lat=\"40.78839\" lon=\"-73.95692\"/>\n    <rtept lat=\"40.78856\" lon=\"-73.95694\"/>\n    <rtept lat=\"40.78874\" lon=\"-73.95699\"/>\n    <rtept lat=\"40.78891\" lon=\"-73.9571\"/>\n    <rtept lat=\"40.7892\" lon=\"-73.95737\"/>\n    <rtept lat=\"40.78931\" lon=\"-73.95742\"/>\n    <rtept lat=\"40.7894\" lon=\"-73.95744\"/>\n    <rtept lat=\"40.78952\" lon=\"-73.95745\"/>\n    <rtept lat=\"40.78964\" lon=\"-73.95743\"/>\n    <rtept lat=\"40.78973\" lon=\"-73.95741\"/>\n    <rtept lat=\"40.78975\" lon=\"-73.95748\"/>\n    <rtept lat=\"40.78975\" lon=\"-73.95752\"/>\n    <rtept lat=\"40.7898\" lon=\"-73.95752\"/>\n    <rtept lat=\"40.78994\" lon=\"-73.95754\"/>\n    <rtept lat=\"40.79004\" lon=\"-73.95761\"/>\n    <rtept lat=\"40.79011\" lon=\"-73.95769\"/>\n    <rtept lat=\"40.79023\" lon=\"-73.95787\"/>\n    <rtept lat=\"40.79038\" lon=\"-73.95824\"/>\n    <rtept lat=\"40.79043\" lon=\"-73.95843\"/>\n    <rtept lat=\"40.79052\" lon=\"-73.95852\"/>\n    <rtept lat=\"40.79059\" lon=\"-73.95856\"/>\n    <rtept lat=\"40.79066\" lon=\"-73.95857\"/>\n    <rtept lat=\"40.79082\" lon=\"-73.95855\"/>\n    <rtept lat=\"40.791\" lon=\"-73.95848\"/>\n    <rtept lat=\"40.79124\" lon=\"-73.95834\"/>\n    <rtept lat=\"40.79134\" lon=\"-73.95832\"/>\n    <rtept lat=\"40.79143\" lon=\"-73.9583\"/>\n    <rtept lat=\"40.7916\" lon=\"-73.95828\"/>\n    <rtept lat=\"40.79172\" lon=\"-73.95824\"/>\n    <rtept lat=\"40.79196\" lon=\"-73.95809\"/>\n    <rtept lat=\"40.79206\" lon=\"-73.95805\"/>\n    <rtept lat=\"40.79214\" lon=\"-73.95805\"/>\n    <rtept lat=\"40.7922\" lon=\"-73.95805\"/>\n    <rtept lat=\"40.79232\" lon=\"-73.95811\"/>\n    <rtept lat=\"40.79258\" lon=\"-73.95841\"/>\n    <rtept lat=\"40.79268\" lon=\"-73.95847\"/>\n    <rtept lat=\"40.7928\" lon=\"-73.95851\"/>\n    <rtept lat=\"40.79293\" lon=\"-73.95851\"/>\n    <rtept lat=\"40.79306\" lon=\"-73.95848\"/>\n    <rtept lat=\"40.79326\" lon=\"-73.95839\"/>\n    <rtept lat=\"40.79331\" lon=\"-73.95835\"/>\n    <rtept lat=\"40.79334\" lon=\"-73.95834\"/>\n    <rtept lat=\"40.79338\" lon=\"-73.95836\"/>\n    <rtept lat=\"40.7934\" lon=\"-73.95837\"/>\n    <rtept lat=\"40.79344\" lon=\"-73.95838\"/>\n    <rtept lat=\"40.79349\" lon=\"-73.95835\"/>\n    <rtept lat=\"40.79354\" lon=\"-73.95816\"/>\n    <rtept lat=\"40.79357\" lon=\"-73.95815\"/>\n    <rtept lat=\"40.79376\" lon=\"-73.95808\"/>\n    <rtept lat=\"40.79387\" lon=\"-73.95808\"/>\n    <rtept lat=\"40.79394\" lon=\"-73.95812\"/>\n    <rtept lat=\"40.79397\" lon=\"-73.95814\"/>\n    <rtept lat=\"40.794\" lon=\"-73.95815\"/>\n    <rtept lat=\"40.79405\" lon=\"-73.95814\"/>\n    <rtept lat=\"40.79419\" lon=\"-73.95801\"/>\n    <rtept lat=\"40.79426\" lon=\"-73.95798\"/>\n    <rtept lat=\"40.79431\" lon=\"-73.95798\"/>\n    <rtept lat=\"40.79432\" lon=\"-73.95799\"/>\n    <rtept lat=\"40.79439\" lon=\"-73.95808\"/>\n    <rtept lat=\"40.79439\" lon=\"-73.95808\"/>\n    <rtept lat=\"40.7944\" lon=\"-73.95812\"/>\n    <rtept lat=\"40.7944\" lon=\"-73.95817\"/>\n    <rtept lat=\"40.7944\" lon=\"-73.95819\"/>\n    <rtept lat=\"40.79442\" lon=\"-73.9582\"/>\n    <rtept lat=\"40.7945\" lon=\"-73.95821\"/>\n    <rtept lat=\"40.79451\" lon=\"-73.95821\"/>\n    <rtept lat=\"40.79452\" lon=\"-73.95821\"/>\n    <rtept lat=\"40.79455\" lon=\"-73.95824\"/>\n    <rtept lat=\"40.79458\" lon=\"-73.95827\"/>\n    <rtept lat=\"40.79461\" lon=\"-73.95827\"/>\n    <rtept lat=\"40.79466\" lon=\"-73.95828\"/>\n    <rtept lat=\"40.79469\" lon=\"-73.95828\"/>\n    <rtept lat=\"40.79474\" lon=\"-73.95827\"/>\n    <rtept lat=\"40.79479\" lon=\"-73.95822\"/>\n    <rtept lat=\"40.79498\" lon=\"-73.95782\"/>\n    <rtept lat=\"40.79503\" lon=\"-73.95768\"/>\n    <rtept lat=\"40.79507\" lon=\"-73.95742\"/>\n    <rtept lat=\"40.79526\" lon=\"-73.95709\"/>\n    <rtept lat=\"40.79527\" lon=\"-73.95706\"/>\n    <rtept lat=\"40.79532\" lon=\"-73.95707\"/>\n    <rtept lat=\"40.79547\" lon=\"-73.95705\"/>\n    <rtept lat=\"40.79562\" lon=\"-73.95694\"/>\n    <rtept lat=\"40.79564\" lon=\"-73.9569\"/>\n    <rtept lat=\"40.79567\" lon=\"-73.95689\"/>\n    <rtept lat=\"40.79584\" lon=\"-73.9569\"/>\n    <rtept lat=\"40.79597\" lon=\"-73.95678\"/>\n    <rtept lat=\"40.79605\" lon=\"-73.95673\"/>\n    <rtept lat=\"40.79609\" lon=\"-73.95672\"/>\n    <rtept lat=\"40.79613\" lon=\"-73.95672\"/>\n    <rtept lat=\"40.79626\" lon=\"-73.95668\"/>\n    <rtept lat=\"40.79641\" lon=\"-73.9566\"/>\n    <rtept lat=\"40.79648\" lon=\"-73.95662\"/>\n    <rtept lat=\"40.79652\" lon=\"-73.95666\"/>\n    <rtept lat=\"40.79651\" lon=\"-73.95674\"/>\n    <rtept lat=\"40.79657\" lon=\"-73.95674\"/>\n    <rtept lat=\"40.7967\" lon=\"-73.95675\"/>\n    <rtept lat=\"40.79688\" lon=\"-73.95681\"/>\n    <rtept lat=\"40.79707\" lon=\"-73.95693\"/>\n    <rtept lat=\"40.79716\" lon=\"-73.95696\"/>\n    <rtept lat=\"40.79725\" lon=\"-73.95699\"/>\n    <rtept lat=\"40.79728\" lon=\"-73.95699\"/>\n    <rtept lat=\"40.79765\" lon=\"-73.95697\"/>\n    <rtept lat=\"40.79774\" lon=\"-73.95698\"/>\n    <rtept lat=\"40.79793\" lon=\"-73.9571\"/>\n    <rtept lat=\"40.79812\" lon=\"-73.95733\"/>\n    <rtept lat=\"40.79816\" lon=\"-73.95742\"/>\n    <rtept lat=\"40.79818\" lon=\"-73.9574\"/>\n    <rtept lat=\"40.79823\" lon=\"-73.95735\"/>\n    <rtept lat=\"40.79826\" lon=\"-73.9573\"/>\n    <rtept lat=\"40.79828\" lon=\"-73.95738\"/>\n    <rtept lat=\"40.79832\" lon=\"-73.9575\"/>\n    <rtept lat=\"40.79839\" lon=\"-73.95762\"/>\n    <rtept lat=\"40.79853\" lon=\"-73.95778\"/>\n    <rtept lat=\"40.79864\" lon=\"-73.9581\"/>\n    <rtept lat=\"40.79867\" lon=\"-73.95812\"/>\n    <rtept lat=\"40.79873\" lon=\"-73.9581\"/>\n    <rtept lat=\"40.79878\" lon=\"-73.95808\"/>\n    <rtept lat=\"40.79878\" lon=\"-73.95805\"/>\n    <rtept lat=\"40.79884\" lon=\"-73.95791\"/>\n    <rtept lat=\"40.79889\" lon=\"-73.95787\"/>\n    <rtept lat=\"40.79902\" lon=\"-73.95785\"/>\n    <rtept lat=\"40.79916\" lon=\"-73.95774\"/>\n    <rtept lat=\"40.79919\" lon=\"-73.95767\"/>\n    <rtept lat=\"40.79916\" lon=\"-73.95774\"/>\n    <rtept lat=\"40.79902\" lon=\"-73.95785\"/>\n    <rtept lat=\"40.79889\" lon=\"-73.95787\"/>\n    <rtept lat=\"40.79884\" lon=\"-73.95791\"/>\n    <rtept lat=\"40.79878\" lon=\"-73.95805\"/>\n    <rtept lat=\"40.79878\" lon=\"-73.95808\"/>\n    <rtept lat=\"40.79879\" lon=\"-73.95811\"/>\n    <rtept lat=\"40.79879\" lon=\"-73.95822\"/>\n    <rtept lat=\"40.79878\" lon=\"-73.95832\"/>\n    <rtept lat=\"40.79878\" lon=\"-73.95846\"/>\n    <rtept lat=\"40.79877\" lon=\"-73.95848\"/>\n    <rtept lat=\"40.79876\" lon=\"-73.95853\"/>\n    <rtept lat=\"40.79874\" lon=\"-73.95861\"/>\n    <rtept lat=\"40.79872\" lon=\"-73.95867\"/>\n    <rtept lat=\"40.79869\" lon=\"-73.95866\"/>\n    <rtept lat=\"40.79857\" lon=\"-73.95865\"/>\n    <rtept lat=\"40.79833\" lon=\"-73.95866\"/>\n    <rtept lat=\"40.79816\" lon=\"-73.95862\"/>\n    <rtept lat=\"40.79799\" lon=\"-73.95851\"/>\n    <rtept lat=\"40.79791\" lon=\"-73.9584\"/>\n    <rtept lat=\"40.79785\" lon=\"-73.9583\"/>\n    <rtept lat=\"40.7976\" lon=\"-73.95835\"/>\n    <rtept lat=\"40.79735\" lon=\"-73.95838\"/>\n    <rtept lat=\"40.79728\" lon=\"-73.95841\"/>\n    <rtept lat=\"40.79727\" lon=\"-73.95835\"/>\n    <rtept lat=\"40.79721\" lon=\"-73.95825\"/>\n    <rtept lat=\"40.79718\" lon=\"-73.95823\"/>\n    <rtept lat=\"40.79713\" lon=\"-73.9582\"/>\n    <rtept lat=\"40.79694\" lon=\"-73.95817\"/>\n    <rtept lat=\"40.79683\" lon=\"-73.95822\"/>\n    <rtept lat=\"40.79677\" lon=\"-73.95826\"/>\n    <rtept lat=\"40.79671\" lon=\"-73.95831\"/>\n    <rtept lat=\"40.79662\" lon=\"-73.95842\"/>\n    <rtept lat=\"40.79658\" lon=\"-73.9585\"/>\n    <rtept lat=\"40.79656\" lon=\"-73.95843\"/>\n    <rtept lat=\"40.79645\" lon=\"-73.95846\"/>\n    <rtept lat=\"40.79638\" lon=\"-73.95847\"/>\n    <rtept lat=\"40.79633\" lon=\"-73.95845\"/>\n    <rtept lat=\"40.79622\" lon=\"-73.9583\"/>\n    <rtept lat=\"40.79613\" lon=\"-73.95823\"/>\n    <rtept lat=\"40.79599\" lon=\"-73.95828\"/>\n    <rtept lat=\"40.79595\" lon=\"-73.95833\"/>\n    <rtept lat=\"40.79593\" lon=\"-73.95838\"/>\n    <rtept lat=\"40.79591\" lon=\"-73.95847\"/>\n    <rtept lat=\"40.79591\" lon=\"-73.95873\"/>\n    <rtept lat=\"40.79589\" lon=\"-73.9588\"/>\n    <rtept lat=\"40.79586\" lon=\"-73.95883\"/>\n    <rtept lat=\"40.79581\" lon=\"-73.95886\"/>\n    <rtept lat=\"40.79571\" lon=\"-73.9589\"/>\n    <rtept lat=\"40.79564\" lon=\"-73.95893\"/>\n    <rtept lat=\"40.79554\" lon=\"-73.95899\"/>\n    <rtept lat=\"40.79548\" lon=\"-73.95906\"/>\n    <rtept lat=\"40.79541\" lon=\"-73.95914\"/>\n    <rtept lat=\"40.79531\" lon=\"-73.9593\"/>\n    <rtept lat=\"40.79527\" lon=\"-73.95939\"/>\n    <rtept lat=\"40.79525\" lon=\"-73.95942\"/>\n    <rtept lat=\"40.7952\" lon=\"-73.9595\"/>\n    <rtept lat=\"40.79516\" lon=\"-73.95955\"/>\n    <rtept lat=\"40.79511\" lon=\"-73.95961\"/>\n    <rtept lat=\"40.79506\" lon=\"-73.95966\"/>\n    <rtept lat=\"40.79497\" lon=\"-73.95968\"/>\n    <rtept lat=\"40.79488\" lon=\"-73.9597\"/>\n    <rtept lat=\"40.79482\" lon=\"-73.95966\"/>\n    <rtept lat=\"40.79478\" lon=\"-73.95963\"/>\n    <rtept lat=\"40.79475\" lon=\"-73.95961\"/>\n    <rtept lat=\"40.79469\" lon=\"-73.95961\"/>\n    <rtept lat=\"40.79459\" lon=\"-73.95968\"/>\n    <rtept lat=\"40.79453\" lon=\"-73.95976\"/>\n    <rtept lat=\"40.79448\" lon=\"-73.95974\"/>\n    <rtept lat=\"40.79438\" lon=\"-73.95973\"/>\n    <rtept lat=\"40.79414\" lon=\"-73.95978\"/>\n    <rtept lat=\"40.79411\" lon=\"-73.95977\"/>\n    <rtept lat=\"40.79401\" lon=\"-73.96011\"/>\n    <rtept lat=\"40.79387\" lon=\"-73.96059\"/>\n    <rtept lat=\"40.79382\" lon=\"-73.96076\"/>\n    <rtept lat=\"40.79376\" lon=\"-73.96089\"/>\n    <rtept lat=\"40.79368\" lon=\"-73.96105\"/>\n    <rtept lat=\"40.79354\" lon=\"-73.96128\"/>\n    <rtept lat=\"40.79339\" lon=\"-73.96146\"/>\n    <rtept lat=\"40.79326\" lon=\"-73.96159\"/>\n    <rtept lat=\"40.7931\" lon=\"-73.96172\"/>\n    <rtept lat=\"40.7928\" lon=\"-73.96193\"/>\n    <rtept lat=\"40.7926\" lon=\"-73.96206\"/>\n    <rtept lat=\"40.79236\" lon=\"-73.9622\"/>\n    <rtept lat=\"40.79197\" lon=\"-73.9624\"/>\n    <rtept lat=\"40.79177\" lon=\"-73.9625\"/>\n    <rtept lat=\"40.79172\" lon=\"-73.96252\"/>\n    <rtept lat=\"40.79165\" lon=\"-73.96257\"/>\n    <rtept lat=\"40.79158\" lon=\"-73.96261\"/>\n    <rtept lat=\"40.79153\" lon=\"-73.96266\"/>\n    <rtept lat=\"40.79138\" lon=\"-73.96279\"/>\n    <rtept lat=\"40.79125\" lon=\"-73.96292\"/>\n    <rtept lat=\"40.79108\" lon=\"-73.96317\"/>\n    <rtept lat=\"40.79089\" lon=\"-73.96356\"/>\n    <rtept lat=\"40.79082\" lon=\"-73.96371\"/>\n    <rtept lat=\"40.79077\" lon=\"-73.96382\"/>\n    <rtept lat=\"40.79058\" lon=\"-73.96403\"/>\n    <rtept lat=\"40.79047\" lon=\"-73.96411\"/>\n    <rtept lat=\"40.79023\" lon=\"-73.96421\"/>\n    <rtept lat=\"40.78999\" lon=\"-73.96422\"/>\n    <rtept lat=\"40.78956\" lon=\"-73.96417\"/>\n    <rtept lat=\"40.78948\" lon=\"-73.96417\"/>\n    <rtept lat=\"40.78939\" lon=\"-73.96419\"/>\n    <rtept lat=\"40.78928\" lon=\"-73.96423\"/>\n    <rtept lat=\"40.78918\" lon=\"-73.96428\"/>\n    <rtept lat=\"40.78899\" lon=\"-73.96445\"/>\n    <rtept lat=\"40.78891\" lon=\"-73.96455\"/>\n    <rtept lat=\"40.78883\" lon=\"-73.96468\"/>\n    <rtept lat=\"40.78846\" lon=\"-73.96581\"/>\n    <rtept lat=\"40.7884\" lon=\"-73.96592\"/>\n    <rtept lat=\"40.78834\" lon=\"-73.96605\"/>\n    <rtept lat=\"40.78823\" lon=\"-73.96626\"/>\n    <rtept lat=\"40.78799\" lon=\"-73.9666\"/>\n    <rtept lat=\"40.78793\" lon=\"-73.96668\"/>\n    <rtept lat=\"40.78791\" lon=\"-73.9667\"/>\n    <rtept lat=\"40.78793\" lon=\"-73.96677\"/>\n    <rtept lat=\"40.78783\" lon=\"-73.96689\"/>\n    <rtept lat=\"40.7877\" lon=\"-73.96704\"/>\n    <rtept lat=\"40.78749\" lon=\"-73.96725\"/>\n    <rtept lat=\"40.78732\" lon=\"-73.96737\"/>\n    <rtept lat=\"40.78713\" lon=\"-73.96749\"/>\n    <rtept lat=\"40.78692\" lon=\"-73.96758\"/>\n    <rtept lat=\"40.7866\" lon=\"-73.96768\"/>\n    <rtept lat=\"40.78608\" lon=\"-73.96779\"/>\n    <rtept lat=\"40.78597\" lon=\"-73.96781\"/>\n    <rtept lat=\"40.78562\" lon=\"-73.96826\"/>\n    <rtept lat=\"40.78541\" lon=\"-73.96858\"/>\n    <rtept lat=\"40.78537\" lon=\"-73.96873\"/>\n    <rtept lat=\"40.78537\" lon=\"-73.96878\"/>\n    <rtept lat=\"40.78539\" lon=\"-73.96903\"/>\n    <rtept lat=\"40.78547\" lon=\"-73.96923\"/>\n    <rtept lat=\"40.7853\" lon=\"-73.96935\"/>\n    <rtept lat=\"40.78522\" lon=\"-73.96919\"/>\n    <rtept lat=\"40.78511\" lon=\"-73.96893\"/>\n    <rtept lat=\"40.78508\" lon=\"-73.96884\"/>\n    <rtept lat=\"40.78505\" lon=\"-73.96874\"/>\n    <rtept lat=\"40.78488\" lon=\"-73.96803\"/>\n    <rtept lat=\"40.78484\" lon=\"-73.96791\"/>\n    <rtept lat=\"40.78471\" lon=\"-73.96762\"/>\n    <rtept lat=\"40.78459\" lon=\"-73.96742\"/>\n    <rtept lat=\"40.78471\" lon=\"-73.96762\"/>\n    <rtept lat=\"40.78484\" lon=\"-73.96791\"/>\n    <rtept lat=\"40.78488\" lon=\"-73.96803\"/>\n    <rtept lat=\"40.78505\" lon=\"-73.96874\"/>\n    <rtept lat=\"40.78508\" lon=\"-73.96884\"/>\n    <rtept lat=\"40.78511\" lon=\"-73.96893\"/>\n    <rtept lat=\"40.78522\" lon=\"-73.96919\"/>\n    <rtept lat=\"40.7853\" lon=\"-73.96935\"/>\n    <rtept lat=\"40.78461\" lon=\"-73.96986\"/>\n    <rtept lat=\"40.78455\" lon=\"-73.96971\"/>\n    <rtept lat=\"40.78447\" lon=\"-73.96954\"/>\n    <rtept lat=\"40.78431\" lon=\"-73.96933\"/>\n    <rtept lat=\"40.78412\" lon=\"-73.96921\"/>\n    <rtept lat=\"40.78406\" lon=\"-73.96918\"/>\n    <rtept lat=\"40.78399\" lon=\"-73.96916\"/>\n    <rtept lat=\"40.78376\" lon=\"-73.96913\"/>\n    <rtept lat=\"40.78355\" lon=\"-73.96913\"/>\n    <rtept lat=\"40.78332\" lon=\"-73.96916\"/>\n    <rtept lat=\"40.78309\" lon=\"-73.96922\"/>\n    <rtept lat=\"40.78285\" lon=\"-73.9693\"/>\n    <rtept lat=\"40.78271\" lon=\"-73.96935\"/>\n    <rtept lat=\"40.78261\" lon=\"-73.96938\"/>\n    <rtept lat=\"40.7825\" lon=\"-73.96942\"/>\n    <rtept lat=\"40.78233\" lon=\"-73.96945\"/>\n    <rtept lat=\"40.78224\" lon=\"-73.96946\"/>\n    <rtept lat=\"40.78195\" lon=\"-73.96943\"/>\n    <rtept lat=\"40.78174\" lon=\"-73.96941\"/>\n    <rtept lat=\"40.78164\" lon=\"-73.9694\"/>\n    <rtept lat=\"40.78153\" lon=\"-73.9694\"/>\n    <rtept lat=\"40.78128\" lon=\"-73.96945\"/>\n    <rtept lat=\"40.78106\" lon=\"-73.96958\"/>\n    <rtept lat=\"40.78088\" lon=\"-73.96975\"/>\n    <rtept lat=\"40.78077\" lon=\"-73.96986\"/>\n    <rtept lat=\"40.78072\" lon=\"-73.96991\"/>\n    <rtept lat=\"40.78044\" lon=\"-73.97033\"/>\n    <rtept lat=\"40.78006\" lon=\"-73.97089\"/>\n    <rtept lat=\"40.78004\" lon=\"-73.97092\"/>\n    <rtept lat=\"40.77985\" lon=\"-73.97117\"/>\n    <rtept lat=\"40.77983\" lon=\"-73.97121\"/>\n    <rtept lat=\"40.77967\" lon=\"-73.97139\"/>\n    <rtept lat=\"40.77914\" lon=\"-73.9719\"/>\n    <rtept lat=\"40.77888\" lon=\"-73.97217\"/>\n    <rtept lat=\"40.77873\" lon=\"-73.97237\"/>\n    <rtept lat=\"40.77856\" lon=\"-73.97266\"/>\n    <rtept lat=\"40.77847\" lon=\"-73.97282\"/>\n    <rtept lat=\"40.77835\" lon=\"-73.97301\"/>\n    <rtept lat=\"40.77829\" lon=\"-73.97313\"/>\n    <rtept lat=\"40.77826\" lon=\"-73.97311\"/>\n    <rtept lat=\"40.77804\" lon=\"-73.97346\"/>\n    <rtept lat=\"40.77797\" lon=\"-73.97357\"/>\n    <rtept lat=\"40.77775\" lon=\"-73.97381\"/>\n    <rtept lat=\"40.77747\" lon=\"-73.97399\"/>\n    <rtept lat=\"40.77736\" lon=\"-73.97404\"/>\n    <rtept lat=\"40.77723\" lon=\"-73.97407\"/>\n    <rtept lat=\"40.77712\" lon=\"-73.97409\"/>\n    <rtept lat=\"40.77689\" lon=\"-73.97408\"/>\n    <rtept lat=\"40.77563\" lon=\"-73.97393\"/>\n    <rtept lat=\"40.77554\" lon=\"-73.97393\"/>\n    <rtept lat=\"40.77535\" lon=\"-73.97396\"/>\n    <rtept lat=\"40.77511\" lon=\"-73.97405\"/>\n    <rtept lat=\"40.77501\" lon=\"-73.97414\"/>\n    <rtept lat=\"40.77485\" lon=\"-73.97432\"/>\n    <rtept lat=\"40.7748\" lon=\"-73.97439\"/>\n    <rtept lat=\"40.77473\" lon=\"-73.97454\"/>\n    <rtept lat=\"40.77471\" lon=\"-73.97459\"/>\n    <rtept lat=\"40.77467\" lon=\"-73.97479\"/>\n    <rtept lat=\"40.77463\" lon=\"-73.97503\"/>\n    <rtept lat=\"40.77455\" lon=\"-73.97532\"/>\n    <rtept lat=\"40.7745\" lon=\"-73.97539\"/>\n    <rtept lat=\"40.77438\" lon=\"-73.97552\"/>\n    <rtept lat=\"40.77429\" lon=\"-73.97564\"/>\n    <rtept lat=\"40.77398\" lon=\"-73.97587\"/>\n    <rtept lat=\"40.77381\" lon=\"-73.97598\"/>\n    <rtept lat=\"40.77327\" lon=\"-73.9763\"/>\n    <rtept lat=\"40.77302\" lon=\"-73.97643\"/>\n    <rtept lat=\"40.77285\" lon=\"-73.97651\"/>\n    <rtept lat=\"40.7727\" lon=\"-73.97656\"/>\n    <rtept lat=\"40.77235\" lon=\"-73.9767\"/>\n    <rtept lat=\"40.77217\" lon=\"-73.97679\"/>\n    <rtept lat=\"40.77189\" lon=\"-73.97699\"/>\n    <rtept lat=\"40.7718\" lon=\"-73.97707\"/>\n    <rtept lat=\"40.77166\" lon=\"-73.97719\"/>\n    <rtept lat=\"40.77156\" lon=\"-73.9773\"/>\n    <rtept lat=\"40.77145\" lon=\"-73.97743\"/>\n    <rtept lat=\"40.77139\" lon=\"-73.9775\"/>\n    <rtept lat=\"40.77091\" lon=\"-73.97824\"/>\n    <rtept lat=\"40.77077\" lon=\"-73.97843\"/>\n    <rtept lat=\"40.77062\" lon=\"-73.97862\"/>\n    <rtept lat=\"40.77049\" lon=\"-73.97878\"/>\n    <rtept lat=\"40.77036\" lon=\"-73.97893\"/>\n    <rtept lat=\"40.77017\" lon=\"-73.97913\"/>\n    <rtept lat=\"40.77012\" lon=\"-73.97919\"/>\n    <rtept lat=\"40.77003\" lon=\"-73.97928\"/>\n    <rtept lat=\"40.76967\" lon=\"-73.9796\"/>\n    <rtept lat=\"40.76943\" lon=\"-73.97976\"/>\n    <rtept lat=\"40.76933\" lon=\"-73.97981\"/>\n    <rtept lat=\"40.76916\" lon=\"-73.97988\"/>\n    <rtept lat=\"40.7691\" lon=\"-73.9799\"/>\n    <rtept lat=\"40.76896\" lon=\"-73.97991\"/>\n    <rtept lat=\"40.7689\" lon=\"-73.97988\"/>\n    <rtept lat=\"40.7689\" lon=\"-73.97996\"/>\n    <rtept lat=\"40.76876\" lon=\"-73.97991\"/>\n    <rtept lat=\"40.76874\" lon=\"-73.9799\"/>\n    <rtept lat=\"40.76876\" lon=\"-73.97991\"/>\n    <rtept lat=\"40.7689\" lon=\"-73.97996\"/>\n    <rtept lat=\"40.76888\" lon=\"-73.98005\"/>\n    <rtept lat=\"40.76872\" lon=\"-73.98033\"/>\n    <rtept lat=\"40.76857\" lon=\"-73.98071\"/>\n    <rtept lat=\"40.7684\" lon=\"-73.98109\"/>\n    <rtept lat=\"40.76837\" lon=\"-73.9813\"/>\n    <rtept lat=\"40.76832\" lon=\"-73.98126\"/>\n    <rtept lat=\"40.76819\" lon=\"-73.98119\"/>\n    <rtept lat=\"40.76813\" lon=\"-73.98117\"/>\n    <rtept lat=\"40.76809\" lon=\"-73.98117\"/>\n    <rtept lat=\"40.76801\" lon=\"-73.98117\"/>\n    <rtept lat=\"40.76798\" lon=\"-73.98117\"/>\n    <rtept lat=\"40.76792\" lon=\"-73.98118\"/>\n    <rtept lat=\"40.76789\" lon=\"-73.98119\"/>\n    <rtept lat=\"40.76781\" lon=\"-73.98124\"/>\n    <rtept lat=\"40.76785\" lon=\"-73.98128\"/>\n    <rtept lat=\"40.76796\" lon=\"-73.98137\"/>\n  </rte>\n</gpx>",
+        "output": "str",
+        "x": 350,
+        "y": 220,
+        "wires": [
+            [
+                "39b8d718.876a7"
+            ]
+        ]
+    },
+    {
+        "id": "eac5bef1.7dfc9",
+        "type": "debug",
+        "z": "24aab329.a0d324",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 610,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "8b794514.171258",
+        "type": "comment",
+        "z": "24aab329.a0d324",
+        "name": "#1 - Visit https://onthegomap.com to map a simulated course",
+        "info": "",
+        "x": 420,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b663982e.2d6258",
+        "type": "comment",
+        "z": "24aab329.a0d324",
+        "name": "#2 - Export route to a GPX file",
+        "info": "After plotting an interesting route,\nclick on the menu in the upper right corner \nof the https://onthegomap.com/#/create\nSelect \"Export as GPX\"\nSave as a text file\n\nYou might want to open the txt file and inspect\nthe lat / lon geocoordinates.\n\nIf your route is many thousands of waypoint entries,\nyou will fill a very big blockchain transaction\nhistory.  Keep the route to < 500 waypoints",
+        "x": 320,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "f5ef19a5.8ae7b",
+        "type": "comment",
+        "z": "24aab329.a0d324",
+        "name": "#3 - Paste the entire GPX text file into the Template node below",
+        "info": "",
+        "x": 430,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "39b8d718.876a7",
+        "type": "function",
+        "z": "24aab329.a0d324",
+        "name": "Extract Route",
+        "func": "var waypoints = msg.payload.split(/\\r?\\n/) ;\n// the GPX file will contain many\n//  <rtept lat=\"40.76789\" lon=\"-73.9812\"/>\"\n\ngeocoordinates = waypoints.filter(path => path.match(/rtept/));\nvar route = \"\";\n\n//var lat, lon;\n//var geo = [];\n\nfor( x=0; x< geocoordinates.length; x++ ) {\n    fields = geocoordinates[x].split('\"');\n//    lat = parseFloat(fields[1]);\n//    lon = parseFloat(fields[3]);\n//    geo.push({lat,lon});\n    route = route + fields[1] + \",\"+ fields[3] + \"\\n\";\n}\n//msg.payload = geo;   // Array of geocoords\n\n// Send a big string to the CSV node so that\n// the CSV node splits each geocoord into an individual msg\nmsg.payload = route;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 640,
+        "y": 220,
+        "wires": [
+            [
+                "5b1d8ecb.804d"
+            ]
+        ]
+    },
+    {
+        "id": "5b1d8ecb.804d",
+        "type": "csv",
+        "z": "24aab329.a0d324",
+        "name": "Split Route",
+        "sep": ",",
+        "hdrin": "",
+        "hdrout": "",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "lat,lon",
+        "skip": "0",
+        "x": 150,
+        "y": 320,
+        "wires": [
+            [
+                "a822eff2.4412c8"
+            ]
+        ]
+    },
+    {
+        "id": "d89e55f8.3b9768",
+        "type": "function",
+        "z": "24aab329.a0d324",
+        "name": "Simulate a Blockchain Temperature Transaction",
+        "func": "var now = Date.now();\nvar d = new Date(now);\nvar ts = d.getFullYear() + \"-\" + ('0' + (d.getMonth()+1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2)+ \"T\" + d.getHours() + \":\" + d.getMinutes() + \":\" + d.getSeconds()+\"Z\";\n\n\nmsg.payload = { \"AssetID\":\"34302\",\n                \"timestamp\": ts ,\n                \"Temperature\": {\"Celsius\":Math.floor(Math.round(Math.random()*11)+1) },\n                \"gps\": {\"lat\":msg.payload.lat.toString(),\"lon\":msg.payload.lon.toString()}};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 400,
+        "wires": [
+            [
+                "eac5bef1.7dfc9",
+                "e44c8973.1492e8"
+            ]
+        ]
+    },
+    {
+        "id": "a822eff2.4412c8",
+        "type": "delay",
+        "z": "24aab329.a0d324",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 350,
+        "y": 320,
+        "wires": [
+            [
+                "d89e55f8.3b9768"
+            ]
+        ]
+    },
+    {
+        "id": "307fb704.7e2078",
+        "type": "comment",
+        "z": "24aab329.a0d324",
+        "name": "This example is a bike route through New York City Central Park",
+        "info": "",
+        "x": 430,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "22ea9728.739a6",
+        "type": "comment",
+        "z": "24aab329.a0d324",
+        "name": "Configure this  link node to the \"Blockchain REST API\" flow tab and \"Build a TemperatureReading Transaction\" link node",
+        "info": "",
+        "x": 500,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "e44c8973.1492e8",
+        "type": "link out",
+        "z": "24aab329.a0d324",
+        "name": "",
+        "links": [],
+        "x": 560,
+        "y": 400,
+        "wires": []
+    }
+]
