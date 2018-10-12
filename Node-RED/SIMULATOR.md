@@ -52,5 +52,17 @@ Get the Code [Simulator Node-RED flow for IoT Asset Tracker](flows/IoTAssetTrack
 - Either accept the default NYC Central Park route or insert your custom route into the **Paste GPX file into this Template Node** **(2)**
 - Last, press the **Inject** true button **(4)**.
 
+## Node-RED Dashboard Asset Tracking
+- Turn to the **IoT Asset Dashboard** flow
+- Double click on the **Asset IDs to be Tracked** function node **(1)**
+- Add the following **(2)** to the msg.options array
+```
+{"Bicycle #1":"34304"},
+```
+- Deploy the flow
+
 ## Node-RED Dashboard
+- Launch the Node-RED dashboard
+- Select **Bicycle #1** from the **Select Truck Route** dropdown.
+- Turn on the **Track Truck Route** switch
 ![Node-RED Dashboard Central Park Route](screenshots/Node-RED-dashboard-AssetTracker-NYC.png)
