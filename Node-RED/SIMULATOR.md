@@ -37,20 +37,21 @@ $ sed -n '0-14p'   onthegomap-6.4-mi-route-route.gps
 ```
 - Now, we can load those abbreviated geolocation coordinates into the blockchain.
 
-## Node-RED Flow to load the Blockchain
+## Node-RED Simulated Route flow
 
 - Copy the code from the GitHub link below into your Clipboard and import it into your Node-RED editor.
 
-Get the Code [Simulator Node-RED flow for IoT Asset Tracker](flows/IoTAssetTracker-SimulatedRoute.json)
+Get the Code [Simulated Route Node-RED flow for IoT Asset Tracker](flows/IoTAssetTracker-SimulatedRoute.json)
 
 ![Simulated Route flow](screenshots/Node-RED-flow-SimulateRoute.png)
 
-- Wire the **Link** node **(3)** on this flow to the Blockchain REST API flow **New Tempeature Reading** link node.
-- Deploy the flow.
-- Press the **One Time Setup to create the Blockchain Bibcycle Shipment** inject (true) node. **(1)**
-- The one time setup is required to create the shipment
+- Wire the **Link** node **(3)** on this flow to the Blockchain REST API flow **New Tempeature Reading** link node
+- Deploy the flow
+- Press the **One Time Setup to create the Blockchain Bicycle Shipment** inject (true) node. **(1)**
+- The one time setup is required to create the shipment asset
 - Either accept the default NYC Central Park route or insert your custom route into the **Paste GPX file into this Template Node** **(2)**
 - Last, press the **Inject** true button **(4)**.
+- The simulated route geolocation / temperature readings will start to play into your Blockchain transaction history. The rate limit node will slow it down so that transactions are successfully written to the blockchain.
 
 ## Node-RED Dashboard Asset Tracking
 - Turn to the **IoT Asset Dashboard** flow
@@ -60,6 +61,8 @@ Get the Code [Simulator Node-RED flow for IoT Asset Tracker](flows/IoTAssetTrack
 {"Bicycle #1":"34304"},
 ```
 - Deploy the flow
+
+![Node-RED flow AssetTrackerDashboardControls fixup](screenshots/Node-RED-flow-AssetTrackerDashboardControls-fixup.png)
 
 ## Node-RED Dashboard
 - Launch the Node-RED dashboard
