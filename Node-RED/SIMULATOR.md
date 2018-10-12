@@ -19,9 +19,9 @@ to track a bicycle ride through the park on a nice day. The rough outline is to 
 
 You can create your own use case stories with simulated routes / simulated data and then play that data into the Blockchain.
 
-The next section describes the generate technique of how you can build your own unique route. If you want to skip creating your own route, jump straight to the section to import the Bicycle ride through New York Central Park simulator flow.
+The next section describes the general technique of how you can build your own unique route. If you want to skip creating your own route, jump straight to the subsequent section to import the Bicycle ride through New York Central Park simulated route.
 
-### General Technique - Build your our unique route
+### General Technique - Build your own unique route
 - Visit the [OnTheGoMap website](https://onthegomap.com/#/create) that allows you to plot a route on a world map.
 - Create your route **(1)** using [OnTheGoMap](https://onthegomap.com/#/create)
 - Click on the **Menu** in the upper right corner **(2)**
