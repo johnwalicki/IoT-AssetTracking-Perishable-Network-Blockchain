@@ -113,7 +113,7 @@ What you really want to do is send that data somewhere else.  In my case, I want
 Before you go, you'll need a Particle token to authorize your Node-RED program to observe / subscribe to these sensor events.
 ```
 $ particle token list
-$ particle token new
+$ particle token create
 ```
 You can see the data in your terminal
 ```
