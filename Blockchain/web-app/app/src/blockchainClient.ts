@@ -1,3 +1,4 @@
+import { Shipment } from "./models/shipment.model";
 
 const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
@@ -61,7 +62,7 @@ export module BlockChainModule {
     }
 
 
-    // add shipper
+
     async addShipper(args: any) {
       //call addShipper smart contract function
       let response = await args.contract.submitTransaction(args.function,
@@ -69,6 +70,17 @@ export module BlockChainModule {
       return response;
 
 
+    }
+
+
+    async addShipment(contract: any, shipment: Shipment ) {
+      //call addShipment function on smart contract
+      
+      let jsonShipment = JSON.stringify(shipment);
+
+      let response = await contract.submitTransaction('addShipment',
+      jsonShipment);
+      return response;
     }
 
 

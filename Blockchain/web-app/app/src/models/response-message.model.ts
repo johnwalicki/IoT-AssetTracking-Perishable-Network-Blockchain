@@ -1,4 +1,4 @@
-import { model, property } from '@loopback/repository';
+import { model, property, AnyType } from '@loopback/repository';
 
 @model({ name: 'ResponseMessage' })
 //the red squiggly is OK here :)
@@ -12,6 +12,9 @@ export class ResponseMessage {
 
   @property({ name: 'message', required: true })
   message: string = 'OK';
+
+  @property.array(AnyType, { name: 'jl', required: false })
+  jl: any[] = [];
 
   @property({ name: 'statusCode', required: true })
   statusCode: string = '200';

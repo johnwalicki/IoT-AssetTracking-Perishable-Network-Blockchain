@@ -1,6 +1,11 @@
 /* tslint:disable:no-any */
 import {operation, param, requestBody} from '@loopback/rest';
 import {Shipment} from '../models/shipment.model';
+import { ResponseMessage } from '../models/response-message.model';
+import {BlockChainModule} from '../blockchainClient';
+
+let blockChainClient = new BlockChainModule.BlockchainClient();
+
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -10,16 +15,49 @@ import {Shipment} from '../models/shipment.model';
 export class ShipmentController {
   constructor() {}
 
-  /**
+/**
    * 
    * 
 
    * @param requestBody Model instance data
    * @returns Request was successful
    */
-  @operation('post', '/Shipment')
-  async shipmentCreate(@requestBody() requestBody: Shipment): Promise<Shipment> {
-    throw new Error('Not implemented');
+  // @operation('post', '/Shipment')
+  // async ShipmentCreate(@requestBody() requestBody: Shipment): Promise<Shipment> {
+  //   throw new Error('Not implemented');
+  // }
+  @operation('post', '/Shipment', {
+    responses: {
+      '200': {
+        description: 'ResponseMessage model instance',
+        content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
+      },
+    },
+  })
+  async shipmentCreate(@requestBody() shipment: Shipment): Promise<ResponseMessage> {
+
+    try {
+      //so blockChainClient is not transpiling so we must now first create a basic network to connect to!
+      //and export the connection
+
+      let networkObj = await blockChainClient.connectToNetwork();
+      // let dataForAddMember = {
+      //   function: 'addShipment',
+      //   email: requestBody.email,
+      //   address: `${requestBody.address.street} ${requestBody.address.city} ${requestBody.address.zip} ${requestBody.address.country}`,
+      //   accountBalance: `${requestBody.accountBalance}`,
+      //   contract: networkObj.contract
+      // };
+
+      await blockChainClient.addShipment(networkObj.contract,shipment);
+
+      let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added Shipment to Blockchain' });
+      return responseMessage;
+
+    } catch (error) {
+      let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
+      return responseMessage;
+    }
   }
 
   /**

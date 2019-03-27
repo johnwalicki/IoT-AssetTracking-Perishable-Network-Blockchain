@@ -5,7 +5,7 @@
 'use strict';
 
 const { Contract } = require('fabric-contract-api');
-
+var uuid  = require('uuid');
 class MyContract extends Contract {
 
     async instantiate(ctx) {
@@ -16,20 +16,25 @@ class MyContract extends Contract {
         console.info('adding shipper ', email);
         //create object to hold details of our new shipper
         let newShipper = {};
-
         newShipper.id = email;  //we will use email to key the shipper in this case
         newShipper.address = address;
         newShipper.accountBalance = accountBalance;
 
-
-
         await ctx.stub.putState(email, Buffer.from(JSON.stringify(newShipper)));
         console.info('updated ledger with new shipper : ' + email);
-        //console.info(JSON.stringify(newShipper));
 
         return newShipper;
-
     }
+
+    async addShipment(ctx, serializedShipment) {
+      console.info('adding shipment ');
+      let transactionId = uuid.v4(); //v1 timebased, v4 random
+
+      await ctx.stub.putState(transactionId, Buffer.from(serializedShipment));
+      console.info(`updated ledger with new shipment with transaction id : ${transactionId}`);
+
+      return 1;
+  }
 
     //helper contract functions to read blockchain
     async query(ctx, key) {
