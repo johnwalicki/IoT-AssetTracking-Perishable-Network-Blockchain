@@ -74,13 +74,7 @@ export module BlockChainModule {
 
 
     async addShipment(contract: any, shipment: Shipment ) {
-      //call addShipment function on smart contract
-      
-      let jsonShipment = JSON.stringify(shipment);
-
-      let response = await contract.submitTransaction('addShipment',
-      jsonShipment);
-      return response;
+      return await contract.submitTransaction('addShipment', JSON.stringify(shipment));
     }
 
 

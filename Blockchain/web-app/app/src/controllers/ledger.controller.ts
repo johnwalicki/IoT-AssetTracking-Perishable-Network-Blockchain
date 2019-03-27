@@ -13,13 +13,7 @@ export class LedgerController {
   
 
 
-  /**
-   * 
-   * 
 
-   * @param filter Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})
-   * @returns Request was successful
-   */
   @operation('get', '/Ledger', {
     responses: {
       '200': {
@@ -29,25 +23,12 @@ export class LedgerController {
     },
 })
 async LedgerFindAll(): Promise<ResponseMessage> {
+
   let networkObj = await blockChainClient.connectToNetwork();
-
-  let dataForQuery = {
-    function:'queryAll',
-    contract: networkObj.contract,
-    network: networkObj.network
-  };
-
   let result = await blockChainClient.queryAll(networkObj.contract);
-
   var rez = JSON.parse(result.toString());
-  // console.log("-------------------------------");
-  // console.log("-------------------------------");
-  // console.log(rez);
-  // console.log("-------------------------------");
-  // console.log("-------------------------------");
   let repsonseMesssage: ResponseMessage = new ResponseMessage({message:"the blockchain entries", objectlist:JSON.parse(rez), statusCode:'200'});
   return repsonseMesssage;
-   
 
 }
   
