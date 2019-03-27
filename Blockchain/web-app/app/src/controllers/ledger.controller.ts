@@ -45,7 +45,7 @@ async LedgerFindAll(): Promise<ResponseMessage> {
   // console.log(rez);
   // console.log("-------------------------------");
   // console.log("-------------------------------");
-  let repsonseMesssage: ResponseMessage = new ResponseMessage({message:"the blockchain entries", jl:JSON.parse(rez), statusCode:'200'});
+  let repsonseMesssage: ResponseMessage = new ResponseMessage({message:"the blockchain entries", objectlist:JSON.parse(rez), statusCode:'200'});
   return repsonseMesssage;
    
 

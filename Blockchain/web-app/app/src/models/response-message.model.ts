@@ -13,8 +13,8 @@ export class ResponseMessage {
   @property({ name: 'message', required: true })
   message: string = 'OK';
 
-  @property.array(AnyType, { name: 'jl', required: false })
-  jl: any[] = [];
+  @property.array(AnyType, { name: 'objectlist', required: false })
+  objectlist: any[] = [];
 
   @property({ name: 'statusCode', required: true })
   statusCode: string = '200';

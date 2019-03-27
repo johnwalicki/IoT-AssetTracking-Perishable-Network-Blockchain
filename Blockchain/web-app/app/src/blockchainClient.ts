@@ -105,7 +105,7 @@ export module BlockChainModule {
 
     async queryAll(contract: any) {
       let response = await contract.evaluateTransaction('queryAll');
-      console.log(response.toString())
+      //console.log(response.toString())
       return response;
     }
 
