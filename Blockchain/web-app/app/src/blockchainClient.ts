@@ -136,8 +136,7 @@ export module BlockChainModule {
       console.log(JSON.parse(shipment.toString()))
       console.log(shipment.length)
       if (shipment.length === 2) {
-        shipment = `Shipment by transactionId ${transactionID} not found`;
-        return shipment;
+        throw `Shipment by transactionId ${transactionID} not found`;
       }
       shipment = JSON.parse(shipment.toString());
       return shipment;
@@ -146,11 +145,23 @@ export module BlockChainModule {
     async addShipment(contract: any, shipment: Shipment ) {
       return await contract.submitTransaction('addShipment', JSON.stringify(shipment));
     }
+
     async addAccelReading(contract: any, accelReading: AccelReading ) {
-      return await contract.submitTransaction('addAccelReading', JSON.stringify(accelReading));
+      let transactionId: string = accelReading.transactionId;
+      console.log(`about to add new accelerometer reading to shipment by transactionId ${transactionId}`);
+      var shipment = await this.getShipmentByTransactionId(contract,transactionId);
+      shipment = JSON.parse(shipment);
+      shipment.AccelReadings.push(accelReading);
+      return await contract.submitTransaction('updateShipment', transactionId, JSON.stringify(shipment));
     }
+
     async addTemperatureReading(contract: any, temperatureReading: TemperatureReading ) {
-      return await contract.submitTransaction('addTemperatureReading', JSON.stringify(temperatureReading));
+      let transactionId: string = temperatureReading.transactionId;
+      console.log(`about to add new temperature reading to shipment by transactionId ${transactionId}`);
+      var shipment = await this.getShipmentByTransactionId(contract,transactionId);
+      shipment = JSON.parse(shipment);
+      shipment.temperatureReadings.push(temperatureReading);
+      return await contract.submitTransaction('updateShipment', transactionId, JSON.stringify(shipment));
     }
     async addGrower(contract: any, grower: Grower ) {
       return await contract.submitTransaction('addGrower', grower.email, JSON.stringify(grower));

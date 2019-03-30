@@ -36,10 +36,18 @@ class MyContract extends Contract {
       return transactionId;
   }
 
+  /*
+  update shipment with transactionId
+  **/
+ 
+  async updateShipment(ctx, transactionId, serializedShipment) {
+    await ctx.stub.putState(transactionId, Buffer.from(serializedShipment));
+}
+
   async addGrower(ctx, email, serialiazedGrower) {
     return await ctx.stub.putState(email, Buffer.from(serialiazedGrower));
   }
-  
+
   async addImporter(ctx, email, serialiazedImporter) {
     return await ctx.stub.putState(email, Buffer.from(serialiazedImporter));
   }
