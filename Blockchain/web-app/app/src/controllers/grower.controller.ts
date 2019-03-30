@@ -1,6 +1,10 @@
 /* tslint:disable:no-any */
 import {operation, param, requestBody} from '@loopback/rest';
 import {Grower} from '../models/grower.model';
+import {ResponseMessage} from '../models/response-message.model';
+import {BlockChainModule} from '../blockchainClient';
+
+let blockChainClient = new BlockChainModule.BlockchainClient();
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -10,17 +14,31 @@ import {Grower} from '../models/grower.model';
 export class GrowerController {
   constructor() {}
 
-  /**
-   * 
-   * 
-
+/**
+   * POST
    * @param requestBody Model instance data
-   * @returns Request was successful
-   */
-  @operation('post', '/Grower')
-  async growerCreate(@requestBody() requestBody: Grower): Promise<Grower> {
-    throw new Error('Not implemented');
+   * @returns ResponseMessage - Request was successful or not
+*/
+@operation('post', '/Grower', {
+  responses: {
+    '200': {
+      description: 'ResponseMessage model instance',
+      content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
+    },
+  },
+})
+async growerCreate(@requestBody() grower: Grower): Promise<ResponseMessage> {
+
+  try {
+    let networkObj = await blockChainClient.connectToNetwork();
+    await blockChainClient.addGrower(networkObj.contract,grower);
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added Grower to Blockchain' });
+    return responseMessage;
+  } catch (error) {
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
+    return responseMessage;
   }
+}
 
   /**
    * 

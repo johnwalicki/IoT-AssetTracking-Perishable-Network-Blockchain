@@ -1,6 +1,10 @@
 /* tslint:disable:no-any */
 import {operation, param, requestBody} from '@loopback/rest';
 import {Importer} from '../models/importer.model';
+import {ResponseMessage} from '../models/response-message.model';
+import {BlockChainModule} from '../blockchainClient';
+
+let blockChainClient = new BlockChainModule.BlockchainClient();
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -10,17 +14,31 @@ import {Importer} from '../models/importer.model';
 export class ImporterController {
   constructor() {}
 
-  /**
-   * 
-   * 
-
+/**
+   * POST
    * @param requestBody Model instance data
-   * @returns Request was successful
-   */
-  @operation('post', '/Importer')
-  async importerCreate(@requestBody() requestBody: Importer): Promise<Importer> {
-    throw new Error('Not implemented');
+   * @returns ResponseMessage - Request was successful or not
+*/
+@operation('post', '/Importer', {
+  responses: {
+    '200': {
+      description: 'ResponseMessage model instance',
+      content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
+    },
+  },
+})
+async importerCreate(@requestBody() importer: Importer): Promise<ResponseMessage> {
+
+  try {
+    let networkObj = await blockChainClient.connectToNetwork();
+    await blockChainClient.addImporter(networkObj.contract,importer);
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added Importer to Blockchain' });
+    return responseMessage;
+  } catch (error) {
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
+    return responseMessage;
   }
+}
 
   /**
    * 

@@ -32,32 +32,26 @@ async LedgerFindAll(): Promise<ResponseMessage> {
 
 }
   
-//   @operation('get', '/Ledger/{id}', {
-//     responses: {
-//       '200': {
-//         description: 'Response model instance',
-//         content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
-//       },
-//     },
-// })
-//   async LedgerFindById(@param({name: 'id', in: 'path'}) id: string, @param({name: 'filter', in: 'query'}) filter: string): Promise<Ledger> {
-//     let networkObj = await blockChainClient.connectToNetwork();
+/*
+get all blocks from the ledger
+**/
+@operation('get', '/Ledger/blocks', {
+  responses: {
+    '200': {
+      description: 'Response model instance',
+      content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
+    },
+  },
+})
+async ledgerBlocks(): Promise<ResponseMessage> {
 
-//     let dataForQuery = {
-//       function:'query',
-//       id: id,
-//       contract: networkObj.contract,
-//       network: networkObj.network
-//     };
+let networkObj = await blockChainClient.connectToNetwork();
+let result = await blockChainClient.getAllBlocks(networkObj);
+var rez = JSON.parse(result.toString());
+let repsonseMesssage: ResponseMessage = new ResponseMessage({message:"the blockchain blocks", objectlist:JSON.parse(rez), statusCode:'200'});
+return repsonseMesssage;
 
-//     let result = await blockChainClient.queryByKey(dataForQuery);
-
-//     var rez = JSON.parse(result.toString());
-
-//     return rez;
-     
-
-//   }
+}
 
  
 

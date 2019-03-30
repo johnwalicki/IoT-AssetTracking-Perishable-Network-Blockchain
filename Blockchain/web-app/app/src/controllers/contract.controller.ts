@@ -1,6 +1,10 @@
 /* tslint:disable:no-any */
 import {operation, param, requestBody} from '@loopback/rest';
 import {Contract} from '../models/contract.model';
+import {ResponseMessage} from '../models/response-message.model';
+import {BlockChainModule} from '../blockchainClient';
+
+let blockChainClient = new BlockChainModule.BlockchainClient();
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -10,17 +14,32 @@ import {Contract} from '../models/contract.model';
 export class ContractController {
   constructor() {}
 
-  /**
-   * 
-   * 
-
+/**
+   * POST
    * @param requestBody Model instance data
-   * @returns Request was successful
-   */
-  @operation('post', '/Contract')
-  async contractCreate(@requestBody() requestBody: Contract): Promise<Contract> {
-    throw new Error('Not implemented');
+   * @returns ResponseMessage - Request was successful or not
+*/
+@operation('post', '/Contract', {
+  responses: {
+    '200': {
+      description: 'ResponseMessage model instance',
+      content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
+    },
+  },
+})
+async contractCreate(@requestBody() _contract: Contract): Promise<ResponseMessage> {
+
+  try {
+    let networkObj = await blockChainClient.connectToNetwork();
+    await blockChainClient.addContract(networkObj.contract,_contract);
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added Contract to Blockchain' });
+    return responseMessage;
+  } catch (error) {
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
+    return responseMessage;
   }
+}
+
 
   /**
    * 

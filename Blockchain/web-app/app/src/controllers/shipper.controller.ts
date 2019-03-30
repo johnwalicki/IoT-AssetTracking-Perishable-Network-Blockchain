@@ -2,7 +2,7 @@
 import {operation, param, requestBody} from '@loopback/rest';
 import {Shipper} from '../models/shipper.model';
 import {Address} from '../models/address.model';
-import { ResponseMessage } from '../models/response-message.model';
+import {ResponseMessage} from '../models/response-message.model';
 import {BlockChainModule} from '../blockchainClient';
 
 let blockChainClient = new BlockChainModule.BlockchainClient();

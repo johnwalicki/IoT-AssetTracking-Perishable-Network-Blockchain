@@ -1,6 +1,10 @@
 /* tslint:disable:no-any */
 import {operation, param, requestBody} from '@loopback/rest';
 import {TemperatureReading} from '../models/temperature-reading.model';
+import { ResponseMessage } from '../models/response-message.model';
+import {BlockChainModule} from '../blockchainClient';
+
+let blockChainClient = new BlockChainModule.BlockchainClient();
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -10,17 +14,32 @@ import {TemperatureReading} from '../models/temperature-reading.model';
 export class TemperatureReadingController {
   constructor() {}
 
-  /**
-   * 
-   * 
-
+ /**
+   * POST
    * @param requestBody Model instance data
-   * @returns Request was successful
-   */
-  @operation('post', '/TemperatureReading')
-  async temperatureReadingCreate(@requestBody() requestBody: TemperatureReading): Promise<TemperatureReading> {
-    throw new Error('Not implemented');
+   * @returns ResponseMessage - Request was successful or not
+*/
+@operation('post', '/TemperatureReading', {
+  responses: {
+    '200': {
+      description: 'ResponseMessage model instance',
+      content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
+    },
+  },
+})
+async temperatureReadingCreate(@requestBody() temperatureReading: TemperatureReading): Promise<ResponseMessage> {
+
+  try {
+    let networkObj = await blockChainClient.connectToNetwork();
+    await blockChainClient.addTemperatureReading(networkObj.contract,temperatureReading);
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added TemperatureReading to Blockchain' });
+    return responseMessage;
+  } catch (error) {
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
+    return responseMessage;
   }
+}
+
 
   /**
    * 

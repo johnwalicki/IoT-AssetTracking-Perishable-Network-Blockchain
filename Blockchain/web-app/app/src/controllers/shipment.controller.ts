@@ -16,16 +16,10 @@ export class ShipmentController {
   constructor() {}
 
 /**
-   * 
-   * 
-
+   * POST
    * @param requestBody Model instance data
-   * @returns Request was successful
-   */
-  // @operation('post', '/Shipment')
-  // async ShipmentCreate(@requestBody() requestBody: Shipment): Promise<Shipment> {
-  //   throw new Error('Not implemented');
-  // }
+   * @returns ResponseMessage - Request was successful or not
+*/
   @operation('post', '/Shipment', {
     responses: {
       '200': {
@@ -37,23 +31,10 @@ export class ShipmentController {
   async shipmentCreate(@requestBody() shipment: Shipment): Promise<ResponseMessage> {
 
     try {
-      //so blockChainClient is not transpiling so we must now first create a basic network to connect to!
-      //and export the connection
-
       let networkObj = await blockChainClient.connectToNetwork();
-      // let dataForAddMember = {
-      //   function: 'addShipment',
-      //   email: requestBody.email,
-      //   address: `${requestBody.address.street} ${requestBody.address.city} ${requestBody.address.zip} ${requestBody.address.country}`,
-      //   accountBalance: `${requestBody.accountBalance}`,
-      //   contract: networkObj.contract
-      // };
-
-      await blockChainClient.addShipment(networkObj.contract,shipment);
-
-      let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added Shipment to Blockchain' });
+      let transactionID = await blockChainClient.addShipment(networkObj.contract,shipment);
+      let responseMessage: ResponseMessage = new ResponseMessage({ message: `added Shipment to Blockchain with TransactionID - ${transactionID}` });
       return responseMessage;
-
     } catch (error) {
       let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
       return responseMessage;
@@ -94,9 +75,20 @@ export class ShipmentController {
    * @param filter Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
    * @returns Request was successful
    */
-  @operation('get', '/Shipment/{id}')
-  async shipmentFindById(@param({name: 'id', in: 'path'}) id: string, @param({name: 'filter', in: 'query'}) filter: string): Promise<Shipment> {
-    throw new Error('Not implemented');
+  @operation('get', '/Shipment/{transactionId}')
+  async shipmentFindById(@param({name: 'transactionId', in: 'path'}) transactionId: string, @param({name: 'filter', in: 'query'}) filter: string): Promise<Shipment> {
+    
+    try{
+      let networkObj = await blockChainClient.connectToNetwork();
+      let shipment: Shipment = await blockChainClient.getShipmentByTransactionId(networkObj.contract, transactionId);
+
+      return shipment;
+    } catch (error) {
+      let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
+      throw responseMessage;
+    }
+
+
   }
 
   /**

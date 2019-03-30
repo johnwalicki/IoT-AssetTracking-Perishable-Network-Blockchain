@@ -1,4 +1,9 @@
 import { Shipment } from "./models/shipment.model";
+import { Contract } from "./models/contract.model";
+import { Importer } from "./models/importer.model";
+import { TemperatureReading } from "./models/temperature-reading.model";
+import { AccelReading } from "./models/accel-reading.model";
+import { Grower } from "./models/grower.model";
 
 const yaml = require('js-yaml');
 const { FileSystemWallet, Gateway } = require('fabric-network');
@@ -60,24 +65,11 @@ export module BlockChainModule {
       }
 
     }
-
-
-
-    async addShipper(args: any) {
-      //call addShipper smart contract function
-      let response = await args.contract.submitTransaction(args.function,
-        args.email, args.address, args.accountBalance);
+    //get all blocks needs work
+    async getAllBlocks(networkObj: any){
+      let response = await networkObj.network.evaluateTransaction('queryAllBlocks');
       return response;
-
-
     }
-
-
-    async addShipment(contract: any, shipment: Shipment ) {
-      return await contract.submitTransaction('addShipment', JSON.stringify(shipment));
-    }
-
-
 
     async queryByKey2(contract: any, keyPassed: any) {
 
@@ -99,7 +91,6 @@ export module BlockChainModule {
 
     async queryAll(contract: any) {
       let response = await contract.evaluateTransaction('queryAll');
-      //console.log(response.toString())
       return response;
     }
 
@@ -123,6 +114,53 @@ export module BlockChainModule {
 
 
 
+
+
+
+
+
+
+    //user defined 
+    //functions
+    //$to do: change args and add full object like below
+    async addShipper(args: any) {
+      return await args.contract.submitTransaction('addShipper', args.email, args.address, args.accountBalance); 
+    }
+
+    /*
+    lookup shipment by transactionID
+    **/
+    async getShipmentByTransactionId(contract: any, transactionID: string){
+      let shipment =  await contract.submitTransaction('query', transactionID);
+      
+      console.log(JSON.parse(shipment.toString()))
+      console.log(shipment.length)
+      if (shipment.length === 2) {
+        shipment = `Shipment by transactionId ${transactionID} not found`;
+        return shipment;
+      }
+      shipment = JSON.parse(shipment.toString());
+      return shipment;
+    }
+
+    async addShipment(contract: any, shipment: Shipment ) {
+      return await contract.submitTransaction('addShipment', JSON.stringify(shipment));
+    }
+    async addAccelReading(contract: any, accelReading: AccelReading ) {
+      return await contract.submitTransaction('addAccelReading', JSON.stringify(accelReading));
+    }
+    async addTemperatureReading(contract: any, temperatureReading: TemperatureReading ) {
+      return await contract.submitTransaction('addTemperatureReading', JSON.stringify(temperatureReading));
+    }
+    async addGrower(contract: any, grower: Grower ) {
+      return await contract.submitTransaction('addGrower', grower.email, JSON.stringify(grower));
+    }
+    async addImporter(contract: any, importer: Importer ) {
+      return await contract.submitTransaction('addImporter', importer.email, JSON.stringify(importer));
+    }
+    async addContract(contract: any, _contract: Contract ) {
+      return await contract.submitTransaction('addContract', _contract.contractId, JSON.stringify(_contract));
+    }
 
   }
 }

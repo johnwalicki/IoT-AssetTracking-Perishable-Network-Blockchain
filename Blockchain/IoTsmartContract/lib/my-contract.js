@@ -26,14 +26,26 @@ class MyContract extends Contract {
         return newShipper;
     }
 
+    /*
+    @return transaction id seeded
+    for the new shipment
+    **/
     async addShipment(ctx, serializedShipment) {
-      console.info('adding shipment ');
-      let transactionId = uuid.v4(); //v1 timebased, v4 random
-
+      let transactionId = uuid.v4(); 
       await ctx.stub.putState(transactionId, Buffer.from(serializedShipment));
-      console.info(`updated ledger with new shipment with transaction id : ${transactionId}`);
+      return transactionId;
+  }
 
-      return 1;
+  async addGrower(ctx, email, serialiazedGrower) {
+    return await ctx.stub.putState(email, Buffer.from(serialiazedGrower));
+  }
+  
+  async addImporter(ctx, email, serialiazedImporter) {
+    return await ctx.stub.putState(email, Buffer.from(serialiazedImporter));
+  }
+
+  async addContract(ctx, contractId, serialiazedContract) {
+    return await ctx.stub.putState(contractId, Buffer.from(serialiazedContract));
   }
 
     //helper contract functions to read blockchain
@@ -61,6 +73,15 @@ class MyContract extends Contract {
     
       }
     
+
+      async queryAllBlocks(ctx, start, end) {
+
+          let result = await this.queryBlock(start);
+          return result;
+       
+
+      }
+
       async queryWithQueryString(ctx, queryString) {
     
         console.log("query String");
