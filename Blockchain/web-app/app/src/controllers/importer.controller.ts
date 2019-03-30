@@ -32,7 +32,7 @@ async importerCreate(@requestBody() importer: Importer): Promise<ResponseMessage
   try {
     let networkObj = await blockChainClient.connectToNetwork();
     await blockChainClient.addImporter(networkObj.contract,importer);
-    let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added Importer to Blockchain' });
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: `added Importer with email ${importer.email} to Blockchain` });
     return responseMessage;
   } catch (error) {
     let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
