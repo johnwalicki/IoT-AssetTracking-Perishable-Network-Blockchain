@@ -32,7 +32,7 @@ async growerCreate(@requestBody() grower: Grower): Promise<ResponseMessage> {
   try {
     let networkObj = await blockChainClient.connectToNetwork();
     await blockChainClient.addGrower(networkObj.contract,grower);
-    let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added Grower to Blockchain' });
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: `added Grower with email ${grower.email} to Blockchain` });
     return responseMessage;
   } catch (error) {
     let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
