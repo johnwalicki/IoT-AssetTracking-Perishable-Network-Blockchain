@@ -1,4 +1,5 @@
 import { Shipment } from "./models/shipment.model";
+import { Shipper } from "./models/shipper.model";
 import { Contract } from "./models/contract.model";
 import { Importer } from "./models/importer.model";
 import { TemperatureReading } from "./models/temperature-reading.model";
@@ -6,6 +7,7 @@ import { AccelReading } from "./models/accel-reading.model";
 import { Grower } from "./models/grower.model";
 
 const yaml = require('js-yaml');
+const uuid  = require('uuid');
 const { FileSystemWallet, Gateway } = require('fabric-network');
 const fs = require('fs');
 
@@ -73,9 +75,6 @@ export module BlockChainModule {
 
     async queryByKey2(contract: any, keyPassed: any) {
 
-      // let str = 'query'
-      // let response = await keyPassed.contract.submitTransaction('query', 'arg1', 'arg2');
-
       let response = await contract.submitTransaction('query', keyPassed);
       console.log('query by key response: ')
       console.log(JSON.parse(response.toString()))
@@ -115,18 +114,18 @@ export module BlockChainModule {
 
 
 
+    //user defined functions
 
+    async addShipment(contract: any, shipment: Shipment ) {
 
-
-
-
-    //user defined 
-    //functions
-    //$to do: change args and add full object like below
-    async addShipper(args: any) {
-      return await args.contract.submitTransaction('addShipper', args.email, args.address, args.accountBalance); 
+      if(shipment.shipmentId === 'undefined' || shipment.shipmentId === null || shipment.shipmentId === ""){
+        shipment.shipmentId = uuid.v4(); 
+      }
+      let transactionID = shipment.shipmentId;
+      console.log(`about to addShipment with transactionId of ${transactionID}`);
+      let result = await contract.submitTransaction('addShipment', transactionID, JSON.stringify(shipment));
+      return `shipment with transactionId: ${transactionID} added with return code ${result}`;
     }
-
     /*
     lookup shipment by transactionID
     **/
@@ -142,9 +141,7 @@ export module BlockChainModule {
       return shipment;
     }
 
-    async addShipment(contract: any, shipment: Shipment ) {
-      return await contract.submitTransaction('addShipment', JSON.stringify(shipment));
-    }
+
 
     async addAccelReading(contract: any, accelReading: AccelReading ) {
       let transactionId: string = accelReading.transactionId;
@@ -163,15 +160,23 @@ export module BlockChainModule {
       shipment.temperatureReadings.push(temperatureReading);
       return await contract.submitTransaction('updateShipment', transactionId, JSON.stringify(shipment));
     }
+
     async addGrower(contract: any, grower: Grower ) {
       return await contract.submitTransaction('addGrower', grower.email, JSON.stringify(grower));
     }
+
     async addImporter(contract: any, importer: Importer ) {
       return await contract.submitTransaction('addImporter', importer.email, JSON.stringify(importer));
     }
+
     async addContract(contract: any, _contract: Contract ) {
       return await contract.submitTransaction('addContract', _contract.contractId, JSON.stringify(_contract));
     }
+
+    async addShipper(contract: any, shipper: Shipper ) {
+      return await contract.submitTransaction('addShipper', shipper.email, JSON.stringify(shipper));
+    }
+
 
   }
 }

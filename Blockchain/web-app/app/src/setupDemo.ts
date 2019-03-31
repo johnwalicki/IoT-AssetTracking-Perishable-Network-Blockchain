@@ -25,14 +25,16 @@ export module DemoModule {
             let networkObj = await blockChainClient.connectToNetwork();
             let smartContract = networkObj.contract;
 
+            let shipmentId = setupDemo.transactionId;
+            //let shipmentId = '320022000251363131363432';
             let grower: Grower =  this.createGrower();
             let importer: Importer =  this.createImporter();
             let shipper: Shipper =  this.createShipper();
             let contract: Contract =  this.createContract(importer, grower, shipper);
-            let shipment: Shipment = this.createShipment(contract);
+            let shipment: Shipment = this.createShipment(shipmentId, contract);
 
             let result = await blockChainClient.addShipment(smartContract, shipment);
-            return `setup demo ${result}`;
+            return `setup demo - ${result}`;
         }
         
         createGrower():Grower {
@@ -76,13 +78,15 @@ export module DemoModule {
             
         }
 
-        createShipment(contract: Contract): Shipment{
-            let shipmentId = '320022000251363131363432';
+        createShipment(shipmentId: string, contract: Contract): Shipment{
             let shipment = new Shipment({shipmentId:shipmentId});
             shipment.type = 'MEDICINE';
             shipment.status = 'IN_TRANSIT';
             shipment.unitCount = 5000;
+            shipment.AccelReadings =[];
+            shipment.temperatureReadings = [];
             shipment.contract = contract;
+
             return shipment;
         }
 

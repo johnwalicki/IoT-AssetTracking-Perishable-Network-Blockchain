@@ -1,3 +1,6 @@
+
+
+
 /* tslint:disable:no-any */
 import {model, property} from '@loopback/repository';
 
@@ -23,7 +26,7 @@ export class SetupDemo {
    * The instance identifier for this type
    */
   @property({name: 'transactionId'})
-  transactionId?: string;
+  transactionId: string = '320022000251363131363432';
 
   /**
    * 

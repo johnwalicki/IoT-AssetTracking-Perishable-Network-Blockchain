@@ -5,43 +5,30 @@
 'use strict';
 
 const { Contract } = require('fabric-contract-api');
-var uuid  = require('uuid');
+
 class MyContract extends Contract {
 
     async instantiate(ctx) {
         console.info('instantiate');
     }
-
-    async addShipper(ctx, email, address, accountBalance) {
-        console.info('adding shipper ', email);
-        //create object to hold details of our new shipper
-        let newShipper = {};
-        newShipper.id = email;  //we will use email to key the shipper in this case
-        newShipper.address = address;
-        newShipper.accountBalance = accountBalance;
-
-        await ctx.stub.putState(email, Buffer.from(JSON.stringify(newShipper)));
-        console.info('updated ledger with new shipper : ' + email);
-
-        return newShipper;
+    async init(ctx) {
+      console.info('init');
     }
 
-    /*
-    @return transaction id seeded
-    for the new shipment
-    **/
-    async addShipment(ctx, serializedShipment) {
-      let transactionId = uuid.v4(); 
-      await ctx.stub.putState(transactionId, Buffer.from(serializedShipment));
-      return transactionId;
+   async addShipper(ctx, email, serializedShipper){
+    return await ctx.stub.putState(email, Buffer.from(serializedShipper));
+   }
+
+    async addShipment(ctx, transactionId, serializedShipment) {
+      return await ctx.stub.putState(transactionId, Buffer.from(serializedShipment));
   }
 
   /*
   update shipment with transactionId
   **/
- 
+
   async updateShipment(ctx, transactionId, serializedShipment) {
-    await ctx.stub.putState(transactionId, Buffer.from(serializedShipment));
+    return await ctx.stub.putState(transactionId, Buffer.from(serializedShipment));
 }
 
   async addGrower(ctx, email, serialiazedGrower) {

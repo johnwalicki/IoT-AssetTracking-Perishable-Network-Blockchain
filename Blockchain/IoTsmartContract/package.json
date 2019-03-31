@@ -1,6 +1,6 @@
 {
     "name": "IoTsmartContract",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "description": "My Smart Contract",
     "main": "index.js",
     "engines": {
@@ -18,8 +18,7 @@
     "license": "Apache-2.0",
     "dependencies": {
         "fabric-contract-api": "1.4.0",
-        "fabric-shim": "1.4.0",
-        "uuid": "^3.3.2"
+        "fabric-shim": "1.4.0"
     },
     "devDependencies": {
         "chai": "^4.2.0",

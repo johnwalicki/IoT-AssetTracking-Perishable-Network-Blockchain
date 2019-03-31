@@ -2,6 +2,10 @@
 import {operation, param, requestBody} from '@loopback/rest';
 import {SetupDemo} from '../models/setup-demo.model';
 
+import {ResponseMessage} from '../models/response-message.model';
+import {DemoModule} from '../setupDemo';
+let demoObject = new DemoModule.DemoClass();
+
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
  * by SetupDemo
@@ -10,42 +14,31 @@ import {SetupDemo} from '../models/setup-demo.model';
 export class SetupDemoController {
   constructor() {}
 
-  /**
-   * 
-   * 
-
+/**
+   * POST
    * @param requestBody Model instance data
-   * @returns Request was successful
-   */
-  @operation('post', '/SetupDemo')
-  async setupDemoCreate(@requestBody() requestBody: SetupDemo): Promise<SetupDemo> {
-    throw new Error('Not implemented');
+   * @returns ResponseMessage - Request was successful or not
+*/
+@operation('post', '/SetupDemo', {
+  responses: {
+    '200': {
+      description: 'ResponseMessage model instance',
+      content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
+    },
+  },
+})
+async setupDemo(@requestBody() setupDemoBody: SetupDemo): Promise<ResponseMessage> {
+
+  try {
+
+    let message = await demoObject.setupDemo(setupDemoBody);
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: message });
+    return responseMessage;
+  } catch (error) {
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
+    return responseMessage;
   }
-
-  /**
-   * 
-   * 
-
-   * @param filter Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})
-   * @returns Request was successful
-   */
-  @operation('get', '/SetupDemo')
-  async setupDemoFind(@param({name: 'filter', in: 'query'}) filter: string): Promise<SetupDemo[]> {
-    throw new Error('Not implemented');
-  }
-
-  /**
-   * 
-   * 
-
-   * @param id Model id
-   * @param filter Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
-   * @returns Request was successful
-   */
-  @operation('get', '/SetupDemo/{id}')
-  async setupDemoFindById(@param({name: 'id', in: 'path'}) id: string, @param({name: 'filter', in: 'query'}) filter: string): Promise<SetupDemo> {
-    throw new Error('Not implemented');
-  }
+}
 
 }
 
