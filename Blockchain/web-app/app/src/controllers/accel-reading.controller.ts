@@ -47,8 +47,7 @@ async accelReadingCreate(@requestBody() accelReading: AccelReading): Promise<Res
    * 
 
    * @param id Model id
-   * @param filter Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
-   * @returns Request was successful
+   * @returns ResponseMessage with readings or error message
    */
   @operation('get', '/AccelReading/{id}',{
     responses: {
@@ -63,7 +62,7 @@ async accelReadingCreate(@requestBody() accelReading: AccelReading): Promise<Res
       let networkObj = await blockChainClient.connectToNetwork();
       let shipmentString = await blockChainClient.getShipmentByTransactionId(networkObj.contract, id);
       var shipmentJSON = JSON.parse(shipmentString);
-      let repsonseMesssage: ResponseMessage = new ResponseMessage({message:"the Accelerometer entries", objectlist: shipmentJSON.AccelReadings, statusCode:'200'});
+      let repsonseMesssage: ResponseMessage = new ResponseMessage({message:`AccelReadings for shipment ${id}`, objectlist: shipmentJSON.AccelReadings, statusCode:'200'});
       return repsonseMesssage;
 
     } catch(error){
