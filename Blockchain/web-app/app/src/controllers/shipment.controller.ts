@@ -53,19 +53,7 @@ export class ShipmentController {
     throw new Error('Not implemented');
   }
 
-  /**
-   * 
-   * 
 
-   * @param id Model id
-   * @returns Request was successful
-   */
-  @operation('head', '/Shipment/{id}')
-  async shipmentExists(@param({name: 'id', in: 'path'}) id: string): Promise<{
-  exists?: boolean;
-}> {
-    throw new Error('Not implemented');
-  }
 
   /**
    * 
@@ -75,48 +63,17 @@ export class ShipmentController {
    * @param filter Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
    * @returns Request was successful
    */
-  @operation('get', '/Shipment/{transactionId}')
-  async shipmentFindById(@param({name: 'transactionId', in: 'path'}) transactionId: string, @param({name: 'filter', in: 'query'}) filter: string): Promise<Shipment> {
+  @operation('get', '/Shipment/{shipmentId}')
+  async shipmentFindById(@param({name: 'shipmentId', in: 'path'}) shipmentId: string): Promise<Shipment> {
     
     try{
       let networkObj = await blockChainClient.connectToNetwork();
-      let shipment: Shipment = await blockChainClient.getShipmentByTransactionId(networkObj.contract, transactionId);
+      let shipment: Shipment = await blockChainClient.getShipmentByTransactionId(networkObj.contract, shipmentId);
 
       return shipment;
     } catch (error) {
       let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
       throw responseMessage;
     }
-
-
   }
-
-  /**
-   * 
-   * 
-
-   * @param requestBody Model instance data
-   * @param id Model id
-   * @returns Request was successful
-   */
-  @operation('put', '/Shipment/{id}')
-  async shipmentReplaceById(@requestBody() requestBody: Shipment, @param({name: 'id', in: 'path'}) id: string): Promise<Shipment> {
-    throw new Error('Not implemented');
-  }
-
-  /**
-   * 
-   * 
-
-   * @param id Model id
-   * @returns Request was successful
-   */
-  @operation('delete', '/Shipment/{id}')
-  async shipmentDeleteById(@param({name: 'id', in: 'path'}) id: string): Promise<{
-  
-}> {
-    throw new Error('Not implemented');
-  }
-
 }
-
