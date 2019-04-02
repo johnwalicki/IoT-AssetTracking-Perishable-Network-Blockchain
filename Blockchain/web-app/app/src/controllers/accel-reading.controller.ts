@@ -41,17 +41,6 @@ async accelReadingCreate(@requestBody() accelReading: AccelReading): Promise<Res
   }
 }
 
-  /**
-   * 
-   * 
-
-   * @param filter Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})
-   * @returns Request was successful
-   */
-  @operation('get', '/AccelReading')
-  async accelReadingFind(@param({name: 'filter', in: 'query'}) filter: string): Promise<AccelReading[]> {
-    throw new Error('Not implemented');
-  }
 
   /**
    * 
@@ -61,10 +50,25 @@ async accelReadingCreate(@requestBody() accelReading: AccelReading): Promise<Res
    * @param filter Filter defining fields and include - must be a JSON-encoded string ({"something":"value"})
    * @returns Request was successful
    */
-  @operation('get', '/AccelReading/{id}')
-  async accelReadingFindById(@param({name: 'id', in: 'path'}) id: string, @param({name: 'filter', in: 'query'}) filter: string): Promise<AccelReading> {
-    throw new Error('Not implemented');
+  @operation('get', '/AccelReading/{id}',{
+    responses: {
+      '200': {
+        description: 'Response model instance',
+        content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
+      },
+    },
+})
+  async accelReadingFindById(@param({name: 'id', in: 'path'}) id: string): Promise<ResponseMessage> {
+    try{
+      let networkObj = await blockChainClient.connectToNetwork();
+      let shipmentString = await blockChainClient.getShipmentByTransactionId(networkObj.contract, id);
+      var shipmentJSON = JSON.parse(shipmentString);
+      let repsonseMesssage: ResponseMessage = new ResponseMessage({message:"the Accelerometer entries", objectlist: shipmentJSON.AccelReadings, statusCode:'200'});
+      return repsonseMesssage;
+
+    } catch(error){
+      let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
+      return responseMessage;
+    }
   }
-
 }
-
