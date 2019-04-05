@@ -43,29 +43,8 @@ async contractCreate(@requestBody() _contract: Contract): Promise<ResponseMessag
 
   /**
    * 
-   * 
 
-   * @param filter Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})
-   * @returns Request was successful
-   */
-  @operation('get', '/Contract')
-  async contractFind(@param({name: 'filter', in: 'query'}) filter: string): Promise<Contract[]> {
-    throw new Error('Not implemented');
-  }
 
-  /**
-   * 
-   * 
-
-   * @param id Model id
-   * @returns Request was successful
-   */
-  @operation('head', '/Contract/{id}')
-  async contractExists(@param({name: 'id', in: 'path'}) id: string): Promise<{
-  exists?: boolean;
-}> {
-    throw new Error('Not implemented');
-  }
 
   /**
    * 
@@ -80,32 +59,8 @@ async contractCreate(@requestBody() _contract: Contract): Promise<ResponseMessag
     throw new Error('Not implemented');
   }
 
-  /**
-   * 
-   * 
-
-   * @param requestBody Model instance data
-   * @param id Model id
-   * @returns Request was successful
-   */
-  @operation('put', '/Contract/{id}')
-  async contractReplaceById(@requestBody() requestBody: Contract, @param({name: 'id', in: 'path'}) id: string): Promise<Contract> {
-    throw new Error('Not implemented');
-  }
-
-  /**
-   * 
-   * 
-
-   * @param id Model id
-   * @returns Request was successful
-   */
-  @operation('delete', '/Contract/{id}')
-  async contractDeleteById(@param({name: 'id', in: 'path'}) id: string): Promise<{
   
-}> {
-    throw new Error('Not implemented');
-  }
+
 
 }
 
