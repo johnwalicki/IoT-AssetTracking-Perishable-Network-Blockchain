@@ -1,12 +1,8 @@
-/*
- * SPDX-License-Identifier: Apache-2.0
- */
-
 'use strict';
 
 const { Contract } = require('fabric-contract-api');
 
-class MyContract extends Contract {
+class IoTperishibleContract extends Contract {
 
     async instantiate(ctx) {
         console.info('instantiate');
@@ -85,4 +81,4 @@ class MyContract extends Contract {
     }
 }
 
-module.exports = MyContract;
+module.exports = IoTperishibleContract;
