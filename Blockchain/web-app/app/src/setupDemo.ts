@@ -1,10 +1,8 @@
-import {SetupShipment} from './models/setup-demo.model';
+import {SetupShipment} from './models/setup-shipment.model';
 import { Shipment } from "./models/shipment.model";
 import { Contract } from "./models/contract.model";
 import { Importer } from "./models/importer.model";
 import { Shipper } from './models/shipper.model';
-//import { TemperatureReading } from "./models/temperature-reading.model";
-//import { AccelReading } from "./models/accel-reading.model";
 import { Grower } from "./models/grower.model";
 import {Address} from "./models/address.model";
 

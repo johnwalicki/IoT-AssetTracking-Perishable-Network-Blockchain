@@ -1,10 +1,10 @@
 /* tslint:disable:no-any */
 import {operation, param, requestBody} from '@loopback/rest';
-import {SetupDemo} from '../models/setup-shipment.model';
+import {SetupShipment} from '../models/setup-shipment.model';
 
 import {ResponseMessage} from '../models/response-message.model';
-import {DemoModule} from '../setupDemo';
-let demoObject = new DemoModule.DemoClass();
+import {SetupShipmentModule} from '../setupDemo';
+let setupShipmentObject = new SetupShipmentModule.SetupShipmentClass();
 
 /**
  * The controller class is generated from OpenAPI spec with operations tagged
@@ -27,11 +27,11 @@ export class SetupDemoController {
     },
   },
 })
-async setupDemo(@requestBody() setupDemoBody: SetupDemo): Promise<ResponseMessage> {
+async setupDemo(@requestBody() setupShipmentBody: SetupShipment): Promise<ResponseMessage> {
 
   try {
 
-    let message = await demoObject.setupDemo(setupDemoBody);
+    let message = await setupShipmentObject.setupDemo(setupShipmentBody);
     let responseMessage: ResponseMessage = new ResponseMessage({ message: message });
     return responseMessage;
   } catch (error) {

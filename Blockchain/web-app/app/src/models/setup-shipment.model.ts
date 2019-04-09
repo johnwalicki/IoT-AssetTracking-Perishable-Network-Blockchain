@@ -1,6 +1,3 @@
-
-
-
 /* tslint:disable:no-any */
 import {model, property} from '@loopback/repository';
 
