@@ -15,44 +15,6 @@ let blockChainClient = new BlockChainModule.BlockchainClient();
 export class ShipmentController {
   constructor() {}
 
-/**
-   * POST
-   * @param requestBody Model instance data
-   * @returns ResponseMessage - Request was successful or not
-*/
-  @operation('post', '/Shipment', {
-    responses: {
-      '200': {
-        description: 'ResponseMessage model instance',
-        content: { 'application/json': { schema: { 'x-ts-type': ResponseMessage } } },
-      },
-    },
-  })
-  async shipmentCreate(@requestBody() shipment: Shipment): Promise<ResponseMessage> {
-
-    try {
-      let networkObj = await blockChainClient.connectToNetwork();
-      let transactionID = await blockChainClient.addShipment(networkObj.contract,shipment);
-      let responseMessage: ResponseMessage = new ResponseMessage({ message: `added Shipment to Blockchain with TransactionID - ${transactionID}` });
-      return responseMessage;
-    } catch (error) {
-      let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });
-      return responseMessage;
-    }
-  }
-
-  /**
-   * 
-   * 
-
-   * @param filter Filter defining fields, where, include, order, offset, and limit - must be a JSON-encoded string ({"something":"value"})
-   * @returns Request was successful
-   */
-  @operation('get', '/Shipment')
-  async shipmentFind(@param({name: 'filter', in: 'query'}) filter: string): Promise<Shipment[]> {
-    throw new Error('Not implemented');
-  }
-
 
 
   /**
