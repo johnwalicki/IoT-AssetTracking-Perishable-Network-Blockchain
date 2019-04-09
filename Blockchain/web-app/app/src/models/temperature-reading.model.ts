@@ -44,12 +44,10 @@ export class TemperatureReading {
   readingTime: string;
 
   /**
-   * 
+   * shipment Id of this reading
    */
-  @property({name: 'shipment', required: true})
-  shipment: {
-  
-};
+  @property({name: 'shipmentId', required: true})
+  shipmentId: string;
 
   /**
    * The instance identifier for this type

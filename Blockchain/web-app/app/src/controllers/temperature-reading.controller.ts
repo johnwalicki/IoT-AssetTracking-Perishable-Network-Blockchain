@@ -32,7 +32,7 @@ async temperatureReadingCreate(@requestBody() temperatureReading: TemperatureRea
   try {
     let networkObj = await blockChainClient.connectToNetwork();
     await blockChainClient.addTemperatureReading(networkObj.contract,temperatureReading);
-    let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added TemperatureReading to Blockchain' });
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: `added Temperature reading of ${temperatureReading.celsius} degrees Celcius to shipment [${temperatureReading.shipmentId}] on the Blockchain` });
     return responseMessage;
   } catch (error) {
     let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });

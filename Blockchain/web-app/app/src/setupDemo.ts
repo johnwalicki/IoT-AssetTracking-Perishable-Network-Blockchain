@@ -25,44 +25,43 @@ export module DemoModule {
             let networkObj = await blockChainClient.connectToNetwork();
             let smartContract = networkObj.contract;
 
-            let shipmentId = setupDemo.transactionId;
-            //let shipmentId = '320022000251363131363432';
-            let grower: Grower =  this.createGrower();
-            let importer: Importer =  this.createImporter();
-            let shipper: Shipper =  this.createShipper();
-            let contract: Contract =  this.createContract(importer, grower, shipper);
+            let shipmentId = setupDemo.shipmentId;
+            let grower: Grower =  this.createGrower(setupDemo);
+            let importer: Importer =  this.createImporter(setupDemo);
+            let shipper: Shipper =  this.createShipper(setupDemo);
+            let contract: Contract =  this.createContract(setupDemo, importer, grower, shipper);
             let shipment: Shipment = this.createShipment(shipmentId, contract);
 
             let result = await blockChainClient.addShipment(smartContract, shipment);
             return `setup demo - ${result}`;
         }
         
-        createGrower():Grower {
-            let email = 'farmer@email.com';
+        createGrower(setupDemo: SetupDemo):Grower {
+            let email = setupDemo.growerEmail;
             let accountBal = 0;
             let address = new Address({country:'USA',city:'Ridge Spring',street:'350 West Francis Lane',zip:'29122'})
             let grower = new Grower({email:email, address:address, accountBalance:accountBal});
             return grower;
         }
 
-        createImporter(): Importer {
-            let email = 'supermarket@email.com';
+        createImporter(setupDemo: SetupDemo): Importer {
+            let email = setupDemo.importerEmail;
             let accountBal = 0;
             let address = new Address({country:'USA',city:'Reno',street:'98 Plumb Ave',zip:'89509'})
             let importer = new Importer({email:email, address:address, accountBalance:accountBal});
             return importer;
         }
 
-        createShipper(): Shipper{
-            let email = 'shipper@email.com';
+        createShipper(setupDemo: SetupDemo): Shipper{
+            let email = setupDemo.shipperEmail;
             let accountBal = 0;
             let address = new Address({country:'Panama',city:'Felicidad',street:'Embarcadero 448',zip:'PN654'})
             let shipper = new Shipper({email:email, address:address, accountBalance:accountBal});
             return shipper;
         }
 
-        createContract(importer: Importer, grower:Grower, shipper: Shipper): Contract {
-            let contractId = 'CON_002';
+        createContract(setupDemo: SetupDemo, importer: Importer, grower:Grower, shipper: Shipper): Contract {
+            let contractId = setupDemo.contractId;
             let contract = new Contract();
             contract.grower = grower;
             contract.shipper = shipper;

@@ -20,13 +20,37 @@ export class SetupDemo {
    * The class identifier for this type
    */
   @property({name: '$class'})
-  $class?: string = 'org.acme.shipping.perishable.SetupDemo';
+  $class?: string = 'org.acme.shipping.perishable.Shipment';
 
   /**
-   * The instance identifier for this type
+   * The Shipment ID - Required.
    */
-  @property({name: 'transactionId'})
-  transactionId: string = '320022000251363131363432';
+  @property({name: 'shipmentId', required: true})
+  shipmentId: string 
+
+  /**
+   * The Grower's email
+   */
+  @property({name: 'growerEmail', required: true})
+  growerEmail: string 
+
+  /**
+   * The Shipper's email
+   */
+  @property({name: 'shipperEmail', required: true})
+  shipperEmail: string 
+
+   /**
+   * The Importer's email
+   */
+  @property({name: 'importerEmail', required: true})
+  importerEmail: string 
+
+  /**
+   * The Contract Id
+   */
+  @property({name: 'contractId', required: true})
+  contractId: string 
 
   /**
    * 

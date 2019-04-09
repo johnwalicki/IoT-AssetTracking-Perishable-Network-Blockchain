@@ -32,8 +32,10 @@ async accelReadingCreate(@requestBody() accelReading: AccelReading): Promise<Res
 
   try {
     let networkObj = await blockChainClient.connectToNetwork();
-    await blockChainClient.addAccelReading(networkObj.contract,accelReading);
-    let responseMessage: ResponseMessage = new ResponseMessage({ message: 'added AccelReading to Blockchain' });
+    accelReading.timestamp = new Date(Date.now());
+
+        await blockChainClient.addAccelReading(networkObj.contract,accelReading);
+    let responseMessage: ResponseMessage = new ResponseMessage({ message: `added AccelReading to shipment [${accelReading.shipmentId}] on the Blockchain` });
     return responseMessage;
   } catch (error) {
     let responseMessage: ResponseMessage = new ResponseMessage({ message: error, statusCode: '400' });

@@ -144,21 +144,23 @@ export module BlockChainModule {
 
 
     async addAccelReading(contract: any, accelReading: AccelReading ) {
-      let transactionId: string = accelReading.transactionId;
-      console.log(`about to add new accelerometer reading to shipment by transactionId ${transactionId}`);
-      var shipment = await this.getShipmentByTransactionId(contract,transactionId);
+      console.log(`about to add new accelerometer reading to shipment by shipmentID ${accelReading.shipmentId}`);
+      var shipment = await this.getShipmentByTransactionId(contract, accelReading.shipmentId);
       shipment = JSON.parse(shipment);
+      accelReading.transactionId = uuid.v4();
       shipment.AccelReadings.push(accelReading);
-      return await contract.submitTransaction('updateShipment', transactionId, JSON.stringify(shipment));
+      
+      return await contract.submitTransaction('updateShipment', accelReading.shipmentId, JSON.stringify(shipment));
     }
 
     async addTemperatureReading(contract: any, temperatureReading: TemperatureReading ) {
-      let transactionId: string = temperatureReading.transactionId;
-      console.log(`about to add new temperature reading to shipment by transactionId ${transactionId}`);
-      var shipment = await this.getShipmentByTransactionId(contract,transactionId);
+      
+      console.log(`about to add new temperature reading to shipment by shipmentID ${temperatureReading.shipmentId}`);
+      var shipment = await this.getShipmentByTransactionId(contract,temperatureReading.shipmentId);
       shipment = JSON.parse(shipment);
+      temperatureReading.transactionId = uuid.v4();
       shipment.temperatureReadings.push(temperatureReading);
-      return await contract.submitTransaction('updateShipment', transactionId, JSON.stringify(shipment));
+      return await contract.submitTransaction('updateShipment', temperatureReading.shipmentId, JSON.stringify(shipment));
     }
 
     async addGrower(contract: any, grower: Grower ) {
