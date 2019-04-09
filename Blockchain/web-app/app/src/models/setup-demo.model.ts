@@ -4,13 +4,10 @@
 /* tslint:disable:no-any */
 import {model, property} from '@loopback/repository';
 
-/**
- * The model class is generated from OpenAPI schema - SetupDemo
- * A transaction named SetupDemo
- */
-@model({name: 'SetupDemo'})
-export class SetupDemo {
-  constructor(data?: Partial<SetupDemo>) {
+
+@model({name: 'SetupShipment'})
+export class SetupShipment {
+  constructor(data?: Partial<SetupShipment>) {
     if (data != null && typeof data === 'object') {
       Object.assign(this, data);
     }

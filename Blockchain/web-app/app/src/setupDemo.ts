@@ -1,4 +1,4 @@
-import {SetupDemo} from './models/setup-demo.model';
+import {SetupShipment} from './models/setup-demo.model';
 import { Shipment } from "./models/shipment.model";
 import { Contract } from "./models/contract.model";
 import { Importer } from "./models/importer.model";
@@ -13,30 +13,26 @@ import {BlockChainModule} from './blockchainClient';
 
 let blockChainClient = new BlockChainModule.BlockchainClient();
 
-export module DemoModule {
+export module SetupShipmentModule {
 
-    export class DemoClass {
+    export class SetupShipmentClass {
 
-
-        // @property({name: 'NS'})
-        // NS: string  = 'org.acme.shipping.perishable';
-
-        async setupDemo(setupDemo: SetupDemo) :Promise<string> {
+        async setupDemo(setupShipment: SetupShipment) :Promise<string> {
             let networkObj = await blockChainClient.connectToNetwork();
             let smartContract = networkObj.contract;
 
-            let shipmentId = setupDemo.shipmentId;
-            let grower: Grower =  this.createGrower(setupDemo);
-            let importer: Importer =  this.createImporter(setupDemo);
-            let shipper: Shipper =  this.createShipper(setupDemo);
-            let contract: Contract =  this.createContract(setupDemo, importer, grower, shipper);
+            let shipmentId = setupShipment.shipmentId;
+            let grower: Grower =  this.createGrower(setupShipment);
+            let importer: Importer =  this.createImporter(setupShipment);
+            let shipper: Shipper =  this.createShipper(setupShipment);
+            let contract: Contract =  this.createContract(setupShipment, importer, grower, shipper);
             let shipment: Shipment = this.createShipment(shipmentId, contract);
 
             let result = await blockChainClient.addShipment(smartContract, shipment);
             return `setup demo - ${result}`;
         }
         
-        createGrower(setupDemo: SetupDemo):Grower {
+        createGrower(setupDemo: SetupShipment):Grower {
             let email = setupDemo.growerEmail;
             let accountBal = 0;
             let address = new Address({country:'USA',city:'Ridge Spring',street:'350 West Francis Lane',zip:'29122'})
@@ -44,7 +40,7 @@ export module DemoModule {
             return grower;
         }
 
-        createImporter(setupDemo: SetupDemo): Importer {
+        createImporter(setupDemo: SetupShipment): Importer {
             let email = setupDemo.importerEmail;
             let accountBal = 0;
             let address = new Address({country:'USA',city:'Reno',street:'98 Plumb Ave',zip:'89509'})
@@ -52,7 +48,7 @@ export module DemoModule {
             return importer;
         }
 
-        createShipper(setupDemo: SetupDemo): Shipper{
+        createShipper(setupDemo: SetupShipment): Shipper{
             let email = setupDemo.shipperEmail;
             let accountBal = 0;
             let address = new Address({country:'Panama',city:'Felicidad',street:'Embarcadero 448',zip:'PN654'})
@@ -60,7 +56,7 @@ export module DemoModule {
             return shipper;
         }
 
-        createContract(setupDemo: SetupDemo, importer: Importer, grower:Grower, shipper: Shipper): Contract {
+        createContract(setupDemo: SetupShipment, importer: Importer, grower:Grower, shipper: Shipper): Contract {
             let contractId = setupDemo.contractId;
             let contract = new Contract();
             contract.grower = grower;
