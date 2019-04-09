@@ -7,15 +7,13 @@ import { Grower } from "./models/grower.model";
 import {Address} from "./models/address.model";
 
 import {BlockChainModule} from './blockchainClient';
-//import { property } from '@loopback/repository';
-
 let blockChainClient = new BlockChainModule.BlockchainClient();
 
 export module SetupShipmentModule {
 
     export class SetupShipmentClass {
 
-        async setupDemo(setupShipment: SetupShipment) :Promise<string> {
+        async setupShipmentDemo(setupShipment: SetupShipment) :Promise<string> {
             let networkObj = await blockChainClient.connectToNetwork();
             let smartContract = networkObj.contract;
 

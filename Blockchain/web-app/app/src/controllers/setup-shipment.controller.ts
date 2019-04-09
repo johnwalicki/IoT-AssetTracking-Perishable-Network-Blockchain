@@ -3,15 +3,11 @@ import {operation, param, requestBody} from '@loopback/rest';
 import {SetupShipment} from '../models/setup-shipment.model';
 
 import {ResponseMessage} from '../models/response-message.model';
-import {SetupShipmentModule} from '../setupDemo';
+import {SetupShipmentModule} from '../setupShipment';
 let setupShipmentObject = new SetupShipmentModule.SetupShipmentClass();
 
-/**
- * The controller class is generated from OpenAPI spec with operations tagged
- * by SetupDemo
- * A transaction named SetupDemo
- */
-export class SetupDemoController {
+
+export class SetupShipmentController {
   constructor() {}
 
 /**
@@ -19,7 +15,7 @@ export class SetupDemoController {
    * @param requestBody Model instance data
    * @returns ResponseMessage - Request was successful or not
 */
-@operation('post', '/SetupDemo', {
+@operation('post', '/setupShipment', {
   responses: {
     '200': {
       description: 'ResponseMessage model instance',
@@ -27,11 +23,11 @@ export class SetupDemoController {
     },
   },
 })
-async setupDemo(@requestBody() setupShipmentBody: SetupShipment): Promise<ResponseMessage> {
+async setupShipment(@requestBody() setupShipmentBody: SetupShipment): Promise<ResponseMessage> {
 
   try {
 
-    let message = await setupShipmentObject.setupDemo(setupShipmentBody);
+    let message = await setupShipmentObject.setupShipmentDemo(setupShipmentBody);
     let responseMessage: ResponseMessage = new ResponseMessage({ message: message });
     return responseMessage;
   } catch (error) {
