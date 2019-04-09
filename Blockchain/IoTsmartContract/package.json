@@ -1,7 +1,7 @@
 {
     "name": "IoTsmartContract",
-    "version": "0.0.11",
-    "description": "My Smart Contract",
+    "version": "0.0.1",
+    "description": "IoT Perishible Code-Pattern SmartContract",
     "main": "index.js",
     "engines": {
         "node": ">=8",
@@ -14,7 +14,7 @@
         "start": "fabric-chaincode-node start"
     },
     "engineStrict": true,
-    "author": "John Doe",
+    "author": "John Walicki",
     "license": "Apache-2.0",
     "dependencies": {
         "fabric-contract-api": "1.4.0",
