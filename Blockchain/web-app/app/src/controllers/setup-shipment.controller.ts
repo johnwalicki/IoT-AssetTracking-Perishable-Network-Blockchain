@@ -1,6 +1,6 @@
 /* tslint:disable:no-any */
 import {operation, param, requestBody} from '@loopback/rest';
-import {SetupDemo} from '../models/setup-demo.model';
+import {SetupDemo} from '../models/setup-shipment.model';
 
 import {ResponseMessage} from '../models/response-message.model';
 import {DemoModule} from '../setupDemo';
