@@ -1,4 +1,77 @@
-# IoT Asset Tracking on a Hyperledger Blockchain
+# IoT Asset Tracking on Hyperledger Fabric Blockchain
+
+## Local development
+
+```sh
+git clone https://github.com/johnwalicki/IoT-AssetTracking-Perishable-Network-Blockchain.git
+cd IoT-AssetTracking-Perishable-Network-Blockchain
+cd Blockchain/IoTsmartContract/
+code .
+```
+
+you will now be in the Smart Contract folder
+
+click on square blockchain icon in left toolbar
+this expands the IBM BLOCKCHAIN PLATFORM panel
+in the top section
+ SMART CONTRACT PACKAGES
+
+ right click the ... and Package a Smart Contract Project
+
+in the middle section
+ LOCAL FABRIC OPS
+ right click the ... and Start Fabric Runtime
+
+ Installed/ +Install 
+ install the newly packaged contract
+
+ in the Instantiated/ +Instantiate 
+ instantiate the new contract
+ on 'mychannel' choose the init function
+ and leave the args empty.
+
+ now the local_fabric Blockchain is ready
+
+ check?
+ in a terminal window
+ type:
+
+ ```sh
+ docker ps
+ ```
+
+ you should see 6 docker containers:
+
+ 1. gliderlabs/logspout
+ 1. hyperledger/fabric-orderer:1.4.0
+ 1. hyperledger/fabric-ca:1.4.0
+ 1. hyperledger/fabric-couchdb:0.4.14
+ 1. hyperledger/fabric-peer:1.4.0
+ 1. fabricvscodelocalfabric-peer0.org1.example.com-iotsmartcontract-0.0.1
+
+
+### now you will need to export the 
+in middle panel
+LOCAL FABRIC OPS
+
+open Nodes
+right mouse click on peer0.org1.example.com
+and `Export Connection Details`
+
+e.g.
+```text
+Successfully exported connection details to /Users/<<your-username>>/Documents/dev/IoT-AssetTracking-Perishable-Network-Blockchain/Blockchain/local_fabric
+```
+
+this will export the Admin@org1.example.com public/private key pair so that the web-app client can communicate with this Network.
+
+<<img here of local_fabric dir structure of keys and connection.json>>
+
+
+
+
+
+
 
 This section of the IoT Asset tracking workshop is really split into two parts. The first part, which we will call **Blockchain Part A**, follows the tutorial to deploy a [Hyperledger](https://www.hyperledger.org/) Fabric and Hyperledger Composer running in the [IBM Blockchain Starter Plan](https://www.ibm.com/blockchain/getting-started.html) in the IBM Cloud.
 
