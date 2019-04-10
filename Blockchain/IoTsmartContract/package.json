@@ -1,7 +1,7 @@
 {
     "name": "IoTsmartContract",
     "version": "0.0.1",
-    "description": "IoT Perishible Code-Pattern SmartContract",
+    "description": "My Smart Contract",
     "main": "index.js",
     "engines": {
         "node": ">=8",
@@ -45,3 +45,4 @@
         "lines": 100
     }
 }
+
