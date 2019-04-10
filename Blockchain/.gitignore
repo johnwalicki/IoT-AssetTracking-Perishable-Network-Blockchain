@@ -7,5 +7,4 @@ local_fabric/
 .eslintrc.js
 .gitignore
 .npmignore
-index.js
 test/
