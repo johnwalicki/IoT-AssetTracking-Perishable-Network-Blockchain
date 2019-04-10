@@ -56,25 +56,21 @@ class IoTperishibleContract extends Contract {
     
           if (res.value && res.value.value.toString()) {
             let jsonRes = {};
-    
-            //console.log(res.value.value.toString('utf8'));
-    
             jsonRes.Key = res.value.key;
     
             try {
               jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
             } catch (err) {
-              console.log(err);
+              console.warn(err);
               jsonRes.Record = res.value.value.toString('utf8');
             }
     
             allResults.push(jsonRes);
           }
           if (res.done) {
-            console.log('end of data');
+            console.info('end of data');
             await resultsIterator.close();
-            console.info(allResults);
-            console.log(JSON.stringify(allResults));
+            console.warn(allResults);
             return JSON.stringify(allResults);
           }
         }
