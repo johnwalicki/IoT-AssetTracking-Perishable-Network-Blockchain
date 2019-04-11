@@ -125,5 +125,15 @@ npm start
 
 You should be able to view and try the API out by clicking here: [http://127.0.0.1:3000/explorer](http://127.0.0.1:3000/explorer)
 
+You should 
+be able to discover the REST api and exercise it directly from you webbrowser.
+
+![LoopBack Application Explorer](./docs/resources/loopback-explorer-REST.jpg)
 
 
+
+# Remote Deployment
+
+## Blockchain Network
+
+## Loopback Fabric REST API client
