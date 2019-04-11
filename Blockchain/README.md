@@ -1,5 +1,35 @@
 # IoT Asset Tracking on Hyperledger Fabric Blockchain
 
+
+
+When the reader has completed this part 3 of our code pattern, they will understand how to:
+
+* Interact with the (free) IBM Blockchain Platform V2 Beta
+* Build a blockchain back-end using Hyperledger Fabric
+* Create and use a (free) Kubernetes Cluster
+* Deploy a Node.js app in the cloud that will interact with our smart contract
+
+## Architecture Flow Diagram
+
+![Architecture Flow Diagram](./docs/resources/app-architecture.png)
+
+
+
+# Flow Description
+1. ?tbd? The blockchain operator sets up the IBM Blockchain Platform 2.0 service.
+
+2. ?tbd ?The IBM Blockchain Platform 2.0 
+
+  OR User creates a Hyperledger Fabric network on an IBM Kubernetes 
+  Service, [ and deploys by hand the docker stuff ] and the operator installs and instantiates the smart contract on the network.
+
+3. The Node.js application server uses the Fabric SDK to interact with the deployed network on IBM Blockchain Platform 2.0 and creates APIs for a web client.
+
+4. The Loopback 4 client uses the Node.js application API to interact with the network.
+
+5. The user interacts with the Loopback 4 web interface to update and query the blockchain ledger and state.
+
+
 ## Local development
 
 ```sh
@@ -50,7 +80,9 @@ in the middle section
  1. fabricvscodelocalfabric-peer0.org1.example.com-iotsmartcontract-0.0.1
 
 
-### now you will need to export the 
+### In order to interact with Blockchain, you will need to export the Connection Details ( aka the cerficicate details, user indentities and network IP addresses )
+
+<< add nice screen shots here >>
 in middle panel
 LOCAL FABRIC OPS
 
@@ -66,13 +98,13 @@ Successfully exported connection details to /Users/<<your-username>>/Documents/d
 this will export the Admin@org1.example.com public/private key pair so that the web-app client can communicate with this Network.
 
 ``` text
-.
+Blockchain
 ├── IoTsmartContract
 ├── README.md
 ├── local_fabric
 └── web-app
 ```
-Great, we are making progress, hang in there!
+Great, we are making good progress, hang in there!
 
 ### Enrolling an Admin and a User
 ### to the peer so that the web-app/app loopback client can communicate with the Blockchain network
@@ -135,5 +167,21 @@ be able to discover the REST api and exercise it directly from you webbrowser.
 # Remote Deployment
 
 ## Blockchain Network
+<< IBPv2(beta!) / Kubernetes Cluster to IBM Cloud>>
 
 ## Loopback Fabric REST API client
+<< cloud foundry>>
+
+## resources
+### IBM
+
+### external
+
+## troubleshooting
+
+
+### Credits
+John Walicki
+
+Grant Steinfeld
+
