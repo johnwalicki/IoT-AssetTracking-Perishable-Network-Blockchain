@@ -2,12 +2,12 @@
 
 
 
-When the reader has completed this part 3 of our code pattern, they will understand how to:
+When the reader has completed this part 3 of this code pattern, they will understand how to:
 
-* Interact with the (free) IBM Blockchain Platform V2 Beta
-* Build a blockchain back-end using Hyperledger Fabric
-* Create and use a (free) Kubernetes Cluster
-* Deploy a Node.js app in the cloud that will interact with our smart contract
+
+* Build a blockchain network using Hyperledger Fabric v1.4
+* Deploy the blockchain to a (free) Kubernetes Cluster on the IBM Cloud
+* Build and Deploy a NodeJS LoopBack 4 client that communicates with  the blockchains smart contract
 
 ## Architecture Flow Diagram
 
@@ -30,7 +30,7 @@ When the reader has completed this part 3 of our code pattern, they will underst
 5. The user interacts with the Loopback 4 web interface to update and query the blockchain ledger and state.
 
 
-## Local development
+## First  development locally!
 
 ```sh
 git clone https://github.com/johnwalicki/IoT-AssetTracking-Perishable-Network-Blockchain.git
@@ -164,7 +164,7 @@ be able to discover the REST api and exercise it directly from you webbrowser.
 
 
 
-# Remote Deployment
+# Once you are satisfied with and have tested your local setup you are ready for - Remote Deployment to the IBM Cloud.
 
 ## Blockchain Network
 << IBPv2(beta!) / Kubernetes Cluster to IBM Cloud>>
@@ -174,14 +174,18 @@ be able to discover the REST api and exercise it directly from you webbrowser.
 
 ## resources
 ### IBM
+https://developer.ibm.com/
+https://developer.ibm.com/patterns/develop-an-iot-asset-tracking-app-using-blockchain/
+
 
 ### external
+https://loopback.io/
 
 ## troubleshooting
-
+<<to be filled in - gPRC error etc ...>>
 
 ### Credits
 John Walicki
-
+Jennifer Francis
 Grant Steinfeld
 
