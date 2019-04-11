@@ -175,6 +175,7 @@ be able to discover the REST api and exercise it directly from you webbrowser.
 ## resources
 ### IBM
 https://developer.ibm.com/
+
 https://developer.ibm.com/patterns/develop-an-iot-asset-tracking-app-using-blockchain/
 
 
