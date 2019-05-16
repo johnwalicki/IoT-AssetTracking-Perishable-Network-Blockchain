@@ -1,8 +1,5 @@
-/*
- * SPDX-License-Identifier: Apache-2.0
- */
-
 'use strict';
+
 
 const { FileSystemWallet, Gateway, X509WalletMixin } = require('fabric-network');
 const fs = require('fs');
@@ -25,6 +22,11 @@ const ccp = JSON.parse(ccpJSON);
 async function main() {
     try {
 
+
+
+
+
+
         // Create a new file system based wallet for managing identities.
         const walletPath = path.join(process.cwd(), 'wallet');
         const wallet = new FileSystemWallet(walletPath);
@@ -35,6 +37,9 @@ async function main() {
         if (userExists) {
             console.log('An identity for the user "user1" already exists in the wallet');
             return;
+        }
+        else{
+            console.log("An identity for the user user1 DOES NOT exist in the wallet yet")
         }
 
         // Check to see if we've already enrolled the admin user.
