@@ -1,16 +1,16 @@
-### Server folder
+## Server folder
 
-#### Why do we have a Server folder?
-#### This is how your web-app/app application in our case a NodeJS Loopback4 Typescript application will
-#### communicate and interact with thethe Blockchain network created Previously in Step X.
+### Why do we have a Server folder?
+##### This is how your web-app/app application in our case a NodeJS Loopback4 Typescript application will communicate and interact with thethe Blockchain network created previously
 
-## First setup a "wallet" in this folder to contain the private and public key pairs for the 2 users our application requires:
-1. the admininstrator called `admin`
+###### The first step sets up an identity "wallet" in this folder to contain the private and public keys for the 2 users our application requires:
+
+1. Firstly we create an admininstrator called `admin`
 ```shell
 node enrollAdmin.js
 ```
 
-1. the application user named `user1`
+1. Secondly we create the application user named `user1`
 ```shell
 node registerUser.js
 ```
@@ -38,3 +38,5 @@ a ./wallet/admin/921aa3bae24f9e49bae6f1b59edd570b9d43baa62df28972c20d6d4bc78942b
 
 
 ```
+
+## Now we would need to export the 

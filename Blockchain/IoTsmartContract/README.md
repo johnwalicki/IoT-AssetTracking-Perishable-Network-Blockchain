@@ -1,17 +1,27 @@
 
-## Step X
-start with SmartContract
+#The SmartContract
+We start the blockchain portion of this code-pattern with
+the setup of a basic Hyperledger Fabric v1.4.x network using Visual Studio Code ( VSCode )
 
-e.g.
+## What you will learn:
+
+1. How to package a smartcontract
+1. How to work with it in developemnt mode in VSCode and the IBM Blockchain Extenstion.
+
+#### Step I: Open VSCode in the required directory
+
+In the command line console:
 ```sh
-cd /Users/Grant.Steinfeld@ibm.com/Documents/dev/IoT-AssetTracking-Perishable-Network-Blockchain.2/IoT-AssetTracking-Perishable-Network-Blockchain/Blockchain/IoTsmartContract
+cd IoT-AssetTracking-Perishable-Network-Blockchain/Blockchain/IoTsmartContract
 
 code .
 ```
+TIP: it's important to be in this directory in order to perform the steps and operations below.
 
-This will bring up the code portion in the correct dir `1IoTsmartContract`
 
-Great!  So now one can package a smartcontract
+This will bring up the VSCode at the required directory  `IoTsmartContract` where we can work.
+
+#### Step II:  package a smartcontract
 
 Open the blockchain extenstion and look athe top panel 
 
@@ -117,11 +127,93 @@ b) Look at the output log in the VSCode window below
 
 Here is a short video demonstrating this.
 
+<< video here >>
+
+So now we have a fully functional Blockchain network setup.  In order for our application to connect to it, we need to export the connection details
+
+### Step III: Exporting the connection details
+Switch to the IBM Blockchaing Platform view.  Then open up the LOCAL FABRIC OPS panel
+
+Open the Nodes squiggly and right mouse click on the
+peer0.org1.example.com node.  Select the Export Connection Profile from the popup menu.
+
+![Exporting peer0 connection details](images/LOCAL_FABRIC_OPS/Exporting_peer0_connection_profile.png)
+
+
+Once you have exported the connection details you should now see a new directory `local_fabric` directly under the `IoTsmartContract` folder
+
+```sh
+
+
+IoTsmartContract
+├── README.md
+├── images
+├── index.js
+├── lib
+├── local_fabric
+├── node_modules
+├── package-lock.json
+└── package.json
+
+```
+
+Inside the `local_fabric` directory is a single file,
+called `connection.json`. It should look similar to this:
+
+``` JSON
+{
+    "name": "local_fabric",
+    "version": "1.0.0",
+    "wallet": "local_fabric_wallet",
+    "client": {
+        "organization": "Org1",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                },
+                "orderer": "300"
+            }
+        }
+    },
+    "organizations": {
+        "Org1": {
+            "mspid": "Org1MSP",
+            "peers": [
+                "peer0.org1.example.com"
+            ],
+            "certificateAuthorities": [
+                "ca.org1.example.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.org1.example.com": {
+            "url": "grpc://localhost:17051"
+        }
+    },
+    "certificateAuthorities": {
+        "ca.org1.example.com": {
+            "url": "http://localhost:17054",
+            "caName": "ca.org1.example.com"
+        }
+    }
+}
+```
+
+So basically it is a configuration file stating
+what the url's are for connection to the peers and certificate authorities to which you'll connect to from 
+your application as defined in the next portion of this code pattern 
+
+[to do insert the link here to loopback4 application README.md](..)
 
 
 
 
-### trouble shooting
+
+
+
+### help and troubleshooting
 
 if you get this error
 
