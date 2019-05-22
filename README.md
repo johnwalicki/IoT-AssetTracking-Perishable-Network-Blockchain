@@ -2,6 +2,14 @@
 
 # IoT Asset Tracking using a Hyperledger Blockchain
 
+# WARNING: This repository is no longer maintained :warning:
+
+> This repository, which contains assets to run a Hyperledger Composer application,
+is not being actively maintained due to a shift to focus on Hyperledger Fabric.
+This repository will not be updated. The repository will be kept available 
+in read-only mode. Refer to https://github.com/IBM/assetTracking 
+for a similar example.
+
 ## Introduction
 This repository contains three sections which assemble an **IoT Asset Tracking device**, **Hyperledger Blockchain** and a **Node-RED Dashboard** to implement a perishable network supply chain.  This example can be used to track environmental conditions for a food safety supply chain, refrigerated medical supplies, garden plant shipments or any perishable shipment that are temperature / humidity / vibration / time sensitive.  If a cargo needs to be delivered within safe environmental parameters and time, the use of an IoT Asset Tracking device that combines environmental sensors, calculates its location via GPS, triangulation or beacons, and then reports its location via Cellular, 5G, Sub1GHz, SigFox, WiFi networks is extremely valuable. When multiple participants - farms, manufacturers, processing plants, trucks, ports, ships, distribution centers, consumer retail outlets - are involved in the safe shipment and payment of the cargo, a Hyperledger Blockchain can be used to record immutable transactions as the cargo shipment progresses through its delivery journey.
 
