@@ -1,6 +1,3 @@
-/*
- * SPDX-License-Identifier: Apache-2.0
- */
 
 'use strict';
 
@@ -58,10 +55,10 @@ async function main() {
         const enrollment = await ca.enroll({ enrollmentID: userName, enrollmentSecret: secret });
         const userIdentity = X509WalletMixin.createIdentity(orgMSPID, enrollment.certificate, enrollment.key.toBytes());
         wallet.import(userName, userIdentity);
-        console.log('Successfully registered and enrolled user ' + userName + ' and imported it into the wallet');
+        console.log('Successfully registered and enrolled admin user ' + userName + ' and imported it into the wallet');
 
     } catch (error) {
-        console.error(`Failed to register user ${userName} : ${error}`);
+        console.error(`Failed to register user ${userName}: ${error}`);
         process.exit(1);
     }
 }
