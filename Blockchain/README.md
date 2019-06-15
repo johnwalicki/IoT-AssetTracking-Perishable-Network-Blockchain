@@ -1,5 +1,27 @@
 # IoT Asset Tracking on Hyperledger Fabric Blockchain
 
+
+## Pre-requisites
+NVM
+https://github.com/creationix/nvm
+
+Node v8.15.x
+npm 6.4.x
+
+docker 
+centos7
+```
+echo "installing docker"
+  241  curl -fsSL https://get.docker.com/ | sh
+  242  sudo usermod -aG docker gsteinfeld
+  243  docker ps
+  244  sudo systemctl start docker
+  245  sudo systemctl status docker
+  246  docker ps
+  247  sudo systemctl enable docker
+  reboot
+  echo 'reboot needed to fix sock permission issue'
+```
 ## Local development
 
 ```sh
@@ -66,6 +88,7 @@ Successfully exported connection details to /Users/<<your-username>>/Documents/d
 this will export the Admin@org1.example.com public/private key pair so that the web-app client can communicate with this Network.
 
 <<img here of local_fabric dir structure of keys and connection.json>>
+
 
 
 
