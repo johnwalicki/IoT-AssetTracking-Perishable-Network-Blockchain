@@ -25,9 +25,9 @@ The [Particle Electron Asset Tracker v2](https://store.particle.io/products/asse
 8. Since I prefer a command line interface over a Web IDE, I installed the [Particle CLI]( https://docs.particle.io/guide/tools-and-features/cli/electron/) by following the guide.
 ```
     $ particle login
-    $ particle upgrade
+    $ particle update
 ```
- The [firmware upgrade](https://docs.particle.io/guide/tools-and-features/firmware-manager/electron/) was important to get the Google Maps geolocation device locator working.  My Particle Electron was factory installed with v0.4.9, once I upgraded to v0.6.4, the Google Maps function finally worked.
+ The [firmware update](https://docs.particle.io/guide/tools-and-features/firmware-manager/electron/) was important to get the Google Maps geolocation device locator working.  My Particle Electron was factory installed with v0.4.9, once I upgraded to v0.6.4, the Google Maps function finally worked.
 
 9. The next step was to learn about the [$ particle compile]( https://docs.particle.io/reference/cli/#particle-compile) command
 ```
